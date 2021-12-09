@@ -1,0 +1,927 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Regulator_Linear:L78L12_SOT89 U?
+U 1 1 61BB3ABE
+P 2350 1350
+AR Path="/61B5C5B6/61BB3ABE" Ref="U?"  Part="1" 
+AR Path="/61BB3ABE" Ref="U1"  Part="1" 
+F 0 "U1" H 2350 1592 50  0000 C CNN
+F 1 "L78L12_SOT89" H 2350 1501 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-89-3" H 2350 1550 50  0001 C CIN
+F 3 "https://datasheet.lcsc.com/lcsc/1810271811_UTC-Unisonic-Tech-78L12G-AB3-R_C75501.pdf" H 2350 1300 50  0001 C CNN
+F 4 "C75501" H 2350 1350 50  0001 C CNN "JLC"
+	1    2350 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR06
+U 1 1 61BB5A25
+P 2350 1650
+F 0 "#PWR06" H 2350 1400 50  0001 C CNN
+F 1 "GND" H 2355 1477 50  0000 C CNN
+F 2 "" H 2350 1650 50  0001 C CNN
+F 3 "" H 2350 1650 50  0001 C CNN
+	1    2350 1650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 1350 1450 1350
+$Comp
+L power:PWR_FLAG #FLG03
+U 1 1 61BBB3BC
+P 1450 1350
+F 0 "#FLG03" H 1450 1425 50  0001 C CNN
+F 1 "PWR_FLAG" H 1450 1523 50  0001 C CNN
+F 2 "" H 1450 1350 50  0001 C CNN
+F 3 "~" H 1450 1350 50  0001 C CNN
+	1    1450 1350
+	1    0    0    -1  
+$EndComp
+Connection ~ 1450 1350
+Wire Wire Line
+	1450 1350 1700 1350
+$Comp
+L power:PWR_FLAG #FLG02
+U 1 1 61BC6801
+P 4550 1200
+F 0 "#FLG02" H 4550 1275 50  0001 C CNN
+F 1 "PWR_FLAG" H 4550 1373 50  0001 C CNN
+F 2 "" H 4550 1200 50  0001 C CNN
+F 3 "~" H 4550 1200 50  0001 C CNN
+	1    4550 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR03
+U 1 1 61BC6CF2
+P 4550 1200
+F 0 "#PWR03" H 4550 950 50  0001 C CNN
+F 1 "GND" H 4555 1027 50  0000 C CNN
+F 2 "" H 4550 1200 50  0001 C CNN
+F 3 "" H 4550 1200 50  0001 C CNN
+	1    4550 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR07
+U 1 1 61BC89E8
+P 2850 1650
+F 0 "#PWR07" H 2850 1400 50  0001 C CNN
+F 1 "GND" H 2855 1477 50  0000 C CNN
+F 2 "" H 2850 1650 50  0001 C CNN
+F 3 "" H 2850 1650 50  0001 C CNN
+	1    2850 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C1
+U 1 1 61BCD012
+P 1700 1500
+F 0 "C1" H 1815 1546 50  0000 L CNN
+F 1 "1u/50" H 1815 1455 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 1738 1350 50  0001 C CNN
+F 3 "~" H 1700 1500 50  0001 C CNN
+F 4 "C15849" H 1700 1500 50  0001 C CNN "JLC"
+	1    1700 1500
+	1    0    0    -1  
+$EndComp
+Connection ~ 1700 1350
+Wire Wire Line
+	1700 1350 2050 1350
+$Comp
+L power:GND #PWR05
+U 1 1 61BCD9E0
+P 1700 1650
+F 0 "#PWR05" H 1700 1400 50  0001 C CNN
+F 1 "GND" H 1705 1477 50  0000 C CNN
+F 2 "" H 1700 1650 50  0001 C CNN
+F 3 "" H 1700 1650 50  0001 C CNN
+	1    1700 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VDD #PWR01
+U 1 1 61BE7372
+P 3550 800
+F 0 "#PWR01" H 3550 650 50  0001 C CNN
+F 1 "VDD" V 3565 928 50  0000 L CNN
+F 2 "" H 3550 800 50  0001 C CNN
+F 3 "" H 3550 800 50  0001 C CNN
+	1    3550 800 
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C2
+U 1 1 61BEA8AF
+P 2850 1500
+AR Path="/61BEA8AF" Ref="C2"  Part="1" 
+AR Path="/61B5C5B6/61BEA8AF" Ref="C?"  Part="1" 
+F 0 "C2" H 2965 1546 50  0000 L CNN
+F 1 "100n/50" H 2965 1455 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 2888 1350 50  0001 C CNN
+F 3 "~" H 2850 1500 50  0001 C CNN
+F 4 "C307331" H 2850 1500 50  0001 C CNN "JLC"
+	1    2850 1500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2650 1350 2850 1350
+Connection ~ 2850 1350
+Wire Wire Line
+	2850 1350 3050 1350
+Wire Wire Line
+	1250 800  3050 800 
+$Comp
+L Device:D_Schottky D1
+U 1 1 61BEEC30
+P 3200 800
+F 0 "D1" H 3200 583 50  0000 C CNN
+F 1 "Schottky" H 3200 674 50  0000 C CNN
+F 2 "Diode_SMD:D_SMA" H 3200 800 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/lcsc/2105061432_MDD%EF%BC%88Microdiode-Electronics%EF%BC%89-SS14_C2480.pdf" H 3200 800 50  0001 C CNN
+F 4 "C2480" H 3200 800 50  0001 C CNN "JLC"
+	1    3200 800 
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:D_Schottky D2
+U 1 1 61BEFC81
+P 3200 1350
+F 0 "D2" H 3200 1133 50  0000 C CNN
+F 1 "Schottky" H 3200 1224 50  0000 C CNN
+F 2 "Diode_SMD:D_SMA" H 3200 1350 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/lcsc/2105061432_MDD%EF%BC%88Microdiode-Electronics%EF%BC%89-SS14_C2480.pdf" H 3200 1350 50  0001 C CNN
+F 4 "C2480" H 3200 1350 50  0001 C CNN "JLC"
+	1    3200 1350
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:VDD #PWR04
+U 1 1 61BF09D4
+P 3550 1350
+F 0 "#PWR04" H 3550 1200 50  0001 C CNN
+F 1 "VDD" V 3565 1478 50  0000 L CNN
+F 2 "" H 3550 1350 50  0001 C CNN
+F 3 "" H 3550 1350 50  0001 C CNN
+	1    3550 1350
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3350 1350 3550 1350
+Wire Wire Line
+	3550 800  3350 800 
+$Comp
+L power:PWR_FLAG #FLG?
+U 1 1 61BF48A7
+P 4300 1200
+AR Path="/61B5C5B6/61BF48A7" Ref="#FLG?"  Part="1" 
+AR Path="/61BF48A7" Ref="#FLG01"  Part="1" 
+F 0 "#FLG01" H 4300 1275 50  0001 C CNN
+F 1 "PWR_FLAG" H 4300 1373 50  0001 C CNN
+F 2 "" H 4300 1200 50  0001 C CNN
+F 3 "~" H 4300 1200 50  0001 C CNN
+	1    4300 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VDD #PWR02
+U 1 1 61BF499A
+P 4300 1200
+F 0 "#PWR02" H 4300 1050 50  0001 C CNN
+F 1 "VDD" H 4315 1373 50  0000 C CNN
+F 2 "" H 4300 1200 50  0001 C CNN
+F 3 "" H 4300 1200 50  0001 C CNN
+	1    4300 1200
+	-1   0    0    1   
+$EndComp
+Text Notes 900  2950 0    50   ~ 0
+GND needs to sink high currents (20A)\n+24/12V sources <1A
+$Comp
+L Connector:Screw_Terminal_01x03 J?
+U 1 1 61C15452
+P 800 2300
+AR Path="/61B5C5B6/61C15452" Ref="J?"  Part="1" 
+AR Path="/61C15452" Ref="J1"  Part="1" 
+F 0 "J1" H 718 1975 50  0000 C CNN
+F 1 "POWER" H 718 2066 50  0000 C CNN
+F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-3-5.08_1x03_P5.08mm_Horizontal" H 800 2300 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/lcsc/2001152335_Cixi-Kefa-Elec-KF128-5.08-3P-AA_C474953.pdf" H 800 2300 50  0001 C CNN
+F 4 "C474953" H 800 2300 50  0001 C CNN "JLC"
+	1    800  2300
+	-1   0    0    1   
+$EndComp
+Text Label 1000 2300 0    50   ~ 0
+12VIN
+Text Label 1000 2200 0    50   ~ 0
+24VIN
+Text Label 1250 1350 2    50   ~ 0
+24VIN
+Text Label 1250 800  2    50   ~ 0
+12VIN
+$Comp
+L Driver_FET:MCP1416 U?
+U 1 1 61C7537C
+P 4000 3700
+AR Path="/61B5C5B6/61C7537C" Ref="U?"  Part="1" 
+AR Path="/61C03040/61C7537C" Ref="U?"  Part="1" 
+AR Path="/61C031A1/61C7537C" Ref="U?"  Part="1" 
+AR Path="/61C031A3/61C7537C" Ref="U?"  Part="1" 
+AR Path="/61C7537C" Ref="U2"  Part="1" 
+F 0 "U2" H 4050 4181 50  0000 C CNN
+F 1 "MCP1416" H 4050 4090 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23-5" H 4000 3300 50  0001 C CIN
+F 3 "https://ww1.microchip.com/downloads/en/DeviceDoc/20002092G.pdf" H 3800 3950 50  0001 C CNN
+F 4 "C83775" H 4000 3700 50  0001 C CNN "JLC"
+	1    4000 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 61C75382
+P 4000 4000
+AR Path="/61B5C5B6/61C75382" Ref="#PWR?"  Part="1" 
+AR Path="/61C03040/61C75382" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A1/61C75382" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A3/61C75382" Ref="#PWR?"  Part="1" 
+AR Path="/61C75382" Ref="#PWR014"  Part="1" 
+F 0 "#PWR014" H 4000 3750 50  0001 C CNN
+F 1 "GND" H 4005 3827 50  0000 C CNN
+F 2 "" H 4000 4000 50  0001 C CNN
+F 3 "" H 4000 4000 50  0001 C CNN
+	1    4000 4000
+	1    0    0    -1  
+$EndComp
+Text Notes 3550 3250 0    50   ~ 0
+Max 18Vdd
+$Comp
+L Transistor_FET:AO3400A Q?
+U 1 1 61C7538A
+P 5800 3700
+AR Path="/61B5C5B6/61C7538A" Ref="Q?"  Part="1" 
+AR Path="/61C03040/61C7538A" Ref="Q?"  Part="1" 
+AR Path="/61C031A1/61C7538A" Ref="Q?"  Part="1" 
+AR Path="/61C031A3/61C7538A" Ref="Q?"  Part="1" 
+AR Path="/61C7538A" Ref="Q1"  Part="1" 
+F 0 "Q1" H 6005 3746 50  0000 L CNN
+F 1 "AO3400A" H 6005 3655 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 6000 3625 50  0001 L CIN
+F 3 "http://www.aosmd.com/pdfs/datasheet/AO3400A.pdf" H 5800 3700 50  0001 L CNN
+F 4 "C20917" H 5800 3700 50  0001 C CNN "JLC"
+	1    5800 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:AO3400A Q?
+U 1 1 61C75391
+P 6550 3700
+AR Path="/61B5C5B6/61C75391" Ref="Q?"  Part="1" 
+AR Path="/61C03040/61C75391" Ref="Q?"  Part="1" 
+AR Path="/61C031A1/61C75391" Ref="Q?"  Part="1" 
+AR Path="/61C031A3/61C75391" Ref="Q?"  Part="1" 
+AR Path="/61C75391" Ref="Q2"  Part="1" 
+F 0 "Q2" H 6755 3746 50  0000 L CNN
+F 1 "AO3400A" H 6755 3655 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 6750 3625 50  0001 L CIN
+F 3 "http://www.aosmd.com/pdfs/datasheet/AO3400A.pdf" H 6550 3700 50  0001 L CNN
+F 4 "C20917" H 6550 3700 50  0001 C CNN "JLC"
+	1    6550 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:AO3400A Q?
+U 1 1 61C75398
+P 7300 3700
+AR Path="/61B5C5B6/61C75398" Ref="Q?"  Part="1" 
+AR Path="/61C03040/61C75398" Ref="Q?"  Part="1" 
+AR Path="/61C031A1/61C75398" Ref="Q?"  Part="1" 
+AR Path="/61C031A3/61C75398" Ref="Q?"  Part="1" 
+AR Path="/61C75398" Ref="Q3"  Part="1" 
+F 0 "Q3" H 7505 3746 50  0000 L CNN
+F 1 "AO3400A" H 7505 3655 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 7500 3625 50  0001 L CIN
+F 3 "http://www.aosmd.com/pdfs/datasheet/AO3400A.pdf" H 7300 3700 50  0001 L CNN
+F 4 "C20917" H 7300 3700 50  0001 C CNN "JLC"
+	1    7300 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:AO3400A Q?
+U 1 1 61C7539F
+P 8050 3700
+AR Path="/61B5C5B6/61C7539F" Ref="Q?"  Part="1" 
+AR Path="/61C03040/61C7539F" Ref="Q?"  Part="1" 
+AR Path="/61C031A1/61C7539F" Ref="Q?"  Part="1" 
+AR Path="/61C031A3/61C7539F" Ref="Q?"  Part="1" 
+AR Path="/61C7539F" Ref="Q4"  Part="1" 
+F 0 "Q4" H 8255 3746 50  0000 L CNN
+F 1 "AO3400A" H 8255 3655 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 8250 3625 50  0001 L CIN
+F 3 "http://www.aosmd.com/pdfs/datasheet/AO3400A.pdf" H 8050 3700 50  0001 L CNN
+F 4 "C20917" H 8050 3700 50  0001 C CNN "JLC"
+	1    8050 3700
+	1    0    0    -1  
+$EndComp
+Connection ~ 6350 3700
+Connection ~ 7100 3700
+Wire Wire Line
+	7100 3700 6350 3700
+Wire Wire Line
+	7850 3700 7100 3700
+Wire Wire Line
+	5900 3900 6650 3900
+Connection ~ 6650 3900
+Wire Wire Line
+	6650 3900 7400 3900
+Connection ~ 7400 3900
+Wire Wire Line
+	7400 3900 8150 3900
+Wire Wire Line
+	5900 4000 5900 3900
+Connection ~ 5900 3900
+Connection ~ 6650 3500
+Wire Wire Line
+	6650 3500 5900 3500
+Connection ~ 7400 3500
+Wire Wire Line
+	7400 3500 6650 3500
+Wire Wire Line
+	8150 3500 7400 3500
+$Comp
+L Device:C C3
+U 1 1 61C753BE
+P 1600 3550
+AR Path="/61C753BE" Ref="C3"  Part="1" 
+AR Path="/61B5C5B6/61C753BE" Ref="C?"  Part="1" 
+AR Path="/61C03040/61C753BE" Ref="C?"  Part="1" 
+AR Path="/61C031A1/61C753BE" Ref="C?"  Part="1" 
+AR Path="/61C031A3/61C753BE" Ref="C?"  Part="1" 
+F 0 "C3" H 1715 3596 50  0000 L CNN
+F 1 "1u/50" H 1715 3505 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 1638 3400 50  0001 C CNN
+F 3 "~" H 1600 3550 50  0001 C CNN
+F 4 "C15849" H 1600 3550 50  0001 C CNN "JLC"
+	1    1600 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR010
+U 1 1 61C753C4
+P 1600 3700
+AR Path="/61C753C4" Ref="#PWR010"  Part="1" 
+AR Path="/61B5C5B6/61C753C4" Ref="#PWR?"  Part="1" 
+AR Path="/61C03040/61C753C4" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A1/61C753C4" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A3/61C753C4" Ref="#PWR?"  Part="1" 
+F 0 "#PWR010" H 1600 3450 50  0001 C CNN
+F 1 "GND" H 1605 3527 50  0000 C CNN
+F 2 "" H 1600 3700 50  0001 C CNN
+F 3 "" H 1600 3700 50  0001 C CNN
+	1    1600 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C4
+U 1 1 61C753D2
+P 2100 3550
+AR Path="/61C753D2" Ref="C4"  Part="1" 
+AR Path="/61B5C5B6/61C753D2" Ref="C?"  Part="1" 
+AR Path="/61C03040/61C753D2" Ref="C?"  Part="1" 
+AR Path="/61C031A1/61C753D2" Ref="C?"  Part="1" 
+AR Path="/61C031A3/61C753D2" Ref="C?"  Part="1" 
+F 0 "C4" H 2215 3596 50  0000 L CNN
+F 1 "100n/50" H 2215 3505 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 2138 3400 50  0001 C CNN
+F 3 "~" H 2100 3550 50  0001 C CNN
+F 4 "C307331" H 2100 3550 50  0001 C CNN "JLC"
+	1    2100 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR011
+U 1 1 61C753D8
+P 2100 3700
+AR Path="/61C753D8" Ref="#PWR011"  Part="1" 
+AR Path="/61B5C5B6/61C753D8" Ref="#PWR?"  Part="1" 
+AR Path="/61C03040/61C753D8" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A1/61C753D8" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A3/61C753D8" Ref="#PWR?"  Part="1" 
+F 0 "#PWR011" H 2100 3450 50  0001 C CNN
+F 1 "GND" H 2105 3527 50  0000 C CNN
+F 2 "" H 2100 3700 50  0001 C CNN
+F 3 "" H 2100 3700 50  0001 C CNN
+	1    2100 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1600 3400 2100 3400
+Connection ~ 2100 3400
+$Comp
+L power:VDD #PWR?
+U 1 1 61C753E2
+P 1400 3400
+AR Path="/61B5C5B6/61C753E2" Ref="#PWR?"  Part="1" 
+AR Path="/61C03040/61C753E2" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A1/61C753E2" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A3/61C753E2" Ref="#PWR?"  Part="1" 
+AR Path="/61C753E2" Ref="#PWR09"  Part="1" 
+F 0 "#PWR09" H 1400 3250 50  0001 C CNN
+F 1 "VDD" V 1415 3527 50  0000 L CNN
+F 2 "" H 1400 3400 50  0001 C CNN
+F 3 "" H 1400 3400 50  0001 C CNN
+	1    1400 3400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 61C753F1
+P 3400 3850
+AR Path="/61B5C5B6/61C753F1" Ref="R?"  Part="1" 
+AR Path="/61C03040/61C753F1" Ref="R?"  Part="1" 
+AR Path="/61C031A1/61C753F1" Ref="R?"  Part="1" 
+AR Path="/61C031A3/61C753F1" Ref="R?"  Part="1" 
+AR Path="/61C753F1" Ref="R1"  Part="1" 
+F 0 "R1" H 3470 3896 50  0000 L CNN
+F 1 "4.7k" H 3470 3805 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 3330 3850 50  0001 C CNN
+F 3 "~" H 3400 3850 50  0001 C CNN
+F 4 "C25900" H 3400 3850 50  0001 C CNN "JLC"
+	1    3400 3850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3100 3700 3400 3700
+Connection ~ 3400 3700
+Wire Wire Line
+	3400 3700 3700 3700
+$Comp
+L power:GND #PWR?
+U 1 1 61C753FA
+P 3400 4000
+AR Path="/61B5C5B6/61C753FA" Ref="#PWR?"  Part="1" 
+AR Path="/61C03040/61C753FA" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A1/61C753FA" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A3/61C753FA" Ref="#PWR?"  Part="1" 
+AR Path="/61C753FA" Ref="#PWR013"  Part="1" 
+F 0 "#PWR013" H 3400 3750 50  0001 C CNN
+F 1 "GND" H 3405 3827 50  0000 C CNN
+F 2 "" H 3400 4000 50  0001 C CNN
+F 3 "" H 3400 4000 50  0001 C CNN
+	1    3400 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 61C75407
+P 3100 3800
+AR Path="/61B5C5B6/61C75407" Ref="#PWR?"  Part="1" 
+AR Path="/61C03040/61C75407" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A1/61C75407" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A3/61C75407" Ref="#PWR?"  Part="1" 
+AR Path="/61C75407" Ref="#PWR012"  Part="1" 
+F 0 "#PWR012" H 3100 3550 50  0001 C CNN
+F 1 "GND" H 3105 3627 50  0000 C CNN
+F 2 "" H 3100 3800 50  0001 C CNN
+F 3 "" H 3100 3800 50  0001 C CNN
+	1    3100 3800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8150 3500 8900 3500
+Connection ~ 8150 3500
+Text Label 3400 3700 0    50   ~ 0
+CTRL
+Text Label 7650 3700 0    50   ~ 0
+GATE
+Text Label 7650 3500 0    50   ~ 0
+DRAIN
+Wire Wire Line
+	1400 3400 1600 3400
+Connection ~ 1600 3400
+$Comp
+L Connector:Screw_Terminal_01x03 J?
+U 1 1 61D43916
+P 1500 2300
+AR Path="/61B5C5B6/61D43916" Ref="J?"  Part="1" 
+AR Path="/61D43916" Ref="J4"  Part="1" 
+F 0 "J4" H 1418 2617 50  0000 C CNN
+F 1 "POWER" H 1418 2526 50  0000 C CNN
+F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-3-5.08_1x03_P5.08mm_Horizontal" H 1500 2300 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/lcsc/2001152335_Cixi-Kefa-Elec-KF128-5.08-3P-AA_C474953.pdf" H 1500 2300 50  0001 C CNN
+F 4 "C474953" H 1500 2300 50  0001 C CNN "JLC"
+	1    1500 2300
+	-1   0    0    -1  
+$EndComp
+Text Label 1700 2300 0    50   ~ 0
+12VIN
+Text Label 1700 2200 0    50   ~ 0
+24VIN
+$Comp
+L power:GND #PWR?
+U 1 1 61D492CF
+P 5900 4000
+AR Path="/61B5C5B6/61D492CF" Ref="#PWR?"  Part="1" 
+AR Path="/61C03040/61D492CF" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A1/61D492CF" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A3/61D492CF" Ref="#PWR?"  Part="1" 
+AR Path="/61D492CF" Ref="#PWR0101"  Part="1" 
+F 0 "#PWR0101" H 5900 3750 50  0001 C CNN
+F 1 "GND" H 5905 3827 50  0000 C CNN
+F 2 "" H 5900 4000 50  0001 C CNN
+F 3 "" H 5900 4000 50  0001 C CNN
+	1    5900 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0102
+U 1 1 61D49E99
+P 1100 2500
+AR Path="/61D49E99" Ref="#PWR0102"  Part="1" 
+AR Path="/61B5C5B6/61D49E99" Ref="#PWR?"  Part="1" 
+AR Path="/61C03040/61D49E99" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A1/61D49E99" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A3/61D49E99" Ref="#PWR?"  Part="1" 
+F 0 "#PWR0102" H 1100 2250 50  0001 C CNN
+F 1 "GND" H 1105 2327 50  0000 C CNN
+F 2 "" H 1100 2500 50  0001 C CNN
+F 3 "" H 1100 2500 50  0001 C CNN
+	1    1100 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0103
+U 1 1 61D4A984
+P 1800 2500
+AR Path="/61D4A984" Ref="#PWR0103"  Part="1" 
+AR Path="/61B5C5B6/61D4A984" Ref="#PWR?"  Part="1" 
+AR Path="/61C03040/61D4A984" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A1/61D4A984" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A3/61D4A984" Ref="#PWR?"  Part="1" 
+F 0 "#PWR0103" H 1800 2250 50  0001 C CNN
+F 1 "GND" H 1805 2327 50  0000 C CNN
+F 2 "" H 1800 2500 50  0001 C CNN
+F 3 "" H 1800 2500 50  0001 C CNN
+	1    1800 2500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1800 2500 1800 2400
+Wire Wire Line
+	1800 2400 1700 2400
+Wire Wire Line
+	1100 2500 1100 2400
+Wire Wire Line
+	1100 2400 1000 2400
+$Comp
+L Device:R R?
+U 1 1 61D9019E
+P 5000 3700
+AR Path="/61B5C5B6/61D9019E" Ref="R?"  Part="1" 
+AR Path="/61C03040/61D9019E" Ref="R?"  Part="1" 
+AR Path="/61C031A1/61D9019E" Ref="R?"  Part="1" 
+AR Path="/61C031A3/61D9019E" Ref="R?"  Part="1" 
+AR Path="/61D9019E" Ref="R2"  Part="1" 
+F 0 "R2" V 4793 3700 50  0000 C CNN
+F 1 "100" V 4884 3700 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 4930 3700 50  0001 C CNN
+F 3 "~" H 5000 3700 50  0001 C CNN
+F 4 "C22775" H 5000 3700 50  0001 C CNN "JLC"
+	1    5000 3700
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C5
+U 1 1 61D91325
+P 5250 3950
+F 0 "C5" H 5365 3996 50  0000 L CNN
+F 1 "10n" H 5365 3905 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric_Pad0.74x0.62mm_HandSolder" H 5288 3800 50  0001 C CNN
+F 3 "~" H 5250 3950 50  0001 C CNN
+F 4 "C15195" H 5250 3950 50  0001 C CNN "JLC"
+	1    5250 3950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5150 3700 5250 3700
+Wire Wire Line
+	5250 3800 5250 3700
+$Comp
+L power:GND #PWR?
+U 1 1 61D988FD
+P 5250 4100
+AR Path="/61B5C5B6/61D988FD" Ref="#PWR?"  Part="1" 
+AR Path="/61C03040/61D988FD" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A1/61D988FD" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A3/61D988FD" Ref="#PWR?"  Part="1" 
+AR Path="/61D988FD" Ref="#PWR0104"  Part="1" 
+F 0 "#PWR0104" H 5250 3850 50  0001 C CNN
+F 1 "GND" H 5255 3927 50  0000 C CNN
+F 2 "" H 5250 4100 50  0001 C CNN
+F 3 "" H 5250 4100 50  0001 C CNN
+	1    5250 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5600 3700 6350 3700
+Wire Wire Line
+	5250 3700 5550 3700
+Connection ~ 5250 3700
+Connection ~ 5600 3700
+Wire Wire Line
+	2100 3400 4000 3400
+Wire Wire Line
+	4850 3700 4400 3700
+Text Label 4450 3700 0    50   ~ 0
+GATE_DRV
+$Comp
+L Transistor_FET:AO3400A Q?
+U 1 1 61DF196A
+P 8800 3700
+AR Path="/61B5C5B6/61DF196A" Ref="Q?"  Part="1" 
+AR Path="/61C03040/61DF196A" Ref="Q?"  Part="1" 
+AR Path="/61C031A1/61DF196A" Ref="Q?"  Part="1" 
+AR Path="/61C031A3/61DF196A" Ref="Q?"  Part="1" 
+AR Path="/61DF196A" Ref="Q5"  Part="1" 
+F 0 "Q5" H 9005 3746 50  0000 L CNN
+F 1 "AO3400A" H 9005 3655 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 9000 3625 50  0001 L CIN
+F 3 "http://www.aosmd.com/pdfs/datasheet/AO3400A.pdf" H 8800 3700 50  0001 L CNN
+F 4 "C20917" H 8800 3700 50  0001 C CNN "JLC"
+	1    8800 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8150 3900 8900 3900
+Connection ~ 8900 3900
+Connection ~ 8900 3500
+Connection ~ 8150 3900
+Wire Wire Line
+	8600 3700 7850 3700
+Connection ~ 7850 3700
+Connection ~ 10400 3500
+Wire Wire Line
+	10400 3500 10950 3500
+$Comp
+L Transistor_FET:AO3400A Q?
+U 1 1 61E30230
+P 10300 3700
+AR Path="/61B5C5B6/61E30230" Ref="Q?"  Part="1" 
+AR Path="/61C03040/61E30230" Ref="Q?"  Part="1" 
+AR Path="/61C031A1/61E30230" Ref="Q?"  Part="1" 
+AR Path="/61C031A3/61E30230" Ref="Q?"  Part="1" 
+AR Path="/61E30230" Ref="Q7"  Part="1" 
+F 0 "Q7" H 10505 3746 50  0000 L CNN
+F 1 "AO3400A" H 10505 3655 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 10500 3625 50  0001 L CIN
+F 3 "http://www.aosmd.com/pdfs/datasheet/AO3400A.pdf" H 10300 3700 50  0001 L CNN
+F 4 "C20917" H 10300 3700 50  0001 C CNN "JLC"
+	1    10300 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10950 4000 10950 3900
+Connection ~ 10950 4000
+Wire Wire Line
+	10950 3900 10950 3700
+Connection ~ 10950 3900
+Connection ~ 10950 3700
+Wire Wire Line
+	10950 4100 10950 4000
+$Comp
+L Connector:Screw_Terminal_01x03 J?
+U 1 1 61D7AF51
+P 11150 4000
+AR Path="/61B5C5B6/61D7AF51" Ref="J?"  Part="1" 
+AR Path="/61D7AF51" Ref="J5"  Part="1" 
+AR Path="/61C03040/61D7AF51" Ref="J?"  Part="1" 
+AR Path="/61C031A1/61D7AF51" Ref="J?"  Part="1" 
+AR Path="/61C031A3/61D7AF51" Ref="J?"  Part="1" 
+F 0 "J5" H 11230 4042 50  0000 L CNN
+F 1 "LOW SIDE" H 11230 3951 50  0000 L CNN
+F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-3-5.08_1x03_P5.08mm_Horizontal" H 11150 4000 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/lcsc/2001152335_Cixi-Kefa-Elec-KF128-5.08-3P-AA_C474953.pdf" H 11150 4000 50  0001 C CNN
+F 4 "C474953" H 11150 4000 50  0001 C CNN "JLC"
+	1    11150 4000
+	1    0    0    -1  
+$EndComp
+Connection ~ 10950 3600
+Wire Wire Line
+	10950 3700 10950 3600
+Connection ~ 10950 3500
+Wire Wire Line
+	10950 3500 10950 3600
+$Comp
+L Connector:Screw_Terminal_01x03 J?
+U 1 1 61C7540E
+P 11150 3600
+AR Path="/61B5C5B6/61C7540E" Ref="J?"  Part="1" 
+AR Path="/61C7540E" Ref="J2"  Part="1" 
+AR Path="/61C03040/61C7540E" Ref="J?"  Part="1" 
+AR Path="/61C031A1/61C7540E" Ref="J?"  Part="1" 
+AR Path="/61C031A3/61C7540E" Ref="J?"  Part="1" 
+F 0 "J2" H 11230 3642 50  0000 L CNN
+F 1 "LOW SIDE" H 11230 3551 50  0000 L CNN
+F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-3-5.08_1x03_P5.08mm_Horizontal" H 11150 3600 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/lcsc/2001152335_Cixi-Kefa-Elec-KF128-5.08-3P-AA_C474953.pdf" H 11150 3600 50  0001 C CNN
+F 4 "C474953" H 11150 3600 50  0001 C CNN "JLC"
+	1    11150 3600
+	1    0    0    -1  
+$EndComp
+Connection ~ 8600 3700
+Connection ~ 9650 3500
+Connection ~ 9350 3700
+Wire Wire Line
+	9350 3700 8600 3700
+Connection ~ 9650 3900
+Wire Wire Line
+	9650 3900 10400 3900
+Wire Wire Line
+	9650 3500 10400 3500
+Wire Wire Line
+	8900 3900 9650 3900
+Wire Wire Line
+	9650 3500 8900 3500
+Wire Wire Line
+	10100 3700 9350 3700
+$Comp
+L Transistor_FET:AO3400A Q?
+U 1 1 61DF1971
+P 9550 3700
+AR Path="/61B5C5B6/61DF1971" Ref="Q?"  Part="1" 
+AR Path="/61C03040/61DF1971" Ref="Q?"  Part="1" 
+AR Path="/61C031A1/61DF1971" Ref="Q?"  Part="1" 
+AR Path="/61C031A3/61DF1971" Ref="Q?"  Part="1" 
+AR Path="/61DF1971" Ref="Q6"  Part="1" 
+F 0 "Q6" H 9755 3746 50  0000 L CNN
+F 1 "AO3400A" H 9755 3655 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 9750 3625 50  0001 L CIN
+F 3 "http://www.aosmd.com/pdfs/datasheet/AO3400A.pdf" H 9550 3700 50  0001 L CNN
+F 4 "C20917" H 9550 3700 50  0001 C CNN "JLC"
+	1    9550 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 61E5CF15
+P 5550 3950
+AR Path="/61B5C5B6/61E5CF15" Ref="R?"  Part="1" 
+AR Path="/61C03040/61E5CF15" Ref="R?"  Part="1" 
+AR Path="/61C031A1/61E5CF15" Ref="R?"  Part="1" 
+AR Path="/61C031A3/61E5CF15" Ref="R?"  Part="1" 
+AR Path="/61E5CF15" Ref="R3"  Part="1" 
+F 0 "R3" H 5480 3904 50  0000 R CNN
+F 1 "4.7k" H 5480 3995 50  0000 R CNN
+F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 5480 3950 50  0001 C CNN
+F 3 "~" H 5550 3950 50  0001 C CNN
+F 4 "C25900" H 5550 3950 50  0001 C CNN "JLC"
+	1    5550 3950
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5550 3800 5550 3700
+Connection ~ 5550 3700
+Wire Wire Line
+	5550 3700 5600 3700
+$Comp
+L power:GND #PWR?
+U 1 1 61E616DB
+P 5550 4100
+AR Path="/61B5C5B6/61E616DB" Ref="#PWR?"  Part="1" 
+AR Path="/61C03040/61E616DB" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A1/61E616DB" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A3/61E616DB" Ref="#PWR?"  Part="1" 
+AR Path="/61E616DB" Ref="#PWR08"  Part="1" 
+F 0 "#PWR08" H 5550 3850 50  0001 C CNN
+F 1 "GND" H 5555 3927 50  0000 C CNN
+F 2 "" H 5550 4100 50  0001 C CNN
+F 3 "" H 5550 4100 50  0001 C CNN
+	1    5550 4100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H1
+U 1 1 61E6FE9D
+P 2800 4900
+F 0 "H1" H 2900 4946 50  0000 L CNN
+F 1 "JLC" H 2900 4855 50  0000 L CNN
+F 2 "mark:JLCPCB_ToolingHole_1152_1300_1400_1650" H 2800 4900 50  0001 C CNN
+F 3 "~" H 2800 4900 50  0001 C CNN
+F 4 "-" H 2800 4900 50  0001 C CNN "JLC"
+	1    2800 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H3
+U 1 1 61E70082
+P 2800 5100
+F 0 "H3" H 2900 5146 50  0000 L CNN
+F 1 "JLC" H 2900 5055 50  0000 L CNN
+F 2 "mark:JLCPCB_ToolingHole_1152_1300_1400_1650" H 2800 5100 50  0001 C CNN
+F 3 "~" H 2800 5100 50  0001 C CNN
+F 4 "-" H 2800 5100 50  0001 C CNN "JLC"
+	1    2800 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H5
+U 1 1 61E7024D
+P 2800 5300
+F 0 "H5" H 2900 5346 50  0000 L CNN
+F 1 "JLC" H 2900 5255 50  0000 L CNN
+F 2 "mark:JLCPCB_ToolingHole_1152_1300_1400_1650" H 2800 5300 50  0001 C CNN
+F 3 "~" H 2800 5300 50  0001 C CNN
+F 4 "-" H 2800 5300 50  0001 C CNN "JLC"
+	1    2800 5300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H7
+U 1 1 61E704CC
+P 2800 5500
+F 0 "H7" H 2900 5546 50  0000 L CNN
+F 1 "JLC" H 2900 5455 50  0000 L CNN
+F 2 "mark:JLCPCB_ToolingHole_1152_1300_1400_1650" H 2800 5500 50  0001 C CNN
+F 3 "~" H 2800 5500 50  0001 C CNN
+F 4 "-" H 2800 5500 50  0001 C CNN "JLC"
+	1    2800 5500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H2
+U 1 1 61E71653
+P 3200 4900
+F 0 "H2" H 3300 4946 50  0000 L CNN
+F 1 "M2" H 3300 4855 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2" H 3200 4900 50  0001 C CNN
+F 3 "~" H 3200 4900 50  0001 C CNN
+F 4 "-" H 3200 4900 50  0001 C CNN "JLC"
+	1    3200 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H4
+U 1 1 61E7197C
+P 3200 5100
+F 0 "H4" H 3300 5146 50  0000 L CNN
+F 1 "M2" H 3300 5055 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2" H 3200 5100 50  0001 C CNN
+F 3 "~" H 3200 5100 50  0001 C CNN
+F 4 "-" H 3200 5100 50  0001 C CNN "JLC"
+	1    3200 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H6
+U 1 1 61E71C5B
+P 3200 5300
+F 0 "H6" H 3300 5346 50  0000 L CNN
+F 1 "M2" H 3300 5255 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2" H 3200 5300 50  0001 C CNN
+F 3 "~" H 3200 5300 50  0001 C CNN
+F 4 "-" H 3200 5300 50  0001 C CNN "JLC"
+	1    3200 5300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H8
+U 1 1 61E71E56
+P 3200 5500
+F 0 "H8" H 3300 5546 50  0000 L CNN
+F 1 "M2" H 3300 5455 50  0000 L CNN
+F 2 "MountingHole:MountingHole_2.2mm_M2" H 3200 5500 50  0001 C CNN
+F 3 "~" H 3200 5500 50  0001 C CNN
+F 4 "-" H 3200 5500 50  0001 C CNN "JLC"
+	1    3200 5500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x02 J?
+U 1 1 61C75401
+P 2900 3700
+AR Path="/61B5C5B6/61C75401" Ref="J?"  Part="1" 
+AR Path="/61C03040/61C75401" Ref="J?"  Part="1" 
+AR Path="/61C031A1/61C75401" Ref="J?"  Part="1" 
+AR Path="/61C031A3/61C75401" Ref="J?"  Part="1" 
+AR Path="/61C75401" Ref="J3"  Part="1" 
+F 0 "J3" H 2818 3917 50  0000 C CNN
+F 1 "CTRL" H 2818 3826 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 2900 3700 50  0001 C CNN
+F 3 "~" H 2900 3700 50  0001 C CNN
+F 4 "-" H 2900 3700 50  0001 C CNN "JLC"
+	1    2900 3700
+	-1   0    0    -1  
+$EndComp
+$EndSCHEMATC
