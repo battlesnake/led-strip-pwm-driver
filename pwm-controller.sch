@@ -101,50 +101,34 @@ Wire Wire Line
 Connection ~ 2300 3350
 $Comp
 L Connector:Screw_Terminal_01x02 J?
-U 1 1 61C15452
-P 1050 2350
-AR Path="/61B5C5B6/61C15452" Ref="J?"  Part="1" 
-AR Path="/61C15452" Ref="J1"  Part="1" 
-F 0 "J1" H 968 2025 50  0000 C CNN
-F 1 "IN-" H 968 2116 50  0000 C CNN
-F 2 "mark:ScrewTerminal_5.08P_1x02_10.16x10.16mm" H 1050 2350 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/lcsc/1912251636_Ningbo-Kangnex-Elec-WJ500V-5.08-2P_C8465.pdf" H 1050 2350 50  0001 C CNN
-F 4 "C8465" H 1050 2350 50  0001 C CNN "JLC"
-	1    1050 2350
-	-1   0    0    1   
-$EndComp
-$Comp
-L Connector:Screw_Terminal_01x02 J?
 U 1 1 61D43916
-P 1750 2250
+P 1050 2400
 AR Path="/61B5C5B6/61D43916" Ref="J?"  Part="1" 
 AR Path="/61D43916" Ref="J4"  Part="1" 
-F 0 "J4" H 1668 2567 50  0000 C CNN
-F 1 "IN+" H 1668 2476 50  0000 C CNN
-F 2 "mark:ScrewTerminal_5.08P_1x02_10.16x10.16mm" H 1750 2250 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/lcsc/1912251636_Ningbo-Kangnex-Elec-WJ500V-5.08-2P_C8465.pdf" H 1750 2250 50  0001 C CNN
-F 4 "C8465" H 1750 2250 50  0001 C CNN "JLC"
-	1    1750 2250
-	-1   0    0    -1  
+F 0 "J4" H 968 2075 50  0000 C CNN
+F 1 "POWER" H 968 2166 50  0000 C CNN
+F 2 "mark:ScrewTerminal_5.08P_1x02_10.16x10.16mm" H 1050 2400 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/lcsc/1912251636_Ningbo-Kangnex-Elec-WJ500V-5.08-2P_C8465.pdf" H 1050 2400 50  0001 C CNN
+F 4 "C8465" H 1050 2400 50  0001 C CNN "JLC"
+	1    1050 2400
+	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR0103
 U 1 1 61D4A984
-P 1250 2450
+P 1250 2400
 AR Path="/61D4A984" Ref="#PWR0103"  Part="1" 
 AR Path="/61B5C5B6/61D4A984" Ref="#PWR?"  Part="1" 
 AR Path="/61C03040/61D4A984" Ref="#PWR?"  Part="1" 
 AR Path="/61C031A1/61D4A984" Ref="#PWR?"  Part="1" 
 AR Path="/61C031A3/61D4A984" Ref="#PWR?"  Part="1" 
-F 0 "#PWR0103" H 1250 2200 50  0001 C CNN
-F 1 "GND" H 1255 2277 50  0000 C CNN
-F 2 "" H 1250 2450 50  0001 C CNN
-F 3 "" H 1250 2450 50  0001 C CNN
-	1    1250 2450
+F 0 "#PWR0103" H 1250 2150 50  0001 C CNN
+F 1 "GND" H 1255 2227 50  0000 C CNN
+F 2 "" H 1250 2400 50  0001 C CNN
+F 3 "" H 1250 2400 50  0001 C CNN
+	1    1250 2400
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	1250 2450 1250 2350
 $Comp
 L Connector:Screw_Terminal_01x02 J?
 U 1 1 61D7AF51
@@ -479,7 +463,7 @@ F 0 "J6" H 6268 2817 50  0000 C CNN
 F 1 "DEBUG" H 6268 2726 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical" H 6350 2400 50  0001 C CNN
 F 3 "~" H 6350 2400 50  0001 C CNN
-F 4 "-" H 6350 2400 50  0001 C CNN "JLC"
+F 4 "C50950" H 6350 2400 50  0001 C CNN "JLC"
 	1    6350 2400
 	-1   0    0    -1  
 $EndComp
@@ -751,11 +735,6 @@ F 4 "C52103" H 1800 3350 50  0001 C CNN "JLC"
 	1    1800 3350
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	1250 2350 1250 2250
-Connection ~ 1250 2350
-Wire Wire Line
-	1950 2350 1950 2250
 $Comp
 L power:PWR_FLAG #FLG0101
 U 1 1 61BF8259
@@ -772,8 +751,6 @@ Text Label 5750 7050 2    50   ~ 0
 VIN
 Wire Wire Line
 	5750 7050 5750 7150
-Wire Wire Line
-	2300 3350 2850 3350
 Text GLabel 8050 3600 2    50   Input ~ 0
 INT
 Text GLabel 6550 2500 2    50   Input ~ 0
@@ -1049,42 +1026,6 @@ Wire Notes Line
 Wire Wire Line
 	1000 3350 1150 3350
 $Comp
-L Device:R R?
-U 1 1 6212DC9D
-P 2850 3500
-AR Path="/61B5C5B6/6212DC9D" Ref="R?"  Part="1" 
-AR Path="/61C03040/6212DC9D" Ref="R?"  Part="1" 
-AR Path="/61C031A1/6212DC9D" Ref="R?"  Part="1" 
-AR Path="/61C031A3/6212DC9D" Ref="R?"  Part="1" 
-AR Path="/6212DC9D" Ref="R20"  Part="1" 
-F 0 "R20" H 2780 3454 50  0000 R CNN
-F 1 "4.7k" H 2780 3545 50  0000 R CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" V 2780 3500 50  0001 C CNN
-F 3 "~" H 2850 3500 50  0001 C CNN
-F 4 "C25900" H 2850 3500 50  0001 C CNN "JLC"
-	1    2850 3500
-	-1   0    0    1   
-$EndComp
-Connection ~ 2850 3350
-Wire Wire Line
-	2850 3350 3100 3350
-$Comp
-L power:GND #PWR?
-U 1 1 6212E365
-P 2850 3650
-AR Path="/61B5C5B6/6212E365" Ref="#PWR?"  Part="1" 
-AR Path="/61C03040/6212E365" Ref="#PWR?"  Part="1" 
-AR Path="/61C031A1/6212E365" Ref="#PWR?"  Part="1" 
-AR Path="/61C031A3/6212E365" Ref="#PWR?"  Part="1" 
-AR Path="/6212E365" Ref="#PWR021"  Part="1" 
-F 0 "#PWR021" H 2850 3400 50  0001 C CNN
-F 1 "GND" H 2855 3477 50  0000 C CNN
-F 2 "" H 2850 3650 50  0001 C CNN
-F 3 "" H 2850 3650 50  0001 C CNN
-	1    2850 3650
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:C C1
 U 1 1 61BCD012
 P 1150 3500
@@ -1152,7 +1093,7 @@ F 0 "J7" H 6100 3867 50  0000 C CNN
 F 1 "I2C" H 6100 3776 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertical" H 6050 3450 50  0001 C CNN
 F 3 "~" H 6050 3450 50  0001 C CNN
-F 4 "-" H 6050 3450 50  0001 C CNN "JLC"
+F 4 "C492399" H 6050 3450 50  0001 C CNN "JLC"
 	1    6050 3450
 	-1   0    0    -1  
 $EndComp
@@ -1311,79 +1252,7 @@ F 4 "C72041" H 5050 2650 50  0001 C CNN "JLC"
 	1    5050 2650
 	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	1950 4550 2450 4550
-$Comp
-L Device:R R?
-U 1 1 62293FAC
-P 2450 4700
-AR Path="/61B5C5B6/62293FAC" Ref="R?"  Part="1" 
-AR Path="/61C03040/62293FAC" Ref="R?"  Part="1" 
-AR Path="/61C031A1/62293FAC" Ref="R?"  Part="1" 
-AR Path="/61C031A3/62293FAC" Ref="R?"  Part="1" 
-AR Path="/62293FAC" Ref="R12"  Part="1" 
-F 0 "R12" H 2380 4654 50  0000 R CNN
-F 1 "120" H 2380 4745 50  0000 R CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" V 2380 4700 50  0001 C CNN
-F 3 "~" H 2450 4700 50  0001 C CNN
-F 4 "C25079" H 2450 4700 50  0001 C CNN "JLC"
-	1    2450 4700
-	-1   0    0    1   
-$EndComp
-Connection ~ 2450 4550
-$Comp
-L Device:R R?
-U 1 1 6229481F
-P 2600 4850
-AR Path="/61B5C5B6/6229481F" Ref="R?"  Part="1" 
-AR Path="/61C03040/6229481F" Ref="R?"  Part="1" 
-AR Path="/61C031A1/6229481F" Ref="R?"  Part="1" 
-AR Path="/61C031A3/6229481F" Ref="R?"  Part="1" 
-AR Path="/6229481F" Ref="R21"  Part="1" 
-F 0 "R21" V 2715 4850 50  0000 C CNN
-F 1 "120" V 2806 4850 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" V 2530 4850 50  0001 C CNN
-F 3 "~" H 2600 4850 50  0001 C CNN
-F 4 "C25079" H 2600 4850 50  0001 C CNN "JLC"
-	1    2600 4850
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R R?
-U 1 1 62294A50
-P 2750 5000
-AR Path="/61B5C5B6/62294A50" Ref="R?"  Part="1" 
-AR Path="/61C03040/62294A50" Ref="R?"  Part="1" 
-AR Path="/61C031A1/62294A50" Ref="R?"  Part="1" 
-AR Path="/61C031A3/62294A50" Ref="R?"  Part="1" 
-AR Path="/62294A50" Ref="R22"  Part="1" 
-F 0 "R22" H 2680 4954 50  0000 R CNN
-F 1 "120" H 2680 5045 50  0000 R CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" V 2680 5000 50  0001 C CNN
-F 3 "~" H 2750 5000 50  0001 C CNN
-F 4 "C25079" H 2750 5000 50  0001 C CNN "JLC"
-	1    2750 5000
-	-1   0    0    1   
-$EndComp
-$Comp
-L power:GND #PWR?
-U 1 1 62295AD8
-P 2750 5150
-AR Path="/61B5C5B6/62295AD8" Ref="#PWR?"  Part="1" 
-AR Path="/61C03040/62295AD8" Ref="#PWR?"  Part="1" 
-AR Path="/61C031A1/62295AD8" Ref="#PWR?"  Part="1" 
-AR Path="/61C031A3/62295AD8" Ref="#PWR?"  Part="1" 
-AR Path="/62295AD8" Ref="#PWR039"  Part="1" 
-F 0 "#PWR039" H 2750 4900 50  0001 C CNN
-F 1 "GND" H 2755 4977 50  0000 C CNN
-F 2 "" H 2750 5150 50  0001 C CNN
-F 3 "" H 2750 5150 50  0001 C CNN
-	1    2750 5150
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2450 4550 3150 4550
-Text GLabel 1950 2250 2    50   Input ~ 0
+Text GLabel 1250 2300 2    50   Input ~ 0
 VIN
 Text GLabel 2850 2300 3    50   Input ~ 0
 VIN
@@ -1391,4 +1260,84 @@ Text GLabel 1000 3350 0    50   Input ~ 0
 VIN
 Text GLabel 1000 4550 0    50   Input ~ 0
 VIN
+Wire Wire Line
+	2300 3350 2900 3350
+Text Notes 1950 4400 0    50   ~ 0
+Vin(max)=30V\nIout(min)=1mA
+Text Notes 2300 3200 0    50   ~ 0
+Vin(max)=30V\nIout(min)=1mA
+Wire Wire Line
+	1950 4550 2600 4550
+$Comp
+L Device:R R?
+U 1 1 61D455E4
+P 2600 4700
+AR Path="/61B5C5B6/61D455E4" Ref="R?"  Part="1" 
+AR Path="/61C03040/61D455E4" Ref="R?"  Part="1" 
+AR Path="/61C031A1/61D455E4" Ref="R?"  Part="1" 
+AR Path="/61C031A3/61D455E4" Ref="R?"  Part="1" 
+AR Path="/61D455E4" Ref="R17"  Part="1" 
+F 0 "R17" H 2530 4654 50  0000 R CNN
+F 1 "4.7k" H 2530 4745 50  0000 R CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 2530 4700 50  0001 C CNN
+F 3 "~" H 2600 4700 50  0001 C CNN
+F 4 "C25900" H 2600 4700 50  0001 C CNN "JLC"
+	1    2600 4700
+	-1   0    0    1   
+$EndComp
+Connection ~ 2600 4550
+Wire Wire Line
+	2600 4550 3150 4550
+$Comp
+L power:GND #PWR?
+U 1 1 61D45C13
+P 2600 4850
+AR Path="/61B5C5B6/61D45C13" Ref="#PWR?"  Part="1" 
+AR Path="/61C03040/61D45C13" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A1/61D45C13" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A3/61D45C13" Ref="#PWR?"  Part="1" 
+AR Path="/61D45C13" Ref="#PWR028"  Part="1" 
+F 0 "#PWR028" H 2600 4600 50  0001 C CNN
+F 1 "GND" V 2605 4722 50  0000 R CNN
+F 2 "" H 2600 4850 50  0001 C CNN
+F 3 "" H 2600 4850 50  0001 C CNN
+	1    2600 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 61D46ED7
+P 2900 3500
+AR Path="/61B5C5B6/61D46ED7" Ref="R?"  Part="1" 
+AR Path="/61C03040/61D46ED7" Ref="R?"  Part="1" 
+AR Path="/61C031A1/61D46ED7" Ref="R?"  Part="1" 
+AR Path="/61C031A3/61D46ED7" Ref="R?"  Part="1" 
+AR Path="/61D46ED7" Ref="R12"  Part="1" 
+F 0 "R12" H 2830 3454 50  0000 R CNN
+F 1 "4.7k" H 2830 3545 50  0000 R CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 2830 3500 50  0001 C CNN
+F 3 "~" H 2900 3500 50  0001 C CNN
+F 4 "C25900" H 2900 3500 50  0001 C CNN "JLC"
+	1    2900 3500
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 61D46EDD
+P 2900 3650
+AR Path="/61B5C5B6/61D46EDD" Ref="#PWR?"  Part="1" 
+AR Path="/61C03040/61D46EDD" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A1/61D46EDD" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A3/61D46EDD" Ref="#PWR?"  Part="1" 
+AR Path="/61D46EDD" Ref="#PWR027"  Part="1" 
+F 0 "#PWR027" H 2900 3400 50  0001 C CNN
+F 1 "GND" V 2905 3522 50  0000 R CNN
+F 2 "" H 2900 3650 50  0001 C CNN
+F 3 "" H 2900 3650 50  0001 C CNN
+	1    2900 3650
+	1    0    0    -1  
+$EndComp
+Connection ~ 2900 3350
+Wire Wire Line
+	2900 3350 3100 3350
 $EndSCHEMATC
