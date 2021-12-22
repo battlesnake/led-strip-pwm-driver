@@ -1,0 +1,16 @@
+1
+9
+.tran 1u {3/pwm_freq}
+4
+2
+R7
+I
+1
+/DRAIN
+V
+1
+/GATE
+V
+1
+/PULSE
+V
