@@ -1,16 +1,13 @@
 1
 9
-.tran 1u {3/pwm_freq}
-4
+.tran {1/2000/pwm_freq} {4.5/pwm_freq}
+3
 2
 R7
 I
 1
-/DRAIN
+/BASES
 V
 1
 /GATE
-V
-1
-/PULSE
 V
