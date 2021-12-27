@@ -1,0 +1,83 @@
+#!/usr/bin/env octave
+
+function si_format = si_format(value, unit, digits=2)
+	if (value == 0)
+		si_format = [0, unit];
+	else
+		# Using "u" because Octave doesn't support unicode e.g. μ
+		si_prefixes = "yzafpnum kMGTPEZY";
+		exp = floor(log10(value));
+		scale = floor(exp / 3);
+		prefix = scale + 9;
+		if (prefix < 1 || prefix > length(si_prefixes))
+			si_format = sprintf("%.2g%s", value, unit);
+		else
+			precision = max(0, (digits - 1) - mod(exp, 3));
+			width = max(0, digits - precision);
+			scaled = value / (10 ^ (3 * scale));
+			si_format = sprintf(["%", sprintf("%d.%d", width, precision), "f%s%s"], scaled, strtrim(si_prefixes(prefix)), unit);
+		endif;
+	endif;
+endfunction;
+
+function b = b_one(current, distance)
+	u0 = 4*pi*10^-7;
+	r = norm(distance(1:2));
+	i = current;
+	b = (u0 * i) / (2 * pi * r);
+endfunction;
+
+function b = b_pair(current, distance, spacing)
+	ba = b_one(-current, distance - [-spacing/2, 0, 0]);
+	bb = b_one(current, distance - [spacing/2, 0, 0]);
+	b = ba + bb;
+endfunction;
+
+current = 8;
+spacing = 0.008;
+edge_frequency = 100000;
+
+xymax = 10;
+zmax = 1e-9;
+scale = logspace(-6, log10(xymax), 30);
+tx = ty = [flip(-1 .* scale), 0, scale];
+
+b = zeros(length(tx), length(ty));
+
+for x = 1:length(tx)
+	for y = 1:length(ty)
+		b(x, y) = b_pair(current, [tx(x), ty(y), 0], spacing);
+	endfor;
+endfor;
+
+surf(tx, ty, b);
+caxis([-zmax, zmax]);
+colormap("hsv");
+colorbar();
+shading interp;
+axis([-xymax, xymax, -xymax, xymax, -zmax, zmax]);
+title("B-field from two parallel conductors carrying the same current in opposite directions");
+xlabel("X-distance (m)");
+ylabel("Y-distance (m)");
+zlabel("Magnetic flux density (T, 1T = 10kG)");
+
+function print_at(current, spacing, edge_frequency, distance)
+	b = abs(b_pair(current, [distance, 0, 0], spacing));
+	area = 1e-6;
+	v = b * area * edge_frequency;
+	printf("  At distance %s:\n", si_format(distance, "m"));
+	printf("      flux density = %s (%s)\n", si_format(b, "T"), si_format(b * 1e4, "G"));
+	printf("    And with %s frequency into a 1mm^2 conductor:\n", si_format(edge_frequency, "Hz"));
+	printf("      induced voltage = %s\n", si_format(v, "V"));
+	printf("\n");
+endfunction;
+
+printf("For %s spacing and %s amps:\n\n",
+	si_format(spacing, "m"),
+	si_format(current, "A")
+	);
+print_at(current, spacing, edge_frequency, 0.3);
+print_at(current, spacing, edge_frequency, 1);
+print_at(current, spacing, edge_frequency, 10);
+
+waitfor(gcf);
