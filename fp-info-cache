@@ -1,4 +1,4 @@
-19509126454550259
+19510767263299259
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -84188,6 +84188,13 @@ connector Molex Pico-EZmate side entry
 0
 5
 4
+mark
+NTMS-4807N-SOIC-8-3.9x4.9x1.27P
+SOIC, 8 Pin (JEDEC MS-012AA, https://www.analog.com/media/en/package-pcb-resources/package/pkg_pdf/soic_narrow-r/r_8.pdf), generated with kicad-footprint-generator ipc_gullwing_generator.py
+SOIC SO
+0
+8
+8
 mark
 ONS_UDFN-16_3.3x1.35mm_0.4p
 
