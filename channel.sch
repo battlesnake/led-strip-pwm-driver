@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 5
+Sheet 3 5
 Title ""
 Date ""
 Rev ""
@@ -13,80 +13,6 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-$Comp
-L Transistor_FET:AO3400A Q?
-U 1 1 6203BADE
-P 1350 4200
-AR Path="/61B5C5B6/6203BADE" Ref="Q?"  Part="1" 
-AR Path="/61C03040/6203BADE" Ref="Q?"  Part="1" 
-AR Path="/61C031A1/6203BADE" Ref="Q?"  Part="1" 
-AR Path="/61C031A3/6203BADE" Ref="Q?"  Part="1" 
-AR Path="/6203BADE" Ref="Q?"  Part="1" 
-AR Path="/6202E846/6203BADE" Ref="Q3"  Part="1" 
-AR Path="/620593AE/6203BADE" Ref="Q7"  Part="1" 
-F 0 "Q7" H 1555 4246 50  0000 L CNN
-F 1 "NTMS4807" H 1555 4155 50  0000 L CNN
-F 2 "mark:NTMS-4807N-SOIC-8-3.9x4.9x1.27P" H 1550 4125 50  0001 L CIN
-F 3 "https://datasheet.lcsc.com/lcsc/1809171608_ON-Semiconductor-NTMS4807NR2G_C80851.pdf" H 1350 4200 50  0001 L CNN
-F 4 "C80851" H 1350 4200 50  0001 C CNN "JLC"
-	1    1350 4200
-	1    0    0    -1  
-$EndComp
-$Comp
-L Transistor_FET:AO3400A Q?
-U 1 1 6203BAE5
-P 2100 4200
-AR Path="/61B5C5B6/6203BAE5" Ref="Q?"  Part="1" 
-AR Path="/61C03040/6203BAE5" Ref="Q?"  Part="1" 
-AR Path="/61C031A1/6203BAE5" Ref="Q?"  Part="1" 
-AR Path="/61C031A3/6203BAE5" Ref="Q?"  Part="1" 
-AR Path="/6203BAE5" Ref="Q?"  Part="1" 
-AR Path="/6202E846/6203BAE5" Ref="Q4"  Part="1" 
-AR Path="/620593AE/6203BAE5" Ref="Q8"  Part="1" 
-F 0 "Q8" H 2305 4246 50  0000 L CNN
-F 1 "NTMS4807" H 2305 4155 50  0000 L CNN
-F 2 "mark:NTMS-4807N-SOIC-8-3.9x4.9x1.27P" H 2300 4125 50  0001 L CIN
-F 3 "https://datasheet.lcsc.com/lcsc/1809171608_ON-Semiconductor-NTMS4807NR2G_C80851.pdf" H 2100 4200 50  0001 L CNN
-F 4 "C80851" H 2100 4200 50  0001 C CNN "JLC"
-	1    2100 4200
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1450 4400 2200 4400
-Wire Wire Line
-	1450 4500 1450 4400
-Connection ~ 1450 4400
-Connection ~ 2200 4000
-Wire Wire Line
-	2200 4000 1450 4000
-Text Label 800  4200 0    50   ~ 0
-GATE
-Text Label 1450 4000 0    50   ~ 0
-DRAIN
-$Comp
-L power:GND #PWR?
-U 1 1 6203BB32
-P 1450 4500
-AR Path="/61B5C5B6/6203BB32" Ref="#PWR?"  Part="1" 
-AR Path="/61C03040/6203BB32" Ref="#PWR?"  Part="1" 
-AR Path="/61C031A1/6203BB32" Ref="#PWR?"  Part="1" 
-AR Path="/61C031A3/6203BB32" Ref="#PWR?"  Part="1" 
-AR Path="/6203BB32" Ref="#PWR?"  Part="1" 
-AR Path="/6202E846/6203BB32" Ref="#PWR029"  Part="1" 
-AR Path="/620593AE/6203BB32" Ref="#PWR034"  Part="1" 
-F 0 "#PWR034" H 1450 4250 50  0001 C CNN
-F 1 "GND" H 1455 4327 50  0000 C CNN
-F 2 "" H 1450 4500 50  0001 C CNN
-F 3 "" H 1450 4500 50  0001 C CNN
-	1    1450 4500
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1150 4200 1900 4200
-Wire Wire Line
-	800  4200 1150 4200
-Text HLabel 3350 4000 2    50   UnSpc ~ 0
-LOW_SIDE
 $Comp
 L power:GND #PWR?
 U 1 1 61C0AE1D
@@ -166,9 +92,6 @@ F 3 "" H 3900 2250 50  0001 C CNN
 	1    3900 2250
 	1    0    0    -1  
 $EndComp
-Connection ~ 1150 4200
-Text Label 4950 1950 0    50   ~ 0
-GATE
 $Comp
 L Transistor_BJT:MMBT5551L Q1
 U 1 1 61C0A1BB
@@ -294,6 +217,83 @@ Wire Wire Line
 	2700 1950 2700 2450
 Wire Wire Line
 	3900 1950 4950 1950
+Text Label 4950 1950 0    50   ~ 0
+GATE
+Text HLabel 3350 4000 2    50   UnSpc ~ 0
+LOW_SIDE
+$Comp
+L power:GND #PWR?
+U 1 1 6203BB32
+P 1450 4500
+AR Path="/61B5C5B6/6203BB32" Ref="#PWR?"  Part="1" 
+AR Path="/61C03040/6203BB32" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A1/6203BB32" Ref="#PWR?"  Part="1" 
+AR Path="/61C031A3/6203BB32" Ref="#PWR?"  Part="1" 
+AR Path="/6203BB32" Ref="#PWR?"  Part="1" 
+AR Path="/6202E846/6203BB32" Ref="#PWR029"  Part="1" 
+AR Path="/620593AE/6203BB32" Ref="#PWR034"  Part="1" 
+F 0 "#PWR029" H 1450 4250 50  0001 C CNN
+F 1 "GND" H 1455 4327 50  0000 C CNN
+F 2 "" H 1450 4500 50  0001 C CNN
+F 3 "" H 1450 4500 50  0001 C CNN
+	1    1450 4500
+	1    0    0    -1  
+$EndComp
+Text Label 1450 4000 0    50   ~ 0
+DRAIN
+Text Label 800  4200 0    50   ~ 0
+GATE
+Wire Wire Line
+	1450 4500 1450 4400
+Wire Wire Line
+	1450 4400 2200 4400
 Wire Wire Line
 	2200 4000 3350 4000
+Wire Wire Line
+	2200 4000 1450 4000
+Connection ~ 2200 4000
+$Comp
+L Transistor_FET:AO3400A Q?
+U 1 1 6203BAE5
+P 2100 4200
+AR Path="/61B5C5B6/6203BAE5" Ref="Q?"  Part="1" 
+AR Path="/61C03040/6203BAE5" Ref="Q?"  Part="1" 
+AR Path="/61C031A1/6203BAE5" Ref="Q?"  Part="1" 
+AR Path="/61C031A3/6203BAE5" Ref="Q?"  Part="1" 
+AR Path="/6203BAE5" Ref="Q?"  Part="1" 
+AR Path="/6202E846/6203BAE5" Ref="Q4"  Part="1" 
+AR Path="/620593AE/6203BAE5" Ref="Q8"  Part="1" 
+F 0 "Q4" H 2305 4246 50  0000 L CNN
+F 1 "NTMS4807" H 2305 4155 50  0000 L CNN
+F 2 "mark:NTMS-4807N-SOIC-8-3.9x4.9x1.27P" H 2300 4125 50  0001 L CIN
+F 3 "https://datasheet.lcsc.com/lcsc/1809171608_ON-Semiconductor-NTMS4807NR2G_C80851.pdf" H 2100 4200 50  0001 L CNN
+F 4 "C80851" H 2100 4200 50  0001 C CNN "JLC"
+	1    2100 4200
+	1    0    0    -1  
+$EndComp
+Connection ~ 1450 4400
+Wire Wire Line
+	800  4200 1150 4200
+Wire Wire Line
+	1150 4200 1900 4200
+Connection ~ 1150 4200
+$Comp
+L Transistor_FET:AO3400A Q?
+U 1 1 6203BADE
+P 1350 4200
+AR Path="/61B5C5B6/6203BADE" Ref="Q?"  Part="1" 
+AR Path="/61C03040/6203BADE" Ref="Q?"  Part="1" 
+AR Path="/61C031A1/6203BADE" Ref="Q?"  Part="1" 
+AR Path="/61C031A3/6203BADE" Ref="Q?"  Part="1" 
+AR Path="/6203BADE" Ref="Q?"  Part="1" 
+AR Path="/6202E846/6203BADE" Ref="Q3"  Part="1" 
+AR Path="/620593AE/6203BADE" Ref="Q7"  Part="1" 
+F 0 "Q3" H 1555 4246 50  0000 L CNN
+F 1 "NTMS4807" H 1555 4155 50  0000 L CNN
+F 2 "mark:NTMS-4807N-SOIC-8-3.9x4.9x1.27P" H 1550 4125 50  0001 L CIN
+F 3 "https://datasheet.lcsc.com/lcsc/1809171608_ON-Semiconductor-NTMS4807NR2G_C80851.pdf" H 1350 4200 50  0001 L CNN
+F 4 "C80851" H 1350 4200 50  0001 C CNN "JLC"
+	1    1350 4200
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

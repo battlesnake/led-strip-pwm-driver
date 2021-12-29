@@ -95,8 +95,6 @@ F 4 "C307331" H 2900 3600 50  0001 C CNN "JLC"
 	1    2900 3600
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	2700 3450 2900 3450
 Connection ~ 2900 3450
 $Comp
 L Connector:Screw_Terminal_01x02 J?
@@ -752,7 +750,7 @@ Text GLabel 3000 5350 3    50   Input ~ 0
 VIN
 Text GLabel 1050 3450 0    50   Input ~ 0
 VIN
-Text Notes 1400 3100 0    50   ~ 0
+Text Notes 1700 2500 0    50   ~ 0
 Vin(max)=30V\nIout(min)=1mA\nIout(max)=100mA (15mA wrt. thermals)\nP(max) = 350mW\n\nFor Vdrop=20V, I=10mA : P=200mW
 $Comp
 L Regulator_Linear:L78L05_SOT89 U2
@@ -1082,7 +1080,7 @@ Wire Wire Line
 Connection ~ 1750 3450
 Wire Wire Line
 	1250 3450 1050 3450
-Text GLabel 1750 3450 2    50   Input ~ 0
+Text GLabel 1750 3050 0    50   Input ~ 0
 VIN_D
 $Comp
 L power:PWR_FLAG #FLG04
@@ -1165,4 +1163,48 @@ F 4 "C492437" H 4700 2600 50  0001 C CNN "JLC"
 $EndComp
 Text GLabel 5950 3650 2    50   Input ~ 0
 SDA
+$Comp
+L Device:D_Schottky D4
+U 1 1 622155D1
+P 2400 3050
+F 0 "D4" H 2400 3267 50  0000 C CNN
+F 1 "B5819W SL" H 2400 3176 50  0000 C CNN
+F 2 "Diode_SMD:D_SOD-123" H 2400 3050 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/lcsc/1809140216_Changjiang-Electronics-Tech--CJ-B5819W-SL_C8598.pdf" H 2400 3050 50  0001 C CNN
+F 4 "C8598" H 2400 3050 50  0001 C CNN "JLC"
+	1    2400 3050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2250 3050 1750 3050
+Wire Wire Line
+	1750 3050 1750 3450
+Wire Wire Line
+	2700 3450 2900 3450
+Wire Wire Line
+	2550 3050 2900 3050
+Wire Wire Line
+	2900 3050 2900 3450
+$Comp
+L power:+5V #PWR010
+U 1 1 6222B7D6
+P 2300 5300
+F 0 "#PWR010" H 2300 5150 50  0001 C CNN
+F 1 "+5V" H 2315 5473 50  0000 C CNN
+F 2 "" H 2300 5300 50  0001 C CNN
+F 3 "" H 2300 5300 50  0001 C CNN
+	1    2300 5300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP1
+U 1 1 6222D05A
+P 2300 5300
+F 0 "TP1" H 2358 5326 50  0000 L CNN
+F 1 "5V" H 2358 5417 50  0000 L CNN
+F 2 "TestPoint:TestPoint_THTPad_D1.5mm_Drill0.7mm" H 2500 5300 50  0001 C CNN
+F 3 "~" H 2500 5300 50  0001 C CNN
+	1    2300 5300
+	-1   0    0    1   
+$EndComp
 $EndSCHEMATC
