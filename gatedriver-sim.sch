@@ -25,13 +25,13 @@ AR Path="/6203BADE" Ref="Q1"  Part="1"
 AR Path="/6202E846/6203BADE" Ref="Q1"  Part="1" 
 AR Path="/620593AE/6203BADE" Ref="Q4"  Part="1" 
 F 0 "Q1" H 1555 4246 50  0000 L CNN
-F 1 "NTMS4807" H 1555 4155 50  0000 L CNN
+F 1 "SiS402" H 1555 4155 50  0000 L CNN
 F 2 "" H 1550 4125 50  0001 L CIN
 F 3 "" H 1350 4200 50  0001 L CNN
 F 4 "X" H 1350 4200 50  0001 C CNN "Spice_Primitive"
-F 5 "ntms4807nr2g" H 1350 4200 50  0001 C CNN "Spice_Model"
+F 5 "SiS402DN" H 1350 4200 50  0001 C CNN "Spice_Model"
 F 6 "Y" H 1350 4200 50  0001 C CNN "Spice_Netlist_Enabled"
-F 7 "spice/NTMS4807NR2G.LIB" H 1350 4200 50  0001 C CNN "Spice_Lib_File"
+F 7 "spice/SiS402DN_PS.lib" H 1350 4200 50  0001 C CNN "Spice_Lib_File"
 F 8 "3 1 2" H 1350 4200 50  0001 C CNN "Spice_Node_Sequence"
 	1    1350 4200
 	1    0    0    -1  
@@ -218,21 +218,21 @@ $EndComp
 $Comp
 L Simulation_SPICE:VDC V3
 U 1 1 61C08C0E
-P 7950 3900
-F 0 "V3" H 8080 3991 50  0000 L CNN
-F 1 "VLEDS" H 8080 3900 50  0000 L CNN
-F 2 "" H 7950 3900 50  0001 C CNN
-F 3 "~" H 7950 3900 50  0001 C CNN
-F 4 "Y" H 7950 3900 50  0001 L CNN "Spice_Netlist_Enabled"
-F 5 "V" H 7950 3900 50  0001 L CNN "Spice_Primitive"
-F 6 "dc({vled})" H 8080 3809 50  0000 L CNN "Spice_Model"
-	1    7950 3900
+P 4450 3900
+F 0 "V3" H 4580 3991 50  0000 L CNN
+F 1 "VLEDS" H 4580 3900 50  0000 L CNN
+F 2 "" H 4450 3900 50  0001 C CNN
+F 3 "~" H 4450 3900 50  0001 C CNN
+F 4 "Y" H 4450 3900 50  0001 L CNN "Spice_Netlist_Enabled"
+F 5 "V" H 4450 3900 50  0001 L CNN "Spice_Primitive"
+F 6 "dc({vled})" H 4580 3809 50  0000 L CNN "Spice_Model"
+	1    4450 3900
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 61C0C160
-P 7950 4100
+P 4450 4100
 AR Path="/61B5C5B6/61C0C160" Ref="#PWR?"  Part="1" 
 AR Path="/61C03040/61C0C160" Ref="#PWR?"  Part="1" 
 AR Path="/61C031A1/61C0C160" Ref="#PWR?"  Part="1" 
@@ -240,17 +240,17 @@ AR Path="/61C031A3/61C0C160" Ref="#PWR?"  Part="1"
 AR Path="/61C0C160" Ref="#PWR09"  Part="1" 
 AR Path="/6202E846/61C0C160" Ref="#PWR?"  Part="1" 
 AR Path="/620593AE/61C0C160" Ref="#PWR?"  Part="1" 
-F 0 "#PWR09" H 7950 3850 50  0001 C CNN
-F 1 "GND" H 7955 3927 50  0000 C CNN
-F 2 "" H 7950 4100 50  0001 C CNN
-F 3 "" H 7950 4100 50  0001 C CNN
-	1    7950 4100
+F 0 "#PWR09" H 4450 3850 50  0001 C CNN
+F 1 "GND" H 4455 3927 50  0000 C CNN
+F 2 "" H 4450 4100 50  0001 C CNN
+F 3 "" H 4450 4100 50  0001 C CNN
+	1    4450 4100
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R R?
 U 1 1 61C140FE
-P 6600 3850
+P 3100 3850
 AR Path="/61B5C5B6/61C140FE" Ref="R?"  Part="1" 
 AR Path="/61C03040/61C140FE" Ref="R?"  Part="1" 
 AR Path="/61C031A1/61C140FE" Ref="R?"  Part="1" 
@@ -258,12 +258,12 @@ AR Path="/61C031A3/61C140FE" Ref="R?"  Part="1"
 AR Path="/61C140FE" Ref="R7"  Part="1" 
 AR Path="/6202E846/61C140FE" Ref="R?"  Part="1" 
 AR Path="/620593AE/61C140FE" Ref="R?"  Part="1" 
-F 0 "R7" H 6670 3896 50  0000 L CNN
-F 1 "{vled/iled}" H 6670 3805 50  0000 L CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" V 6530 3850 50  0001 C CNN
-F 3 "~" H 6600 3850 50  0001 C CNN
-F 4 "C25900" H 6600 3850 50  0001 C CNN "JLC"
-	1    6600 3850
+F 0 "R7" H 3170 3896 50  0000 L CNN
+F 1 "{vled/iled}" H 3170 3805 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 3030 3850 50  0001 C CNN
+F 3 "~" H 3100 3850 50  0001 C CNN
+F 4 "C25900" H 3100 3850 50  0001 C CNN "JLC"
+	1    3100 3850
 	1    0    0    -1  
 $EndComp
 Text Label 3700 2000 0    50   ~ 0
@@ -294,18 +294,18 @@ https://www.digikey.com/en/articles/how-new-flicker-recommendations-will-influen
 $Comp
 L pspice:0 #GND01
 U 1 1 61C69336
-P 7250 4900
-F 0 "#GND01" H 7250 4800 50  0001 C CNN
-F 1 "0" H 7250 4989 50  0000 C CNN
-F 2 "" H 7250 4900 50  0001 C CNN
-F 3 "~" H 7250 4900 50  0001 C CNN
-	1    7250 4900
+P 3750 4900
+F 0 "#GND01" H 3750 4800 50  0001 C CNN
+F 1 "0" H 3750 4989 50  0000 C CNN
+F 2 "" H 3750 4900 50  0001 C CNN
+F 3 "~" H 3750 4900 50  0001 C CNN
+	1    3750 4900
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 61C69674
-P 7250 4900
+P 3750 4900
 AR Path="/61B5C5B6/61C69674" Ref="#PWR?"  Part="1" 
 AR Path="/61C03040/61C69674" Ref="#PWR?"  Part="1" 
 AR Path="/61C031A1/61C69674" Ref="#PWR?"  Part="1" 
@@ -313,11 +313,11 @@ AR Path="/61C031A3/61C69674" Ref="#PWR?"  Part="1"
 AR Path="/61C69674" Ref="#PWR010"  Part="1" 
 AR Path="/6202E846/61C69674" Ref="#PWR?"  Part="1" 
 AR Path="/620593AE/61C69674" Ref="#PWR?"  Part="1" 
-F 0 "#PWR010" H 7250 4650 50  0001 C CNN
-F 1 "GND" H 7255 4727 50  0000 C CNN
-F 2 "" H 7250 4900 50  0001 C CNN
-F 3 "" H 7250 4900 50  0001 C CNN
-	1    7250 4900
+F 0 "#PWR010" H 3750 4650 50  0001 C CNN
+F 1 "GND" H 3755 4727 50  0000 C CNN
+F 2 "" H 3750 4900 50  0001 C CNN
+F 3 "" H 3750 4900 50  0001 C CNN
+	1    3750 4900
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
@@ -363,18 +363,16 @@ $EndComp
 Wire Wire Line
 	1600 1200 3250 1200
 Wire Wire Line
-	6600 3700 7950 3700
-Text Notes 6350 1250 0    50   ~ 0
-TODO in schematic\n - rework driver as per this design\n - remove 9v supply, run everything (inc. MCU) off 5v\n - add 3 more power-mosfets to each channel (6 total per channel)
+	3100 3700 4450 3700
 $Comp
 L power:PWR_FLAG #FLG0101
 U 1 1 61CA8F66
-P 7950 3700
-F 0 "#FLG0101" H 7950 3775 50  0001 C CNN
-F 1 "PWR_FLAG" H 7950 3873 50  0001 C CNN
-F 2 "" H 7950 3700 50  0001 C CNN
-F 3 "~" H 7950 3700 50  0001 C CNN
-	1    7950 3700
+P 4450 3700
+F 0 "#FLG0101" H 4450 3775 50  0001 C CNN
+F 1 "PWR_FLAG" H 4450 3873 50  0001 C CNN
+F 2 "" H 4450 3700 50  0001 C CNN
+F 3 "~" H 4450 3700 50  0001 C CNN
+	1    4450 3700
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -401,19 +399,19 @@ F 3 "~" H 1450 2500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Connection ~ 1450 2500
-Connection ~ 7950 3700
+Connection ~ 4450 3700
 $Comp
 L power:PWR_FLAG #FLG0104
 U 1 1 61CAA5AE
-P 7250 4900
-F 0 "#FLG0104" H 7250 4975 50  0001 C CNN
-F 1 "PWR_FLAG" H 7250 5073 50  0001 C CNN
-F 2 "" H 7250 4900 50  0001 C CNN
-F 3 "~" H 7250 4900 50  0001 C CNN
-	1    7250 4900
+P 3750 4900
+F 0 "#FLG0104" H 3750 4975 50  0001 C CNN
+F 1 "PWR_FLAG" H 3750 5073 50  0001 C CNN
+F 2 "" H 3750 4900 50  0001 C CNN
+F 3 "~" H 3750 4900 50  0001 C CNN
+	1    3750 4900
 	0    1    1    0   
 $EndComp
-Connection ~ 7250 4900
+Connection ~ 3750 4900
 Connection ~ 5450 2000
 Wire Wire Line
 	4750 2000 5450 2000
@@ -426,7 +424,7 @@ AR Path="/61B5C5B6/61C5E231" Ref="C?"  Part="1"
 AR Path="/6202E846/61C5E231" Ref="C?"  Part="1" 
 AR Path="/620593AE/61C5E231" Ref="C?"  Part="1" 
 F 0 "C2" H 5565 2196 50  0000 L CNN
-F 1 "3.3n" H 5565 2105 50  0000 L CNN
+F 1 "100n" H 5565 2105 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0402_1005Metric" H 5488 2000 50  0001 C CNN
 F 3 "~" H 5450 2150 50  0001 C CNN
 F 4 "C307331" H 5450 2150 50  0001 C CNN "JLC"
@@ -463,7 +461,7 @@ AR Path="/61C5A1AF" Ref="R2"  Part="1"
 AR Path="/6202E846/61C5A1AF" Ref="R2"  Part="1" 
 AR Path="/620593AE/61C5A1AF" Ref="R24"  Part="1" 
 F 0 "R2" V 4807 2000 50  0000 C CNN
-F 1 "4.7k" V 4716 2000 50  0000 C CNN
+F 1 "220" V 4716 2000 50  0000 C CNN
 F 2 "Resistor_SMD:R_0402_1005Metric_Pad0.72x0.64mm_HandSolder" V 4530 2000 50  0001 C CNN
 F 3 "~" H 4600 2000 50  0001 C CNN
 F 4 "C25079" H 4600 2000 50  0001 C CNN "JLC"
@@ -476,45 +474,11 @@ Wire Wire Line
 Wire Wire Line
 	3250 1200 4000 1200
 Text Notes 11800 10950 0    39   ~ 0
-.param temp_a=40\n.param tja=80.5\n.param n_fets=2\n\n.param pwm_freq=240\n.param pwm_duty=0.5\n.param pwm_edge=0.5u\n\n.param vlogic=5\n.param vgatedrv=5\n.param vled=24\n.param iled=8\n\n.param sim_periods=5\n\n.csparam temp_a={temp_a}\n.csparam tja={tja}\n.csparam n_fets={n_fets}\n.csparam pwm_freq={pwm_freq}\n.csparam pwm_duty={pwm_duty}\n.csparam pwm_edge={pwm_edge}\n.csparam vlogic={vlogic}\n.csparam vgatedrv={vgatedrv}\n.csparam vled={vled}\n.csparam iled={iled}\n.csparam sim_periods={sim_periods}\n\n.options savecurrents\n.option temp='temp_a'\n\n.tran {1/2048/pwm_freq} {sim_periods/pwm_freq}\n\n.control\n\npre_set strict_errorhandling\n\nlet temp_a=$&temp_a\nlet n_fets=$&n_fets\nlet tja=$&tja\nlet pwm_freq=$&pwm_freq\nlet pwm_duty=$&pwm_duty\nlet pwm_edge=$&pwm_edge\nlet vlogic=$&vlogic\nlet vgatedrv=$&vgatedrv\nlet vled=$&vled\nlet iled=$&iled\nlet sim_periods=$&sim_periods\n\nlet id=@R7[i]\nlet vd=v("/DRAIN")\nlet pds=vd*id\n\nmeas TRAN id_min MIN id\nmeas TRAN id_max MAX id\nlet idl=0.1*(id_max-id_min)+id_min\nlet idh=0.9*(id_max-id_min)+id_min\n\nmeas TRAN id_rise_time TRIG id VAL=idl RISE=2 TARG id VAL=idh RISE=2\nmeas TRAN id_fall_time TRIG id VAL=idh FALL=2 TARG id VAL=idl FALL=2\n\nmeas TRAN id_rise_from WHEN id=idl RISE=2\nmeas TRAN id_rise_to WHEN id=idh RISE=1 td=id_rise_from\nmeas TRAN id_fall_from WHEN id=idh FALL=1 td=id_rise_to\nmeas TRAN id_fall_to WHEN id=idl FALL=1 td=id_fall_from\nmeas TRAN id_rise_from2 WHEN id=idl RISE=2 td=id_fall_to\n\nlet switching_time_fraction=((id_rise_to-id_rise_from)+(id_fall_to-id_fall_from)) / (id_rise_from2-id_rise_from)\n\nmeas tran wds_rise integ pds from=id_rise_from to=id_rise_to\nmeas tran wds_high integ pds from=id_rise_to to=id_fall_from\nmeas tran wds_fall integ pds from=id_fall_from to=id_fall_to\nmeas tran wds_low integ pds from=id_fall_to to=id_rise_from2\nmeas tran wds_all integ pds from=id_rise_from to=id_rise_from2\n\nlet pds_rise=wds_rise/(id_rise_to-id_rise_from)\nlet pds_high=wds_high/(id_fall_from-id_rise_to)\nlet pds_fall=wds_fall/(id_fall_to-id_fall_from)\nlet pds_low=wds_low/(id_rise_from2-id_fall_to)\nlet pds_all=wds_all/(id_rise_from2-id_rise_from)\n\nlet switching_loss=(wds_rise+wds_fall)/wds_all\nlet total_loss=mean(vd*id) / mean((vled-vd)*id)\n\nlet rds=vd/id\nmeas tran rds_on avg rds from=id_rise_to to=id_fall_from\nmeas tran rds_off avg rds from=id_fall_to to=id_rise_from2\n\nlet temp_ja=tja*pds_all/n_fets\nlet temp_j=temp_a+temp_ja\n\nlet i_gpio_max=maximum(@V2[i])\n\necho .\necho CONFIG:\nprint sim_periods\necho .\n\necho Voltages\nprint vlogic\nprint vgatedrv\nprint vled\nprint iled\necho .\n\necho PWM configuration\nprint pwm_freq\nprint pwm_duty\nprint pwm_edge\necho .\n\necho Number of parallel'd transistors\nprint n_fets\necho .\n\necho .\necho RESULTS:\necho .\n\necho Power lost in transistors during rise/high/fall/low\nprint pds_rise\nprint pds_high\nprint pds_fall\nprint pds_low\nprint pds_all\necho .\n\necho Effective Rds(on/off)\nprint rds_on\nprint rds_off\necho .\n\necho Actual Rds(on/off)\nprint rds_on*n_fets\nprint rds_off*n_fets\necho .\n\necho Switching loss as fraction of loss in transistors\nprint switching_loss\necho .\n\necho Loss in transistors as fraction of total power (lost + delivered to load)\nprint total_loss\necho .\n\necho Drain current rise/fall root-frequencies (1/t)\nprint (1/id_rise_time)\nprint (1/id_fall_time)\necho .\n\necho Temperatures\nprint temp_ja\nprint temp_a\nprint temp_j\necho .\n\necho Switching time fraction of full cycle\nprint switching_time_fraction\necho .\n\necho Max GPIO loading\nprint i_gpio_max\necho .\n\nset hcopydevtype=svg\nset svg_intopts=( 1200 900 24 0 1 4 1 )\nsetcs svg_stropts=( black Arial Arial )\nset color1=cyan\nset color2=green\n\nhardcopy sim_ids_tran.svg id title 'Ids transient' xlabel 'Time' ylabel 'Ids'\n\nlinearize id\nset specwindow=none\nfft id\nhardcopy sim_ids_fft.svg db(id) title 'Ids spectrum' xlabel 'Frequency' ylabel 'Ids (db A)'\n\n.endc\n
+.param temp_a=40\n\n* https://datasheet.lcsc.com/lcsc/1809301517_Vishay-Intertech-SIS402DN-T1-GE3_C15791.pdf p11\n.param tja=70\n.param tjc=2.4\n\n.param n_fets=1\n\n.param pwm_freq=240\n.param pwm_duty=0.5\n.param pwm_edge=0.5u\n\n.param vlogic=5\n.param vgatedrv=5\n.param vled=24\n.param iled=8\n\n.param sim_periods=5\n\n.csparam temp_a={temp_a}\n.csparam tja={tja}\n.csparam tjc={tjc}\n.csparam n_fets={n_fets}\n.csparam pwm_freq={pwm_freq}\n.csparam pwm_duty={pwm_duty}\n.csparam pwm_edge={pwm_edge}\n.csparam vlogic={vlogic}\n.csparam vgatedrv={vgatedrv}\n.csparam vled={vled}\n.csparam iled={iled}\n.csparam sim_periods={sim_periods}\n\n.options savecurrents\n.option temp='temp_a'\n\n.tran {1/16384/pwm_freq} {sim_periods/pwm_freq}\n\n.control\n\npre_set strict_errorhandling\n\nlet temp_a=$&temp_a\nlet n_fets=$&n_fets\nlet tja=$&tja\nlet tjc=$&tjc\nlet pwm_freq=$&pwm_freq\nlet pwm_duty=$&pwm_duty\nlet pwm_edge=$&pwm_edge\nlet vlogic=$&vlogic\nlet vgatedrv=$&vgatedrv\nlet vled=$&vled\nlet iled=$&iled\nlet sim_periods=$&sim_periods\n\nlet id=@R7[i]\nlet vd=v("/DRAIN")\nlet pds=vd*id\n\nmeas TRAN id_min MIN id\nmeas TRAN id_max MAX id\nlet idlm=0.2*(id_max-id_min)+id_min\nlet idhm=0.8*(id_max-id_min)+id_min\nlet idl=0.05*(id_max-id_min)+id_min\nlet idh=0.95*(id_max-id_min)+id_min\n\nmeas TRAN id_rise_time TRIG id VAL=idlm RISE=2 TARG id VAL=idh RISE=2\nmeas TRAN id_fall_time TRIG id VAL=idhm FALL=2 TARG id VAL=idl FALL=2\nlet id_rise_freq=1/id_rise_time\nlet id_fall_freq=1/id_fall_time\nlet id_lambda=(3e8/max(id_rise_freq, id_fall_freq))\n\nmeas TRAN id_rise_from WHEN id=idl RISE=2\nmeas TRAN id_rise_to WHEN id=idh RISE=1 td=id_rise_from\nmeas TRAN id_fall_from WHEN id=idh FALL=1 td=id_rise_to\nmeas TRAN id_fall_to WHEN id=idl FALL=1 td=id_fall_from\nmeas TRAN id_rise_from2 WHEN id=idl RISE=2 td=id_fall_to\n\nlet switching_time_fraction=((id_rise_to-id_rise_from)+(id_fall_to-id_fall_from)) / (id_rise_from2-id_rise_from)\n\nmeas tran wds_rise integ pds from=id_rise_from to=id_rise_to\nmeas tran wds_high integ pds from=id_rise_to to=id_fall_from\nmeas tran wds_fall integ pds from=id_fall_from to=id_fall_to\nmeas tran wds_low integ pds from=id_fall_to to=id_rise_from2\nmeas tran wds_all integ pds from=id_rise_from to=id_rise_from2\n\nlet pds_rise=wds_rise/(id_rise_to-id_rise_from)\nlet pds_high=wds_high/(id_fall_from-id_rise_to)\nlet pds_fall=wds_fall/(id_fall_to-id_fall_from)\nlet pds_low=wds_low/(id_rise_from2-id_fall_to)\nlet pds_all=wds_all/(id_rise_from2-id_rise_from)\nlet pds_one=pds_all/n_fets\n\nlet switching_loss=(wds_rise+wds_fall)/wds_all\nlet total_loss=mean(vd*id) / mean((vled-vd)*id)\n\nlet rds=vd/id\nmeas tran rds_on avg rds from=id_rise_to to=id_fall_from\nmeas tran rds_off_ avg rds from=id_fall_to to=id_rise_from2\nlet rds_off=(rds_off_ >= 0) ? rds_off_ : 1e6\n\nlet temp_ca=pds_all*(tja-tjc)\nlet temp_jc=pds_one*tjc\nlet temp_ja=temp_jc+temp_ca\nlet temp_c=temp_ca+temp_a\nlet temp_j=temp_ja+temp_a\n\nlet i_gpio_max=maximum(@V2[i])\n\necho .\necho CONFIG:\nprint sim_periods\necho .\n\necho Voltages\nprint vlogic\nprint vgatedrv\nprint vled\nprint iled\necho .\n\necho PWM configuration\nprint pwm_freq\nprint pwm_duty\nprint pwm_edge\necho .\n\necho Number of parallel'd transistors\nprint n_fets\necho .\n\necho .\necho RESULTS:\necho .\n\necho Power lost in transistors during rise/high/fall/low\nprint pds_rise\nprint pds_high\nprint pds_fall\nprint pds_low\nprint pds_all\necho .\n\necho Effective Rds(on/off)\nprint rds_on\nprint rds_off\necho .\n\necho Actual Rds(on/off)\nprint rds_on*n_fets\nprint rds_off*n_fets\necho .\n\necho Switching loss as fraction of loss in transistors\nprint switching_loss\necho .\n\necho Loss in transistors as fraction of total power (lost + delivered to load)\nprint total_loss\necho .\n\necho Drain current rise/fall root-frequencies (1/t)\nprint id_rise_freq\nprint id_fall_freq\nprint id_lambda\necho .\n\necho Temperatures\nprint temp_j\nprint temp_c\nprint temp_a\nprint temp_ja\nprint temp_jc\nprint temp_ca\necho .\n\necho Switching time fraction of full cycle\nprint switching_time_fraction\necho .\n\necho Max GPIO loading\nprint i_gpio_max\necho .\n\nset hcopydevtype=svg\nset svg_intopts=( 1200 900 24 0 1 4 1 )\nsetcs svg_stropts=( black Arial Arial )\nset color1=cyan\nset color2=green\n\nhardcopy sim_ids_tran.svg id title 'Ids transient' xlabel 'Time' ylabel 'Ids'\n\nlinearize id\nset specwindow=none\nfft id\nhardcopy sim_ids_fft.svg db(id) title 'Ids spectrum' xlabel 'Frequency' ylabel 'Ids (db A)'\n\n.endc\n
 Wire Wire Line
 	5450 2000 6750 2000
-Connection ~ 1150 4200
-Connection ~ 1450 4400
-Wire Wire Line
-	1450 4000 2250 4000
-$Comp
-L Transistor_FET:AO3400A Q?
-U 1 1 61D149E6
-P 2150 4200
-AR Path="/61B5C5B6/61D149E6" Ref="Q?"  Part="1" 
-AR Path="/61C03040/61D149E6" Ref="Q?"  Part="1" 
-AR Path="/61C031A1/61D149E6" Ref="Q?"  Part="1" 
-AR Path="/61C031A3/61D149E6" Ref="Q?"  Part="1" 
-AR Path="/61D149E6" Ref="Q2"  Part="1" 
-AR Path="/6202E846/61D149E6" Ref="Q?"  Part="1" 
-AR Path="/620593AE/61D149E6" Ref="Q?"  Part="1" 
-F 0 "Q2" H 2355 4246 50  0000 L CNN
-F 1 "NTMS4807" H 2355 4155 50  0000 L CNN
-F 2 "" H 2350 4125 50  0001 L CIN
-F 3 "" H 2150 4200 50  0001 L CNN
-F 4 "X" H 2150 4200 50  0001 C CNN "Spice_Primitive"
-F 5 "ntms4807nr2g" H 2150 4200 50  0001 C CNN "Spice_Model"
-F 6 "Y" H 2150 4200 50  0001 C CNN "Spice_Netlist_Enabled"
-F 7 "spice/NTMS4807NR2G.LIB" H 2150 4200 50  0001 C CNN "Spice_Lib_File"
-F 8 "3 1 2" H 2150 4200 50  0001 C CNN "Spice_Node_Sequence"
-	1    2150 4200
-	1    0    0    -1  
-$EndComp
-Connection ~ 2250 4000
-Wire Wire Line
-	1150 4200 1950 4200
-Wire Wire Line
-	1450 4400 2250 4400
-Text Notes 9350 6300 0    50   ~ 0
-B = μ₀ I / 2πr\n\nμ₀ = 2αh/e²c = 1.3e-6 m kg s¯² A¯²\n\ndB/dt = μ₀ dI/dt / 2πr = 2e-7 dI/dt / r
 Text Notes 1100 6500 0    50   ~ 0
 https://scantech7.com/emf-rf-magnetic-electric-field-sound-noise-radiation-safety-levels-dallas-fort-worth-houston-austin/
 Wire Wire Line
-	2250 4000 6600 4000
+	1450 4000 3100 4000
 $EndSCHEMATC
