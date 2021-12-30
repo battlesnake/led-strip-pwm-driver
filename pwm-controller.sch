@@ -273,9 +273,9 @@ Text GLabel 8150 3300 2    50   Input ~ 0
 SWIM
 Text GLabel 8150 2500 2    50   Input ~ 0
 PWM1
-Text GLabel 8150 3700 2    50   Input ~ 0
+Text GLabel 8850 3700 2    50   Input ~ 0
 UTX
-Text GLabel 8150 3800 2    50   Input ~ 0
+Text GLabel 8850 3800 2    50   Input ~ 0
 URX
 Text GLabel 5950 3550 2    50   Input ~ 0
 SCL
@@ -477,15 +477,15 @@ INT
 Text Notes 1150 5800 0    50   ~ 0
 <10mA for control+driver, <10A for target
 $Comp
-L Device:LED D3
+L Device:LED D4
 U 1 1 61F68833
-P 4900 5450
-F 0 "D3" V 4939 5332 50  0000 R CNN
-F 1 "Green" V 4848 5332 50  0000 R CNN
-F 2 "LED_SMD:LED_0603_1608Metric" H 4900 5450 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/lcsc/1811101510_Everlight-Elec-19-217-GHC-YR1S2-3T_C72043.pdf" H 4900 5450 50  0001 C CNN
-F 4 "C72043" H 4900 5450 50  0001 C CNN "JLC"
-	1    4900 5450
+P 6300 5450
+F 0 "D4" V 6339 5332 50  0000 R CNN
+F 1 "Green" V 6248 5332 50  0000 R CNN
+F 2 "LED_SMD:LED_0603_1608Metric" H 6300 5450 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/lcsc/1811101510_Everlight-Elec-19-217-GHC-YR1S2-3T_C72043.pdf" H 6300 5450 50  0001 C CNN
+F 4 "C72043" H 6300 5450 50  0001 C CNN "JLC"
+	1    6300 5450
 	0    -1   -1   0   
 $EndComp
 Text GLabel 8150 2300 2    50   Input ~ 0
@@ -733,15 +733,15 @@ I2C
 Text Notes 4000 4050 0    50   ~ 0
 Rotary encoder
 $Comp
-L Device:LED D4
+L Device:LED D3
 U 1 1 61F7EFE5
-P 6300 5450
-F 0 "D4" V 6339 5332 50  0000 R CNN
-F 1 "Blue" V 6248 5332 50  0000 R CNN
-F 2 "LED_SMD:LED_0603_1608Metric" H 6300 5450 50  0001 C CNN
-F 3 "https://datasheet.lcsc.com/lcsc/1811101510_Everlight-Elec-19-217-BHC-ZL1M2RY-3T_C72041.pdf" H 6300 5450 50  0001 C CNN
-F 4 "C72041" H 6300 5450 50  0001 C CNN "JLC"
-	1    6300 5450
+P 4900 5450
+F 0 "D3" V 4939 5332 50  0000 R CNN
+F 1 "Blue" V 4848 5332 50  0000 R CNN
+F 2 "LED_SMD:LED_0603_1608Metric" H 4900 5450 50  0001 C CNN
+F 3 "https://datasheet.lcsc.com/lcsc/1811101510_Everlight-Elec-19-217-BHC-ZL1M2RY-3T_C72041.pdf" H 4900 5450 50  0001 C CNN
+F 4 "C72041" H 4900 5450 50  0001 C CNN "JLC"
+	1    4900 5450
 	0    -1   -1   0   
 $EndComp
 Text GLabel 1400 5350 2    50   Input ~ 0
@@ -857,8 +857,8 @@ AR Path="/61B5C5B6/61CD939B" Ref="R?"  Part="1"
 AR Path="/61C03040/61CD939B" Ref="R?"  Part="1" 
 AR Path="/61C031A1/61CD939B" Ref="R?"  Part="1" 
 AR Path="/61C031A3/61CD939B" Ref="R?"  Part="1" 
-AR Path="/61CD939B" Ref="R6"  Part="1" 
-F 0 "R6" V 5543 4400 50  0000 C CNN
+AR Path="/61CD939B" Ref="R8"  Part="1" 
+F 0 "R8" V 5543 4400 50  0000 C CNN
 F 1 "100" V 5634 4400 50  0000 C CNN
 F 2 "Resistor_SMD:R_0402_1005Metric" V 5680 4400 50  0001 C CNN
 F 3 "~" H 5750 4400 50  0001 C CNN
@@ -874,8 +874,8 @@ AR Path="/61B5C5B6/61CD98C2" Ref="R?"  Part="1"
 AR Path="/61C03040/61CD98C2" Ref="R?"  Part="1" 
 AR Path="/61C031A1/61CD98C2" Ref="R?"  Part="1" 
 AR Path="/61C031A3/61CD98C2" Ref="R?"  Part="1" 
-AR Path="/61CD98C2" Ref="R8"  Part="1" 
-F 0 "R8" V 5865 4600 50  0000 C CNN
+AR Path="/61CD98C2" Ref="R10"  Part="1" 
+F 0 "R10" V 5865 4600 50  0000 C CNN
 F 1 "100" V 5956 4600 50  0000 C CNN
 F 2 "Resistor_SMD:R_0402_1005Metric" V 5680 4600 50  0001 C CNN
 F 3 "~" H 5750 4600 50  0001 C CNN
@@ -891,8 +891,8 @@ AR Path="/61B5C5B6/61CDA382" Ref="R?"  Part="1"
 AR Path="/61C03040/61CDA382" Ref="R?"  Part="1" 
 AR Path="/61C031A1/61CDA382" Ref="R?"  Part="1" 
 AR Path="/61C031A3/61CDA382" Ref="R?"  Part="1" 
-AR Path="/61CDA382" Ref="R7"  Part="1" 
-F 0 "R7" V 6443 4400 50  0000 C CNN
+AR Path="/61CDA382" Ref="R9"  Part="1" 
+F 0 "R9" V 6443 4400 50  0000 C CNN
 F 1 "100" V 6534 4400 50  0000 C CNN
 F 2 "Resistor_SMD:R_0402_1005Metric" V 6580 4400 50  0001 C CNN
 F 3 "~" H 6650 4400 50  0001 C CNN
@@ -905,7 +905,7 @@ PWM2
 Text GLabel 4350 6750 0    50   Input ~ 0
 PWM1
 Text Notes 8350 5800 0    50   ~ 0
-MCU:\n - Table 21: 5mA @ 16MHz / 1mA @ 2MHz / <1mA @ 128kHz\n - Peripherals approx 1mA extra.\nGPIO: 1mA max loading, per 4.7kΩ pullup\n\nInternal pullups 30-80kΩ (§9.3.6).
+MCU:\n - Table 21: 5mA @ 16MHz / 1mA @ 2MHz / <1mA @ 128kHz\n - Peripherals approx 1mA extra.\nGPIO: 1mA max loading, per 4.7kΩ pullup\n\nInternal pullups 30-80kΩ (§9.3.6).\n\nTotal demand should be around 5-7mA on the 5V rail.\n\nLEDs drive from main voltage to avoid loading LDO,\nso they won't work if 5V line is powered directly (with no VIN).
 Wire Notes Line
 	6800 6400 3950 6400
 Wire Notes Line
@@ -915,29 +915,9 @@ Wire Notes Line
 Wire Wire Line
 	2900 3450 3200 3450
 $Sheet
-S 4250 5250 550  450 
+S 5650 5250 550  450 
 U 61D242FF
 F0 "led_driver1" 50
-F1 "led_driver.sch" 50
-F2 "EN" I L 4250 5400 50 
-F3 "V+" I L 4250 5300 50 
-F4 "LED_A" O R 4800 5300 50 
-F5 "LED_K" O R 4800 5600 50 
-$EndSheet
-Wire Wire Line
-	4800 5300 4900 5300
-Wire Wire Line
-	4900 5600 4800 5600
-Text GLabel 4250 5300 0    50   Input ~ 0
-VIN_D
-Text GLabel 4250 5400 0    50   Input ~ 0
-LED1
-Text Notes 4000 5100 0    50   ~ 0
-LEDs
-$Sheet
-S 5650 5250 550  450 
-U 61D33B82
-F0 "led_driver2" 50
 F1 "led_driver.sch" 50
 F2 "EN" I L 5650 5400 50 
 F3 "V+" I L 5650 5300 50 
@@ -948,6 +928,26 @@ Wire Wire Line
 	6200 5300 6300 5300
 Wire Wire Line
 	6300 5600 6200 5600
+Text GLabel 4250 5300 0    50   Input ~ 0
+VIN_D
+Text GLabel 4250 5400 0    50   Input ~ 0
+LED1
+Text Notes 4000 5100 0    50   ~ 0
+LEDs
+$Sheet
+S 4250 5250 550  450 
+U 61D33B82
+F0 "led_driver2" 50
+F1 "led_driver.sch" 50
+F2 "EN" I L 4250 5400 50 
+F3 "V+" I L 4250 5300 50 
+F4 "LED_A" O R 4800 5300 50 
+F5 "LED_K" O R 4800 5600 50 
+$EndSheet
+Wire Wire Line
+	4800 5300 4900 5300
+Wire Wire Line
+	4900 5600 4800 5600
 Text GLabel 5650 5300 0    50   Input ~ 0
 VIN_D
 $Comp
@@ -1229,4 +1229,46 @@ Wire Wire Line
 	8550 3600 8150 3600
 Text Label 8150 3600 0    50   ~ 0
 INT_PIN
+$Comp
+L Device:R R?
+U 1 1 623F661A
+P 8700 3700
+AR Path="/61B5C5B6/623F661A" Ref="R?"  Part="1" 
+AR Path="/61C03040/623F661A" Ref="R?"  Part="1" 
+AR Path="/61C031A1/623F661A" Ref="R?"  Part="1" 
+AR Path="/61C031A3/623F661A" Ref="R?"  Part="1" 
+AR Path="/623F661A" Ref="R6"  Part="1" 
+F 0 "R6" V 8493 3700 50  0000 C CNN
+F 1 "100" V 8584 3700 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 8630 3700 50  0001 C CNN
+F 3 "~" H 8700 3700 50  0001 C CNN
+F 4 "C25076" H 8700 3700 50  0001 C CNN "JLC"
+	1    8700 3700
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 623F6E05
+P 8700 3800
+AR Path="/61B5C5B6/623F6E05" Ref="R?"  Part="1" 
+AR Path="/61C03040/623F6E05" Ref="R?"  Part="1" 
+AR Path="/61C031A1/623F6E05" Ref="R?"  Part="1" 
+AR Path="/61C031A3/623F6E05" Ref="R?"  Part="1" 
+AR Path="/623F6E05" Ref="R7"  Part="1" 
+F 0 "R7" V 8493 3800 50  0000 C CNN
+F 1 "100" V 8584 3800 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 8630 3800 50  0001 C CNN
+F 3 "~" H 8700 3800 50  0001 C CNN
+F 4 "C25076" H 8700 3800 50  0001 C CNN "JLC"
+	1    8700 3800
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8150 3700 8550 3700
+Wire Wire Line
+	8550 3800 8150 3800
+Text Label 8150 3700 0    50   ~ 0
+UTX_PIN
+Text Label 8150 3800 0    50   ~ 0
+URX_PIN
 $EndSCHEMATC
