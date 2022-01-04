@@ -121,11 +121,11 @@
   (net 33 "Net-(Q10-Pad1)")
   (net 34 "VIN_D")
   (net 35 "/INT_PIN")
-  (net 36 "Net-(R8-Pad1)")
+  (net 36 "Net-(R1-Pad1)")
   (net 37 "/UTX_PIN")
   (net 38 "/URX_PIN")
-  (net 39 "Net-(R9-Pad2)")
-  (net 40 "Net-(R10-Pad1)")
+  (net 39 "Net-(R2-Pad1)")
+  (net 40 "Net-(R5-Pad2)")
   (net 41 "NRST")
   (net 42 "/NRST_PIN")
   (net 43 "/VCAP")
@@ -138,7 +138,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061d43916")
     (attr through_hole)
-    (fp_text reference "J2" (at 0 0 180) (layer "F.SilkS")
+    (fp_text reference "J1" (at 0 0 180) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.2)))
       (tstamp e45aa7d8-0254-4176-afd9-766820762e19)
     )
@@ -219,7 +219,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061e71653")
     (attr exclude_from_pos_files)
-    (fp_text reference "H2" (at 0 -3.2) (layer "F.SilkS") hide
+    (fp_text reference "H3" (at 0 -3.2) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.2)))
       (tstamp 64eb1ba8-8f26-45fc-8b44-198922f1ecef)
     )
@@ -246,7 +246,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061e7024d")
     (attr smd)
-    (fp_text reference "H4" (at 0 -3) (layer "F.SilkS") hide
+    (fp_text reference "H2" (at 0 -3) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.2)))
       (tstamp 37728c8e-efcc-462c-a749-47b6bfcbaf37)
     )
@@ -1484,13 +1484,13 @@
     (pad "" thru_hole roundrect locked (at 6 0.05) (size 3.2 3.8) (drill oval 2.1 3.2) (layers *.Cu *.Mask) (roundrect_rratio 0.25) (tstamp 63c56ea4-91a3-4172-b9de-a4388cc8f894))
     (pad "" thru_hole roundrect locked (at -6 0.05) (size 3.2 3.8) (drill oval 2.1 3.2) (layers *.Cu *.Mask) (roundrect_rratio 0.25) (tstamp c25449d6-d734-4953-b762-98f82a830248))
     (pad "A" thru_hole circle locked (at -5.55 -4.15) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
-      (net 36 "Net-(R8-Pad1)") (pinfunction "A") (pintype "passive") (tstamp 44646447-0a8e-4aec-a74e-22bf765d0f33))
+      (net 36 "Net-(R1-Pad1)") (pinfunction "A") (pintype "passive") (tstamp 44646447-0a8e-4aec-a74e-22bf765d0f33))
     (pad "B" thru_hole circle locked (at 5.55 -4.15) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
-      (net 40 "Net-(R10-Pad1)") (pinfunction "B") (pintype "passive") (tstamp 2878a73c-5447-4cd9-8194-14f52ab9459c))
+      (net 39 "Net-(R2-Pad1)") (pinfunction "B") (pintype "passive") (tstamp 2878a73c-5447-4cd9-8194-14f52ab9459c))
     (pad "C" thru_hole circle locked (at 0 -6.85) (size 1.8 1.8) (drill 1.1) (layers *.Cu *.Mask)
       (net 1 "GND") (pinfunction "C") (pintype "passive") (tstamp d7e4abd8-69f5-4706-b12e-898194e5bf56))
     (pad "S1" thru_hole circle locked (at -5.55 4.15) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
-      (net 39 "Net-(R9-Pad2)") (pinfunction "S1") (pintype "passive") (tstamp 04cf2f2c-74bf-400d-b4f6-201720df00ed))
+      (net 40 "Net-(R5-Pad2)") (pinfunction "S1") (pintype "passive") (tstamp 04cf2f2c-74bf-400d-b4f6-201720df00ed))
     (pad "S2" thru_hole circle locked (at 5.95 3.45) (size 1.8 1.8) (drill 1.2) (layers *.Cu *.Mask)
       (net 1 "GND") (pinfunction "S2") (pintype "passive") (tstamp 955cc99e-a129-42cf-abc7-aa99813fdb5f))
     (model "${KIPRJMOD}/cad/EC12D1524403/EC12D1524403.step"
@@ -1510,7 +1510,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061bcd012")
     (attr smd)
-    (fp_text reference "C4" (at 0 -1.43) (layer "F.SilkS") hide
+    (fp_text reference "C1" (at 0 -1.43) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.2)))
       (tstamp b8a55507-a42b-46fa-a8a9-72c49d93e96c)
     )
@@ -1553,7 +1553,7 @@
     (property "Sheetname" "channel1")
     (path "/00000000-0000-0000-0000-00006202e846/00000000-0000-0000-0000-000061c61d09")
     (attr smd)
-    (fp_text reference "C11" (at 0 -1.16) (layer "F.SilkS") hide
+    (fp_text reference "C12" (at 0 -1.16) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 55f62029-af66-4168-97aa-c791fab7ce0f)
     )
@@ -1644,7 +1644,7 @@
     (property "Sheetname" "channel1")
     (path "/00000000-0000-0000-0000-00006202e846/00000000-0000-0000-0000-000061c4e023")
     (attr smd)
-    (fp_text reference "Q4" (at 0 -2.5) (layer "F.SilkS") hide
+    (fp_text reference "Q2" (at 0 -2.5) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp e352b0c1-b548-40fa-9540-8af26caa12fd)
     )
@@ -1692,7 +1692,7 @@
     (property "Sheetname" "channel1")
     (path "/00000000-0000-0000-0000-00006202e846/00000000-0000-0000-0000-000061c5a1af")
     (attr smd)
-    (fp_text reference "R11" (at 0 -1.17) (layer "F.SilkS") hide
+    (fp_text reference "R13" (at 0 -1.17) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp fa2bf2ca-bd10-466d-9e68-28cc68c7b620)
     )
@@ -1778,7 +1778,7 @@
     (property "Sheetname" "channel2")
     (path "/00000000-0000-0000-0000-0000620593ae/00000000-0000-0000-0000-000061c61d09")
     (attr smd)
-    (fp_text reference "C13" (at 0 -1.16) (layer "F.SilkS") hide
+    (fp_text reference "C14" (at 0 -1.16) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 4d229441-82d7-469c-9682-8be5894f1650)
     )
@@ -1869,7 +1869,7 @@
     (property "Sheetname" "channel2")
     (path "/00000000-0000-0000-0000-0000620593ae/00000000-0000-0000-0000-000061c4e023")
     (attr smd)
-    (fp_text reference "Q8" (at 0 -2.5) (layer "F.SilkS") hide
+    (fp_text reference "Q6" (at 0 -2.5) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 2019d1cb-3f44-4350-b567-07ec343b7ded)
     )
@@ -1917,7 +1917,7 @@
     (property "Sheetname" "channel2")
     (path "/00000000-0000-0000-0000-0000620593ae/00000000-0000-0000-0000-000061c5a1af")
     (attr smd)
-    (fp_text reference "R13" (at 0 -1.17) (layer "F.SilkS") hide
+    (fp_text reference "R15" (at 0 -1.17) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp d3d8510c-6b1c-4e8a-855b-60a000e61716)
     )
@@ -2003,7 +2003,7 @@
     (property "Sheetname" "channel1")
     (path "/00000000-0000-0000-0000-00006202e846/00000000-0000-0000-0000-000061d142b7")
     (attr smd)
-    (fp_text reference "C10" (at 0 -1.16) (layer "F.SilkS") hide
+    (fp_text reference "C11" (at 0 -1.16) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp ad4b4db0-56fe-4cd1-a5ce-265d1900b152)
     )
@@ -2046,7 +2046,7 @@
     (property "Sheetname" "channel2")
     (path "/00000000-0000-0000-0000-0000620593ae/00000000-0000-0000-0000-000061d142b7")
     (attr smd)
-    (fp_text reference "C12" (at 0 -1.16) (layer "F.SilkS") hide
+    (fp_text reference "C13" (at 0 -1.16) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 53b1f897-371c-47dd-959a-c072a27d4e74)
     )
@@ -2089,7 +2089,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000062237167")
     (attr smd)
-    (fp_text reference "C7" (at 0 -1.16) (layer "F.SilkS") hide
+    (fp_text reference "C4" (at 0 -1.16) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.2)))
       (tstamp 76614376-417b-4b8e-8c1a-7e4905032fe9)
     )
@@ -2132,7 +2132,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000062237a30")
     (attr smd)
-    (fp_text reference "C8" (at 0 -1.16) (layer "F.SilkS") hide
+    (fp_text reference "C5" (at 0 -1.16) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.2)))
       (tstamp 82e6882f-9f6c-48bd-96e1-f3db8861b5cd)
     )
@@ -2175,7 +2175,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000062237c27")
     (attr smd)
-    (fp_text reference "C9" (at 0 -1.16) (layer "F.SilkS") hide
+    (fp_text reference "C6" (at 0 -1.16) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.2)))
       (tstamp 0f61b633-6749-447a-8162-37bccdf66fbe)
     )
@@ -2218,7 +2218,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061cad61b")
     (attr smd)
-    (fp_text reference "U2" (at 0.3 -3.5 90) (layer "F.SilkS") hide
+    (fp_text reference "U1" (at 0.3 -3.5 90) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 25ae00e7-d432-41ff-a53a-cf1dc3a4c65b)
     )
@@ -2278,7 +2278,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061cd939b")
     (attr smd)
-    (fp_text reference "R8" (at 0 -1.17) (layer "F.SilkS") hide
+    (fp_text reference "R1" (at 0 -1.17) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 9c65e1c6-8ab1-414a-9272-fe2482ea1a5a)
     )
@@ -2301,7 +2301,7 @@
     (fp_line (start -0.525 -0.27) (end 0.525 -0.27) (layer "F.Fab") (width 0.1) (tstamp e4b4dd5e-42a4-4627-8586-9eebeb529b8b))
     (fp_line (start 0.525 -0.27) (end 0.525 0.27) (layer "F.Fab") (width 0.1) (tstamp e9c4bd5e-e01a-4fa6-931d-aa35acdafeac))
     (pad "1" smd roundrect locked (at -0.51 0 180) (size 0.54 0.64) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
-      (net 36 "Net-(R8-Pad1)") (pintype "passive") (tstamp 02f85410-863e-48c8-849b-9fc5ad38babb))
+      (net 36 "Net-(R1-Pad1)") (pintype "passive") (tstamp 02f85410-863e-48c8-849b-9fc5ad38babb))
     (pad "2" smd roundrect locked (at 0.51 0 180) (size 0.54 0.64) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
       (net 6 "RE_I") (pintype "passive") (tstamp fcd2433f-19be-49b3-b61b-3fdc25a10a62))
     (model "${KICAD6_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.wrl"
@@ -2321,7 +2321,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061cda382")
     (attr smd)
-    (fp_text reference "R9" (at 0 -1.17) (layer "F.SilkS") hide
+    (fp_text reference "R5" (at 0 -1.17) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 7d199fb6-043a-4292-af46-abdcd726f2c7)
     )
@@ -2346,7 +2346,7 @@
     (pad "1" smd roundrect locked (at -0.51 0) (size 0.54 0.64) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
       (net 12 "RE_B") (pintype "passive") (tstamp 4d00ba0b-17dd-4236-93d3-4f80d52a01d2))
     (pad "2" smd roundrect locked (at 0.51 0) (size 0.54 0.64) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
-      (net 39 "Net-(R9-Pad2)") (pintype "passive") (tstamp 53d8783e-26ab-4615-9325-cb5c75f0fb47))
+      (net 40 "Net-(R5-Pad2)") (pintype "passive") (tstamp 53d8783e-26ab-4615-9325-cb5c75f0fb47))
     (model "${KICAD6_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.wrl"
       (offset (xyz 0 0 0))
       (scale (xyz 1 1 1))
@@ -2364,7 +2364,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061cd98c2")
     (attr smd)
-    (fp_text reference "R10" (at 0 -1.17) (layer "F.SilkS") hide
+    (fp_text reference "R2" (at 0 -1.17) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 6cfd2195-958c-41c2-9ec2-1e9843064050)
     )
@@ -2387,7 +2387,7 @@
     (fp_line (start -0.525 -0.27) (end 0.525 -0.27) (layer "F.Fab") (width 0.1) (tstamp fcecf13e-8e72-4ca0-b8fb-1d1a6268eff1))
     (fp_line (start 0.525 -0.27) (end 0.525 0.27) (layer "F.Fab") (width 0.1) (tstamp fe57d6c6-6a58-4e27-ae49-abe5c6360092))
     (pad "1" smd roundrect locked (at -0.51 0 180) (size 0.54 0.64) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
-      (net 40 "Net-(R10-Pad1)") (pintype "passive") (tstamp ebfa3bc5-489a-4b1a-8067-da3c91cb3045))
+      (net 39 "Net-(R2-Pad1)") (pintype "passive") (tstamp ebfa3bc5-489a-4b1a-8067-da3c91cb3045))
     (pad "2" smd roundrect locked (at 0.51 0 180) (size 0.54 0.64) (layers "F.Cu" "F.Paste" "F.Mask") (roundrect_rratio 0.25)
       (net 5 "RE_Q") (pintype "passive") (tstamp b6d3e6b1-4fdb-4600-8339-e15317f74269))
     (model "${KICAD6_3DMODEL_DIR}/Resistor_SMD.3dshapes/R_0402_1005Metric.wrl"
@@ -2503,7 +2503,7 @@
     (property "Sheetname" "led_driver1")
     (path "/00000000-0000-0000-0000-000061d242ff/00000000-0000-0000-0000-000061d27821")
     (attr smd)
-    (fp_text reference "R15" (at 0 -1.17 90) (layer "F.SilkS") hide
+    (fp_text reference "R18" (at 0 -1.17 90) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 6b2a6a41-df5e-4bf7-bc4d-611cbb4dad32)
     )
@@ -2546,7 +2546,7 @@
     (property "Sheetname" "led_driver2")
     (path "/00000000-0000-0000-0000-000061d33b82/00000000-0000-0000-0000-000061d27821")
     (attr smd)
-    (fp_text reference "R18" (at 0 -1.17 90) (layer "F.SilkS") hide
+    (fp_text reference "R21" (at 0 -1.17 90) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 5292f98b-2c83-4c64-93e5-363a90dff236)
     )
@@ -2722,7 +2722,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061bb9f0d")
     (attr smd)
-    (fp_text reference "R5" (at 0 -1.17) (layer "F.SilkS") hide
+    (fp_text reference "R4" (at 0 -1.17) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 74016409-cc9c-4f6f-b06a-2f9fd13145ef)
     )
@@ -2765,7 +2765,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061bea8af")
     (attr smd)
-    (fp_text reference "C5" (at 0 -1.16) (layer "F.SilkS") hide
+    (fp_text reference "C2" (at 0 -1.16) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 150d429e-0fc4-4330-ad63-4e82c6aa373c)
     )
@@ -2808,7 +2808,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061e7197c")
     (attr exclude_from_pos_files)
-    (fp_text reference "H5" (at 0 -3.2) (layer "F.SilkS") hide
+    (fp_text reference "H4" (at 0 -3.2) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.2)))
       (tstamp b2023a43-10ff-43ab-80df-26954228ee9c)
     )
@@ -2835,7 +2835,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061f562ce")
     (attr exclude_from_pos_files)
-    (fp_text reference "H7" (at 0 -3.2) (layer "F.SilkS") hide
+    (fp_text reference "H5" (at 0 -3.2) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp e657d4f9-ff42-47d3-9d2c-c77501c17400)
     )
@@ -2862,7 +2862,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061fa948b")
     (attr exclude_from_pos_files)
-    (fp_text reference "H3" (at 0 -3.2) (layer "F.SilkS") hide
+    (fp_text reference "H6" (at 0 -3.2) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 104a47b2-04c3-442d-b4dc-403cb24238c4)
     )
@@ -2889,7 +2889,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061fa9492")
     (attr exclude_from_pos_files)
-    (fp_text reference "H6" (at 0 -3.2) (layer "F.SilkS") hide
+    (fp_text reference "H7" (at 0 -3.2) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 538903bc-0e34-43ea-ac93-d986d7208b3d)
     )
@@ -2916,7 +2916,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061fe2924")
     (attr smd)
-    (fp_text reference "D2" (at 0 -2 90) (layer "F.SilkS") hide
+    (fp_text reference "D1" (at 0 -2 90) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp fee8ad19-4814-4c11-a411-676df9d097be)
     )
@@ -2967,7 +2967,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061d26f4f")
     (attr smd)
-    (fp_text reference "C1" (at 0 -1.16) (layer "F.SilkS") hide
+    (fp_text reference "C8" (at 0 -1.16) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 23808d9a-cef8-48d8-af56-d734474a56e6)
     )
@@ -3010,7 +3010,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061d25866")
     (attr smd)
-    (fp_text reference "C14" (at 0 -1.43) (layer "F.SilkS") hide
+    (fp_text reference "C10" (at 0 -1.43) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 44858ceb-b21c-4efa-85d3-b2fd89d1df18)
     )
@@ -3053,7 +3053,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000062187575")
     (attr through_hole)
-    (fp_text reference "J1" (at 5.08 10.16 180) (layer "F.SilkS")
+    (fp_text reference "J2" (at 5.08 10.16 180) (layer "F.SilkS")
       (effects (font (size 1 1) (thickness 0.2)))
       (tstamp bd48d3de-0a43-4dc1-8141-41e0b8dee7eb)
     )
@@ -3272,7 +3272,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-0000622155d1")
     (attr smd)
-    (fp_text reference "D1" (at 0 -2 90) (layer "F.SilkS") hide
+    (fp_text reference "D2" (at 0 -2 90) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 47316a27-90b9-4203-8d80-1a6ea2e2c9c5)
     )
@@ -3457,7 +3457,7 @@
     (property "Sheetname" "channel1")
     (path "/00000000-0000-0000-0000-00006202e846/00000000-0000-0000-0000-0000622d62b8")
     (attr smd)
-    (fp_text reference "Q2" (at 0 -2.7 90) (layer "F.SilkS") hide
+    (fp_text reference "Q3" (at 0 -2.7 90) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp d5b800ca-1ab6-4b66-b5f7-2dda5658b504)
     )
@@ -3536,7 +3536,7 @@
     (property "Sheetname" "channel2")
     (path "/00000000-0000-0000-0000-0000620593ae/00000000-0000-0000-0000-0000622d62b8")
     (attr smd)
-    (fp_text reference "Q6" (at 0 -2.7 90) (layer "F.SilkS") hide
+    (fp_text reference "Q7" (at 0 -2.7 90) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 9b3c58a7-a9b9-4498-abc0-f9f43e4f0292)
     )
@@ -3787,7 +3787,7 @@
     (property "Sheetname" "channel1")
     (path "/00000000-0000-0000-0000-00006202e846/00000000-0000-0000-0000-00006236d64f")
     (attr smd)
-    (fp_text reference "Q3" (at 0 -2.7 90) (layer "F.SilkS") hide
+    (fp_text reference "Q4" (at 0 -2.7 90) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 13c0ff76-ed71-4cd9-abb0-92c376825d5d)
     )
@@ -3866,7 +3866,7 @@
     (property "Sheetname" "channel2")
     (path "/00000000-0000-0000-0000-0000620593ae/00000000-0000-0000-0000-00006236d64f")
     (attr smd)
-    (fp_text reference "Q7" (at 0 -2.7 90) (layer "F.SilkS") hide
+    (fp_text reference "Q8" (at 0 -2.7 90) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 12422a89-3d0c-485c-9386-f77121fd68fd)
     )
@@ -3988,7 +3988,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-0000624addd2")
     (attr smd)
-    (fp_text reference "R21" (at 0 -1.17) (layer "F.SilkS") hide
+    (fp_text reference "R11" (at 0 -1.17) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 19b2e127-7a57-415e-af43-1a50299ad216)
     )
@@ -4031,7 +4031,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000062317a5e")
     (attr smd)
-    (fp_text reference "R4" (at 0 -1.17) (layer "F.SilkS") hide
+    (fp_text reference "R8" (at 0 -1.17) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 697d909a-e6fc-428c-aba5-823fe93fa5a6)
     )
@@ -4074,7 +4074,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061db4527")
     (attr smd)
-    (fp_text reference "R1" (at 0 -1.17) (layer "F.SilkS") hide
+    (fp_text reference "R6" (at 0 -1.17) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 346c1f97-8db3-4361-9634-96f76843e5d2)
     )
@@ -4117,7 +4117,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-0000623f6e05")
     (attr smd)
-    (fp_text reference "R7" (at 0 -1.17) (layer "F.SilkS") hide
+    (fp_text reference "R10" (at 0 -1.17) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 92afadde-cec0-4301-b64c-9a25b8c852f4)
     )
@@ -4160,7 +4160,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061bc782f")
     (attr smd)
-    (fp_text reference "C2" (at 0 -1.16) (layer "F.SilkS") hide
+    (fp_text reference "C7" (at 0 -1.16) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.2)))
       (tstamp e246b4c6-330f-4c5e-b9dd-b100eb27bc9f)
     )
@@ -4203,7 +4203,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061b9b2b8")
     (attr smd)
-    (fp_text reference "U1" (at 0 -4.2) (layer "F.SilkS") hide
+    (fp_text reference "U2" (at 0 -4.2) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.2)))
       (tstamp c9e87077-98fc-46fe-8a98-51be3e913db0)
     )
@@ -4289,7 +4289,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061bbd7aa")
     (attr smd)
-    (fp_text reference "C6" (at 0 -1.16) (layer "F.SilkS") hide
+    (fp_text reference "C9" (at 0 -1.16) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.2)))
       (tstamp 964742c0-ee94-4927-91df-9434b273df16)
     )
@@ -4332,7 +4332,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-000061db5806")
     (attr smd)
-    (fp_text reference "R2" (at 0 -1.17) (layer "F.SilkS") hide
+    (fp_text reference "R7" (at 0 -1.17) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp b0802cdf-af6e-4f0c-bb3c-0f54413071d6)
     )
@@ -4375,7 +4375,7 @@
     (property "Sheetname" "")
     (path "/00000000-0000-0000-0000-0000623f661a")
     (attr smd)
-    (fp_text reference "R6" (at 0 -1.17) (layer "F.SilkS") hide
+    (fp_text reference "R9" (at 0 -1.17) (layer "F.SilkS") hide
       (effects (font (size 1 1) (thickness 0.15)))
       (tstamp d340b6f2-8cdf-4607-bf98-72c2f4d70e0a)
     )
@@ -7116,14 +7116,14 @@
   (segment (start 82.807 86.579) (end 82.296 86.068) (width 0.2) (layer "F.Cu") (net 37) (tstamp 00000000-0000-0000-0000-000061d895b2))
   (segment (start 82.189 87.229) (end 82.044 87.084) (width 0.2) (layer "F.Cu") (net 38) (tstamp 00000000-0000-0000-0000-000061d89327))
   (segment (start 82.189 87.229) (end 83.7865 87.229) (width 0.2) (layer "F.Cu") (net 38) (tstamp 00000000-0000-0000-0000-000061d89450))
-  (segment (start 111.76 84.582) (end 111.76 88.351) (width 0.2) (layer "F.Cu") (net 39) (tstamp 2fea3f9c-a97b-4a77-88f7-98b3d8a00622))
-  (segment (start 111.76 88.351) (end 109.385 90.726) (width 0.2) (layer "F.Cu") (net 39) (tstamp ab26a42e-b7f6-4a80-b26c-c01085e448c7))
-  (segment (start 107.27898 84.07402) (end 111.25202 84.07402) (width 0.2) (layer "F.Cu") (net 39) (tstamp d25a1e45-06d1-4c1c-9b3a-0fd8abd0bfed))
-  (segment (start 111.25202 84.07402) (end 111.76 84.582) (width 0.2) (layer "F.Cu") (net 39) (tstamp e8558fbd-ea42-43a6-966a-7bd304bdfaad))
-  (segment (start 105.539 85.814) (end 107.27898 84.07402) (width 0.2) (layer "F.Cu") (net 39) (tstamp f61adca3-c1e4-457e-8212-9dc978cabab5))
-  (segment (start 119.23699 83.67401) (end 106.40899 83.67401) (width 0.2) (layer "F.Cu") (net 40) (tstamp 46a20b99-b616-4fa4-af79-eecf92b5c191))
-  (segment (start 106.40899 83.67401) (end 105.539 84.544) (width 0.2) (layer "F.Cu") (net 40) (tstamp 6dfa921c-8a4f-4fcf-a0e7-8718b6271ea9))
-  (segment (start 120.485 82.426) (end 119.23699 83.67401) (width 0.2) (layer "F.Cu") (net 40) (tstamp ee3188d0-94cf-4bcc-9f57-e516684fc142))
+  (segment (start 119.23699 83.67401) (end 106.40899 83.67401) (width 0.2) (layer "F.Cu") (net 39) (tstamp 46a20b99-b616-4fa4-af79-eecf92b5c191))
+  (segment (start 106.40899 83.67401) (end 105.539 84.544) (width 0.2) (layer "F.Cu") (net 39) (tstamp 6dfa921c-8a4f-4fcf-a0e7-8718b6271ea9))
+  (segment (start 120.485 82.426) (end 119.23699 83.67401) (width 0.2) (layer "F.Cu") (net 39) (tstamp ee3188d0-94cf-4bcc-9f57-e516684fc142))
+  (segment (start 111.76 84.582) (end 111.76 88.351) (width 0.2) (layer "F.Cu") (net 40) (tstamp 2fea3f9c-a97b-4a77-88f7-98b3d8a00622))
+  (segment (start 111.76 88.351) (end 109.385 90.726) (width 0.2) (layer "F.Cu") (net 40) (tstamp ab26a42e-b7f6-4a80-b26c-c01085e448c7))
+  (segment (start 107.27898 84.07402) (end 111.25202 84.07402) (width 0.2) (layer "F.Cu") (net 40) (tstamp d25a1e45-06d1-4c1c-9b3a-0fd8abd0bfed))
+  (segment (start 111.25202 84.07402) (end 111.76 84.582) (width 0.2) (layer "F.Cu") (net 40) (tstamp e8558fbd-ea42-43a6-966a-7bd304bdfaad))
+  (segment (start 105.539 85.814) (end 107.27898 84.07402) (width 0.2) (layer "F.Cu") (net 40) (tstamp f61adca3-c1e4-457e-8212-9dc978cabab5))
   (segment (start 80.518 78.74) (end 78.74 78.74) (width 0.2) (layer "F.Cu") (net 41) (tstamp 2b894b8a-c098-4d9d-be0f-2ef41dea274e))
   (segment (start 78.232 86.36) (end 78.992 87.12) (width 0.2) (layer "F.Cu") (net 41) (tstamp 6776c573-26e6-4a02-ab96-18129f258651))
   (segment (start 78.74 78.74) (end 78.232 79.248) (width 0.2) (layer "F.Cu") (net 41) (tstamp 9ba85d0a-e58f-45a8-9d86-ad6c976003b7))
