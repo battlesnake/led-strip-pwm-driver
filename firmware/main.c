@@ -4,8 +4,9 @@ void assert_failed(uint8_t* file, uint32_t line)
 {
 	(void) file;
 	(void) line;
-	trap();
-	halt();
+	while (1) {
+		nop();
+	}
 }
 
 void main()

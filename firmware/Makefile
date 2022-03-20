@@ -2,7 +2,7 @@ sources = $(wildcard *.c lib/*/*.c)
 headers = $(wildcard include/*/)
 objects = $(sources:%.c=build/%.rel)
 libraries = stm8
-program = build/program.hex
+program = build/program.ihx
 drivers = clk exti gpio i2c rst tim1 tim2 uart1 itc
 defines = STM8S003
 
@@ -10,14 +10,16 @@ CPPFLAGS = $(headers:%=-I%) $(defines:%=-D%)
 CFLAGS = -c -mstm8 --opt-code-size --std-c11
 LDFLAGS = -mstm8 --out-fmt-ihx
 MAKEFLAGS += -Otarget
+FLASHFLAGS = -c stlinkv2 -p stm8s003?3
 
 CC := sdcc
 LD := sdcc
 RMRF := rm -rf --
 MKDIRP := mkdir -p
+FLASH := stm8flash
 
 .DEFAULT: build
-.PHONY: prepare build clean distclean force
+.PHONY: force prepare build clean distclean flash
 
 build: $(program)
 
@@ -25,6 +27,9 @@ prepare: pkg-ext/STM8S_StdPeriph_Lib/.prepared
 
 clean:
 	$(RMRF) build/ lib/ include/
+
+flash: $(program)
+	$(FLASH) $(FLASHFLAGS) -w $<
 
 distclean: clean
 	$(RMRF) pkg-ext/
