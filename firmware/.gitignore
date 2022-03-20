@@ -2,3 +2,4 @@
 /build/
 /lib/stm8s
 /include/stm8s
+!*.zip
