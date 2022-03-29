@@ -2,24 +2,25 @@ sources = $(wildcard *.c lib/*/*.c)
 headers = $(wildcard include/*/)
 objects = $(sources:%.c=build/%.rel)
 libraries = stm8
-program = build/program.ihx
+program = build/program.elf
 drivers = clk exti gpio i2c rst tim1 tim2 uart1 itc
 defines = STM8S003
 
 CPPFLAGS = $(headers:%=-I%) $(defines:%=-D%)
 CFLAGS = -c -mstm8 --opt-code-size --std-c11
-LDFLAGS = -mstm8 --out-fmt-ihx
+LDFLAGS = -mstm8 --out-fmt-elf
 MAKEFLAGS += -Otarget
-FLASHFLAGS = -c stlinkv2 -p stm8s003?3
+FLASHFLAGS = -c stlinkv2 -p stm8s003?3 -s flash
 
 CC := sdcc
 LD := sdcc
 RMRF := rm -rf --
 MKDIRP := mkdir -p
 FLASH := stm8flash
+OPENOCD := openocd
 
 .DEFAULT: build
-.PHONY: force prepare build clean distclean flash
+.PHONY: force prepare build clean distclean flash openocd
 
 build: $(program)
 
@@ -33,6 +34,9 @@ flash: $(program)
 
 distclean: clean
 	$(RMRF) pkg-ext/
+
+openocd:
+	$(OPENOCD) -v -f interface/stlink-dap.cfg -f /usr/share/openocd/scripts/target/stm8s003.cfg -c "init" -c "reset halt"
 
 $(program): $(objects)
 	@$(MKDIRP) $(@D)
