@@ -1,19 +1,21 @@
 sources = $(wildcard *.c lib/*/*.c)
 headers = $(wildcard include/*/)
-objects = $(sources:%.c=build/%.rel)
-libraries = stm8
-program = build/program.elf
+objects = $(sources:%.c=build/%.o)
+libraries = 
+program = build/program
 drivers = clk exti gpio i2c rst tim1 tim2 uart1 itc
 defines = STM8S003
 
+ASFLAGS =
 CPPFLAGS = $(headers:%=-I%) $(defines:%=-D%)
-CFLAGS = -c -mstm8 --opt-code-size --std-c11
-LDFLAGS = -mstm8 --out-fmt-elf
+CFLAGS = -mstm8 -pstm8s003 --opt-code-size --std-c99 -c --out-fmt-elf --debug --asm=gas --function-sections --data-sections
+LDFLAGS = -T./elf32stm8s003f3.x --print-memory-usage --gc-sections -Map $(program).map
 MAKEFLAGS += -Otarget
-FLASHFLAGS = -c stlinkv2 -p stm8s003?3 -s flash
+FLASHFLAGS = -c stlinkv2 -p stm8s003?3
 
 CC := sdcc
-LD := sdcc
+AS := stm8-as
+LD := stm8-ld
 RMRF := rm -rf --
 MKDIRP := mkdir -p
 FLASH := stm8flash
@@ -27,22 +29,26 @@ build: $(program)
 prepare: pkg-ext/STM8S_StdPeriph_Lib/.prepared
 
 clean:
-	$(RMRF) build/ lib/ include/
+	$(RMRF) build/
 
 flash: $(program)
 	$(FLASH) $(FLASHFLAGS) -w $<
 
 distclean: clean
-	$(RMRF) pkg-ext/
+	$(RMRF) pkg-ext/ lib/ include/
 
 openocd:
-	$(OPENOCD) -v -f interface/stlink-dap.cfg -f /usr/share/openocd/scripts/target/stm8s003.cfg -c "init" -c "reset halt"
+	$(OPENOCD) -f interface/stlink-dap.cfg -f /usr/share/openocd/scripts/target/stm8s003.cfg -c "init" -c "reset halt"
 
 $(program): $(objects)
 	@$(MKDIRP) $(@D)
 	$(LD) $(LDFLAGS) -o $@ $^ $(libraries:%=-l%)
 
-$(objects): build/%.rel: %.c
+build/%.d: %.c
+	@$(MKDIRP) $(@D)
+	$(CC) $(CPPFLAGS) $(CFLAGS) -MM > $@ $<
+
+$(objects): build/%.o: %.c build/%.d
 	@$(MKDIRP) $(@D)
 	$(CC) $(CPPFLAGS) $(CFLAGS) -o $@ $<
 
@@ -77,3 +83,5 @@ pkg-ext/STM8S_StdPeriph_Lib/.prepared: \
 	ln -srft pkg-ext/STM8S_StdPeriph_Lib/Libraries/STM8S_StdPeriph_Driver/inc/ stm8s_conf.h stm8s_it.h stm8s_it.c
 	# Mark as done
 	touch $@
+
+-include $(shell find build/ -type f -name \*.d)
