@@ -1,5 +1,5 @@
 /pkg-ext/
 /build/
-/lib/stm8s
-/include/stm8s
+/lib/
+/include/
 !*.zip
