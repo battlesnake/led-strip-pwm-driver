@@ -12,12 +12,18 @@ ASFLAGS =
 CPPFLAGS = $(headers:%=-I%) $(defines:%=-D%)
 CFLAGS = -mstm8 -pstm8s003 --opt-code-size --std-c99 -c --out-fmt-elf --debug --asm=gas --function-sections --data-sections
 LDFLAGS = -T./elf32stm8s003f3.x --print-memory-usage --gc-sections -Map $(program).map
+ifeq ($(filter debug openocd serial,$(MAKECMDGOALS)),)
 MAKEFLAGS += -Otarget
+else
+MAKEFLAGS += -Onone
+endif
 FLASHFLAGS = -c stlinkv2 -p stm8s003?3
 
 CC := sdcc
 AS := stm8-as
 LD := stm8-ld
+OBJCOPY := stm8-objcopy
+GDB := stm8-gdb
 RM := rm -f --
 RMRF := rm -rf --
 MKDIRP := mkdir -p
@@ -25,7 +31,7 @@ FLASH := stm8flash
 OPENOCD := openocd
 
 .DEFAULT: build
-.PHONY: force prepare build clean distclean flash openocd
+.PHONY: force prepare build clean distclean flash openocd debug serial
 
 build: $(program)
 
@@ -42,11 +48,18 @@ flash: $(program) | build
 distclean: clean
 	$(RMRF) pkg-ext/ lib/ include/
 
-openocd: | flash build
+openocd:
 	$(OPENOCD) -f interface/stlink-dap.cfg -f /usr/share/openocd/scripts/target/stm8s003.cfg -c "init" -c "reset halt"
+
+debug:
+	$(GDB) $(program) -q -ex 'target extended-remote localhost:3333' -ex 'monitor reset halt' -ex 'load' -ex 'b assert_failed'
+
+serial:
+	minicom -D /dev/ttyUSB0 -b 9600 -8
 
 $(program): $(objects) $(objects_asm)
 	@$(MKDIRP) $(@D)
+	$(OBJCOPY) --weaken build/stm8s_it.o
 	$(LD) $(LDFLAGS) -o $@ $^ $(libraries:%=-l%)
 
 build/%.c.d: %.c

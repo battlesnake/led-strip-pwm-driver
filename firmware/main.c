@@ -1,4 +1,5 @@
-#include "stm8s.h"
+#include <stm8s.h>
+#include "uart.h"
 
 void assert_failed(uint8_t* file, uint32_t line)
 {
@@ -42,13 +43,14 @@ static void clock_setup()
 
 static void gpio_setup()
 {
-	/* A1, A2 = LEDs 1/2 */
 	GPIO_DeInit(GPIOA);
+	GPIO_DeInit(GPIOC);
+
+	/* A1, A2 = LEDs 1/2 */
 	GPIO_Init(GPIOA, GPIO_PIN_1, GPIO_MODE_OUT_PP_LOW_SLOW);
 	GPIO_Init(GPIOA, GPIO_PIN_2, GPIO_MODE_OUT_PP_HIGH_SLOW);
 
 	/* C3, C4, C5 = Rotary encoder B/Q/I */
-	GPIO_DeInit(GPIOC);
 	GPIO_Init(GPIOC, GPIO_PIN_3, GPIO_MODE_IN_PU_IT);
 	GPIO_Init(GPIOC, GPIO_PIN_4, GPIO_MODE_IN_PU_IT);
 	GPIO_Init(GPIOC, GPIO_PIN_5, GPIO_MODE_IN_PU_IT);
@@ -61,6 +63,9 @@ static void uart_setup()
 	/* 9600/8n1 */
 	UART1_Init(9600, UART1_WORDLENGTH_8D, UART1_STOPBITS_1, UART1_PARITY_NO, UART1_SYNCMODE_CLOCK_DISABLE, UART1_MODE_TXRX_ENABLE);
 
+	/* RX interrupt */
+	UART1_ITConfig(UART1_IT_RXNE_OR, ENABLE);
+
 	UART1_Cmd(ENABLE);
 }
 
@@ -69,13 +74,11 @@ void main()
 	clock_setup();
 	gpio_setup();
 	uart_setup();
+	enableInterrupts();
 
-	for (const char *s = "Hello world!\r\n"; *s; ++s) {
-		UART1_SendData8(*s);
-		while (UART1_GetFlagStatus(UART1_FLAG_TXE) == RESET) ;
-	}
+	uart_write_string("Hello World!\r\n");
 
-	int iterations = 100;
+	int iterations = 3000;
 	while (1) {
 		/* Rotary */
 		bool a = FALSE;
@@ -87,9 +90,9 @@ void main()
 			c = c || (GPIO_ReadInputPin(GPIOC, GPIO_PIN_5) == 0);
 		}
 		if (a) {
-			iterations = 400;
+			iterations = 10000;
 		} else {
-			iterations = 100;
+			iterations = 3000;
 		}
 		if (!b) {
 			GPIO_WriteReverse(GPIOA, GPIO_PIN_1);
@@ -97,12 +100,15 @@ void main()
 		if (!c) {
 			GPIO_WriteReverse(GPIOA, GPIO_PIN_2);
 		}
-		/* UART */
-		if(UART1_GetFlagStatus(UART1_FLAG_RXNE) == TRUE) {
-			char ch = UART1_ReceiveData8();
-			UART1_ClearFlag(UART1_FLAG_RXNE);
-			UART1_SendData8(ch);
-			while (UART1_GetFlagStatus(UART1_FLAG_TXE) == RESET) ;
+		if (uart_read_overrun()) {
+			uart_write_string("error: RX buffer overrun\r\n");
+		}
+		char ch;
+		while (uart_read(&ch)) {
+			uart_write(ch);
+			if (ch == '\r') {
+				uart_write('\n');
+			}
 		}
 	}
 }

@@ -1,0 +1,2 @@
+let g:ale_c_cc_executable="sdcc"
+let g:ale_c_cc_options="-DSTM8S003 -I./include/stm8s/"
