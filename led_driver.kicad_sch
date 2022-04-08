@@ -233,7 +233,7 @@
   (symbol (lib_id "power:GND") (at 76.2 53.34 90)
     (in_bom yes) (on_board yes)
     (uuid 00000000-0000-0000-0000-000061d27827)
-    (property "Reference" "#PWR039" (id 0) (at 82.55 53.34 0)
+    (property "Reference" "#PWR043" (id 0) (at 82.55 53.34 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (id 1) (at 79.4512 53.213 90)
