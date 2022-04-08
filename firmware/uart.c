@@ -1,8 +1,8 @@
 #include <stm8s.h>
 #include "ringbuffer.h"
 
-DEFINE_RINGBUFFER(rx_buf, 6)
-DEFINE_RINGBUFFER(tx_buf, 6)
+DEFINE_RINGBUFFER(rx_buf, 6);
+DEFINE_RINGBUFFER(tx_buf, 6);
 
 bool uart_read_peek()
 {
@@ -74,5 +74,20 @@ INTERRUPT_HANDLER(UART1_TX_IRQHandler, 17)
 	if (!valid || ringbuffer_is_empty(tx_buf)) {
 		UART1_ITConfig(UART1_IT_TXE, DISABLE);
 	}
-	GPIO_WriteReverse(GPIOA, GPIO_PIN_2);
+}
+
+void uart_setup()
+{
+	UART1_DeInit();
+
+	/* 9600/8n1 */
+	UART1_Init(9600, UART1_WORDLENGTH_8D, UART1_STOPBITS_1, UART1_PARITY_NO, UART1_SYNCMODE_CLOCK_DISABLE, UART1_MODE_TXRX_ENABLE);
+
+	/* RX interrupt */
+	UART1_ITConfig(UART1_IT_RXNE_OR, ENABLE);
+
+	/* TX interrupt */
+	UART1_ITConfig(UART1_IT_TXE, ENABLE);
+
+	UART1_Cmd(ENABLE);
 }

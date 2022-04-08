@@ -21,7 +21,7 @@ struct ringbuffer
 				.size_mask = (1 << (size_bits)) - 1 \
 			} \
 		}; \
-		static struct ringbuffer *name = &_##name.rb;
+		static struct ringbuffer *name = (&_##name.rb)
 
 void ringbuffer_set_overrun(struct ringbuffer *self);
 bool ringbuffer_clear_overrun(struct ringbuffer *self);
