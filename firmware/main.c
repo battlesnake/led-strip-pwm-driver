@@ -1,5 +1,6 @@
 #include <stm8s.h>
 #include "clock.h"
+#include "led.h"
 #include "serial.h"
 #include "rotary.h"
 
@@ -16,7 +17,9 @@ void main()
 {
 	clock_setup();
 	rotary_setup();
+	led_setup();
 	serial_setup();
+
 	enableInterrupts();
 
 	serial_write_string("Hello World!\r\n");
@@ -41,11 +44,11 @@ void main()
 				serial_write('\n');
 			}
 		}
-		/* Write message every 1000ms */
+		/* Flash LED every 1000ms */
 		unsigned now = get_ticks();
 		if (now - ticks > 1000) {
 			ticks = now;
-			GPIO_WriteReverse(GPIOA, GPIO_PIN_2);
+			led_toggle(led_green);
 		}
 	}
 }

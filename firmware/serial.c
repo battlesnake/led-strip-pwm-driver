@@ -1,6 +1,7 @@
 #include <stm8s.h>
 #include "serial.h"
 #include "ringbuffer.h"
+#include "led.h"
 
 DEFINE_RINGBUFFER(rx_buf, 6);
 DEFINE_RINGBUFFER(tx_buf, 6);
@@ -62,7 +63,7 @@ INTERRUPT_HANDLER(UART1_RX_IRQHandler, 18)
 	UART1_ClearFlag(UART1_FLAG_RXNE);
 	/* Write byte to buffer */
 	ringbuffer_push_back(rx_buf, value);
-	GPIO_WriteReverse(GPIOA, GPIO_PIN_1);
+	led_toggle(led_blue);
 }
 
 INTERRUPT_HANDLER(UART1_TX_IRQHandler, 17)

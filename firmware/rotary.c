@@ -8,31 +8,31 @@ DEFINE_RINGBUFFER(rotary_ev, 4);
 
 INTERRUPT_HANDLER(EXTI_PORTC_IRQHandler, 8)
 {
-	static uint8_t prev;
-	uint8_t state = GPIO_ReadInputData(GPIOC);
-#define risen(pin) ((state & (1 << (pin))) && !(prev & (1 << (pin))))
-#define fallen(pin) (!(state & (1 << (pin))) && (prev & (1 << (pin))))
+	static uint8_t gpio_prev;
+	uint8_t gpio_current = GPIO_ReadInputData(GPIOC);
+#define has_risen(pin) ((gpio_current & pin_bit) && !(gpio_prev & pin_bit))
+#define has_fallen(pin) (!(gpio_current & pin_bit) && (gpio_prev & pin_bit))
+	/* Should we also write timestamps? */
 	for (uint8_t pin = 3; pin <= 5; ++pin) {
-		if (risen(pin)) {
-			ringbuffer_push_back(rotary_ev, ROTARY_EV_RISEN | (pin - 3));
-		} else if (fallen(pin)) {
-			ringbuffer_push_back(rotary_ev, ROTARY_EV_FALLEN | (pin - 3));
+		uint8_t pin_bit = 1 << pin;
+		uint8_t index = pin - 3;
+		bool risen = has_risen(pin);
+		bool fallen = has_fallen(pin);
+		if (risen) {
+			ringbuffer_push_back(rotary_ev, ROTARY_EV_RISEN | index);
+		} else if (fallen) {
+			ringbuffer_push_back(rotary_ev, ROTARY_EV_FALLEN | index);
 		}
 	}
-	prev = state;
 #undef risen
 #undef fallen
+	gpio_prev = gpio_current;
 }
 
 void rotary_setup()
 {
-	GPIO_DeInit(GPIOA);
 	GPIO_DeInit(GPIOC);
 	EXTI_DeInit();
-
-	/* A1, A2 = LEDs 1/2 */
-	GPIO_Init(GPIOA, GPIO_PIN_1, GPIO_MODE_OUT_PP_LOW_SLOW);
-	GPIO_Init(GPIOA, GPIO_PIN_2, GPIO_MODE_OUT_PP_HIGH_SLOW);
 
 	/* C3, C4, C5 = Rotary encoder Q/B/I */
 	GPIO_Init(GPIOC, GPIO_PIN_3, GPIO_MODE_IN_PU_IT);
