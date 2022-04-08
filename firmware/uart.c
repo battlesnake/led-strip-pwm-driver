@@ -1,92 +1,78 @@
 #include <stm8s.h>
+#include "ringbuffer.h"
 
-#define UART_RX_BUFSIZE_BITS (6)
-#define UART_RX_BUFSIZE (1 << UART_RX_BUFSIZE_BITS)
-#define UART_RX_BUFSIZE_MOD (UART_RX_BUFSIZE - 1)
-#define BUF_INDEX unsigned char
+DEFINE_RINGBUFFER(rx_buf, 6)
+DEFINE_RINGBUFFER(tx_buf, 6)
 
-static char rx_buf[UART_RX_BUFSIZE];
-static unsigned BUF_INDEX rx_buf_head = 0;
-static unsigned BUF_INDEX rx_buf_length = 0;
-static bool rx_buf_overrun = FALSE;
-
-static void rx_buf_push_back(char c)
+bool uart_read_peek()
 {
-	if (rx_buf_length == UART_RX_BUFSIZE) {
-		rx_buf_overrun = TRUE;
-	} else {
-		BUF_INDEX pos = (rx_buf_head + rx_buf_length) & UART_RX_BUFSIZE_MOD;
-		rx_buf[pos] = c;
-		rx_buf_length++;
-	}
+	return ! ringbuffer_is_empty(rx_buf);
 }
 
-static bool rx_buf_clear_overrun()
+bool uart_read(char *value)
 {
-	bool value = rx_buf_overrun;
-	rx_buf_overrun = FALSE;
-	return value;
-}
-
-static bool rx_buf_pop_front(char *ch)
-{
-	if (rx_buf_overrun) {
-		return FALSE;
-	} else if (rx_buf_length == 0) {
-		return FALSE;
-	} else {
-		*ch = rx_buf[rx_buf_head];
-		rx_buf_head = (rx_buf_head + 1) & UART_RX_BUFSIZE_MOD;
-		rx_buf_length--;
-		return TRUE;
-	}
-}
-
-static bool rx_buf_clear()
-{
-	rx_buf_length = 0;
-}
-
-bool uart_read(char *ch)
-{
-	return rx_buf_pop_front(ch);
+	return ringbuffer_pop_front(rx_buf, value);
 }
 
 bool uart_read_overrun()
 {
-	return rx_buf_clear_overrun();
+	return ringbuffer_clear_overrun(rx_buf);
 }
 
-bool uart_write(char ch)
+bool uart_write(char value)
 {
-	UART1_SendData8(ch);
-	while (UART1_GetFlagStatus(UART1_FLAG_TXE) == RESET) {
-		nop();
+	if (!ringbuffer_push_back(tx_buf, value)) {
+		return FALSE;
 	}
+	/* Trigger interrupt if buffer was empty previously */
+	UART1_ITConfig(UART1_IT_TXE, ENABLE);
 	return TRUE;
 }
 
 bool uart_write_string(const char *s)
 {
 	while (*s) {
-		uart_write(*s++);
+		while (ringbuffer_is_full(tx_buf)) {
+			nop();
+		}
+		if (!uart_write(*s++)) {
+			return FALSE;
+		}
 	}
 	return TRUE;
+}
+
+bool uart_write_overrun()
+{
+	return ringbuffer_clear_overrun(tx_buf);
 }
 
 INTERRUPT_HANDLER(UART1_RX_IRQHandler, 18)
 {
 	/* Clear buffer if overrun occurred, and set overrun flag */
 	if (UART1_GetFlagStatus(UART1_FLAG_OR)) {
-		rx_buf_clear();
-		rx_buf_overrun = TRUE;
+		ringbuffer_set_overrun(rx_buf);
 		UART1_ClearITPendingBit(UART1_IT_OR);
 		UART1_ClearFlag(UART1_FLAG_OR);
 	}
 	/* Read byte */
-	char ch = UART1_ReceiveData8();
+	char value = UART1_ReceiveData8();
 	UART1_ClearITPendingBit(UART1_IT_RXNE);
 	UART1_ClearFlag(UART1_FLAG_RXNE);
 	/* Write byte to buffer */
-	rx_buf_push_back(ch);
+	ringbuffer_push_back(rx_buf, value);
+	GPIO_WriteReverse(GPIOA, GPIO_PIN_1);
+}
+
+INTERRUPT_HANDLER(UART1_TX_IRQHandler, 17)
+{
+	char value;
+	bool valid = ringbuffer_pop_front(tx_buf, &value);
+	if (valid) {
+		UART1_SendData8(value);
+	}
+	if (!valid || ringbuffer_is_empty(tx_buf)) {
+		UART1_ITConfig(UART1_IT_TXE, DISABLE);
+	}
+	GPIO_WriteReverse(GPIOA, GPIO_PIN_2);
 }

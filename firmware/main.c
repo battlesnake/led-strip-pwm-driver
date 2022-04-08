@@ -66,8 +66,19 @@ static void uart_setup()
 	/* RX interrupt */
 	UART1_ITConfig(UART1_IT_RXNE_OR, ENABLE);
 
+	/* TX interrupt */
+	UART1_ITConfig(UART1_IT_TXE, ENABLE);
+
 	UART1_Cmd(ENABLE);
 }
+
+/* static int gpioc_ticks[3]; */
+/*  */
+/*  */
+/* INTERRUPT_HANDLER(EXTI_PORTC_IRQHandler, 8) */
+/* { */
+/* 	 */
+/* } */
 
 void main()
 {
@@ -80,31 +91,38 @@ void main()
 
 	int iterations = 3000;
 	while (1) {
+		wfi();
 		/* Rotary */
 		bool a = FALSE;
 		bool b = FALSE;
 		bool c = FALSE;
-		for (unsigned int i = 0; i < iterations; ++i) {
+		/* for (unsigned int i = 0; i < iterations; ++i) { */
+		while (!uart_read_peek()) {
 			a = a || (GPIO_ReadInputPin(GPIOC, GPIO_PIN_3) == 0);
 			b = b || (GPIO_ReadInputPin(GPIOC, GPIO_PIN_4) == 0);
 			c = c || (GPIO_ReadInputPin(GPIOC, GPIO_PIN_5) == 0);
 		}
-		if (a) {
-			iterations = 10000;
-		} else {
-			iterations = 3000;
-		}
-		if (!b) {
-			GPIO_WriteReverse(GPIOA, GPIO_PIN_1);
-		}
-		if (!c) {
-			GPIO_WriteReverse(GPIOA, GPIO_PIN_2);
-		}
+		/* if (a) { */
+		/* 	iterations = 10000; */
+		/* } else { */
+		/* 	iterations = 3000; */
+		/* } */
+		/* if (!b) { */
+		/* 	GPIO_WriteReverse(GPIOA, GPIO_PIN_1); */
+		/* } */
+		/* if (!c) { */
+		/* 	GPIO_WriteReverse(GPIOA, GPIO_PIN_2); */
+		/* } */
 		if (uart_read_overrun()) {
 			uart_write_string("error: RX buffer overrun\r\n");
 		}
 		char ch;
 		while (uart_read(&ch)) {
+			if (ch > 0x40 && ch <= 0x5a) {
+				ch += 0x20;
+			} else if (ch > 0x60 && ch < 0x7a) {
+				ch -= 0x20;
+			}
 			uart_write(ch);
 			if (ch == '\r') {
 				uart_write('\n');
