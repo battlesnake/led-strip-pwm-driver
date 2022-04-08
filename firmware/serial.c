@@ -1,25 +1,26 @@
 #include <stm8s.h>
+#include "serial.h"
 #include "ringbuffer.h"
 
 DEFINE_RINGBUFFER(rx_buf, 6);
 DEFINE_RINGBUFFER(tx_buf, 6);
 
-bool uart_read_peek()
+bool serial_read_peek()
 {
 	return ! ringbuffer_is_empty(rx_buf);
 }
 
-bool uart_read(char *value)
+bool serial_read(char *value)
 {
 	return ringbuffer_pop_front(rx_buf, value);
 }
 
-bool uart_read_overrun()
+bool serial_read_overrun()
 {
 	return ringbuffer_clear_overrun(rx_buf);
 }
 
-bool uart_write(char value)
+bool serial_write(char value)
 {
 	if (!ringbuffer_push_back(tx_buf, value)) {
 		return FALSE;
@@ -29,20 +30,20 @@ bool uart_write(char value)
 	return TRUE;
 }
 
-bool uart_write_string(const char *s)
+bool serial_write_string(const char *s)
 {
 	while (*s) {
 		while (ringbuffer_is_full(tx_buf)) {
 			nop();
 		}
-		if (!uart_write(*s++)) {
+		if (!serial_write(*s++)) {
 			return FALSE;
 		}
 	}
 	return TRUE;
 }
 
-bool uart_write_overrun()
+bool serial_write_overrun()
 {
 	return ringbuffer_clear_overrun(tx_buf);
 }
@@ -76,7 +77,7 @@ INTERRUPT_HANDLER(UART1_TX_IRQHandler, 17)
 	}
 }
 
-void uart_setup()
+void serial_setup()
 {
 	UART1_DeInit();
 
