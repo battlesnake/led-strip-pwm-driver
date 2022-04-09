@@ -3,15 +3,10 @@
 #include "led.h"
 #include "serial.h"
 #include "rotary.h"
-
-void assert_failed(uint8_t* file, uint32_t line)
-{
-	(void) file;
-	(void) line;
-	while (1) {
-		nop();
-	}
-}
+#include "pwm.h"
+#include "readline.h"
+#include "string_builder.h"
+#include "cli.h"
 
 void main()
 {
@@ -19,6 +14,7 @@ void main()
 	rotary_setup();
 	led_setup();
 	serial_setup();
+	// pwm_setup();
 
 	enableInterrupts();
 
@@ -28,22 +24,8 @@ void main()
 	unsigned ticks = get_ticks();
 	while (1) {
 		wfi();
-		if (serial_read_overrun()) {
-			serial_write_string("error: RX buffer overrun\r\n");
-		}
-		/* Flip case of alpha chars, echo others verbatim */
-		char ch;
-		while (serial_read(&ch)) {
-			if (ch > 0x40 && ch <= 0x5a) {
-				ch += 0x20;
-			} else if (ch > 0x60 && ch < 0x7a) {
-				ch -= 0x20;
-			}
-			serial_write(ch);
-			if (ch == '\r') {
-				serial_write('\n');
-			}
-		}
+		/* Readline */
+		cli_handle_input();
 		/* Flash LED every 1000ms */
 		unsigned now = get_ticks();
 		if (now - ticks > 1000) {

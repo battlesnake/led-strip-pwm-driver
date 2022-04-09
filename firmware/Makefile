@@ -10,8 +10,8 @@ defines = STM8S003
 
 ASFLAGS =
 CPPFLAGS = $(headers:%=-I%) $(defines:%=-D%)
-CFLAGS = -mstm8 -pstm8s003 --opt-code-size --std-c99 -c --out-fmt-elf --debug --asm=gas --function-sections --data-sections
-LDFLAGS = -T./elf32stm8s003f3.x --print-memory-usage --gc-sections -Map $(program).map
+CFLAGS = -mstm8 -pstm8s003 --std-c99 -c --out-fmt-elf --debug --asm=gas --function-sections --data-sections # --opt-code-size
+LDFLAGS = -T./elf32stm8s003f3.x --print-memory-usage -Map $(program).map --gc-sections -g
 ifeq ($(filter debug openocd serial,$(MAKECMDGOALS)),)
 MAKEFLAGS += -Otarget
 else
@@ -52,10 +52,10 @@ openocd:
 	$(OPENOCD) -f interface/stlink-dap.cfg -f /usr/share/openocd/scripts/target/stm8s003.cfg -c "init" -c "reset halt"
 
 debug:
-	$(GDB) $(program) -q -ex 'target extended-remote localhost:3333' -ex 'monitor reset halt' -ex 'load' -ex 'b assert_failed'
+	$(GDB) $(program) -q -ex 'target extended-remote localhost:3333' -ex 'monitor reset halt' -ex 'load'
 
 serial:
-	minicom -D /dev/ttyUSB0 -b 9600 -8
+	minicom -D /dev/ttyUSB0 -b 115200 -8
 
 $(program): $(objects) $(objects_asm)
 	@$(MKDIRP) $(@D)

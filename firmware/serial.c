@@ -26,18 +26,26 @@ bool serial_write(char value)
 	if (!ringbuffer_push_back(tx_buf, value)) {
 		return FALSE;
 	}
-	/* Trigger interrupt if buffer was empty previously */
+	/* Enable interrupt on ready-to-write */
 	UART1_ITConfig(UART1_IT_TXE, ENABLE);
+	return TRUE;
+}
+
+bool serial_write_char(char ch)
+{
+	while (ringbuffer_is_full(tx_buf)) {
+		nop();
+	}
+	if (!serial_write(ch)) {
+		return FALSE;
+	}
 	return TRUE;
 }
 
 bool serial_write_string(const char *s)
 {
 	while (*s) {
-		while (ringbuffer_is_full(tx_buf)) {
-			nop();
-		}
-		if (!serial_write(*s++)) {
+		if (!serial_write_char(*s++)) {
 			return FALSE;
 		}
 	}
@@ -69,11 +77,10 @@ INTERRUPT_HANDLER(UART1_RX_IRQHandler, 18)
 INTERRUPT_HANDLER(UART1_TX_IRQHandler, 17)
 {
 	char value;
-	bool valid = ringbuffer_pop_front(tx_buf, &value);
-	if (valid) {
+	if (ringbuffer_pop_front(tx_buf, &value)) {
 		UART1_SendData8(value);
-	}
-	if (!valid || ringbuffer_is_empty(tx_buf)) {
+	} else {
+		/* Buffer empty / overrun pending - stop writing */
 		UART1_ITConfig(UART1_IT_TXE, DISABLE);
 	}
 }
@@ -83,7 +90,7 @@ void serial_setup()
 	UART1_DeInit();
 
 	/* 9600/8n1 */
-	UART1_Init(9600, UART1_WORDLENGTH_8D, UART1_STOPBITS_1, UART1_PARITY_NO, UART1_SYNCMODE_CLOCK_DISABLE, UART1_MODE_TXRX_ENABLE);
+	UART1_Init(115200, UART1_WORDLENGTH_8D, UART1_STOPBITS_1, UART1_PARITY_NO, UART1_SYNCMODE_CLOCK_DISABLE, UART1_MODE_TXRX_ENABLE);
 
 	/* RX interrupt */
 	UART1_ITConfig(UART1_IT_RXNE_OR, ENABLE);

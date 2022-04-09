@@ -15,5 +15,8 @@ bool serial_read_overrun();
 /* Write to TX ringbuffer, or return false if already full */
 bool serial_write(char ch);
 
+/* Blocking write of character to TX ringbuffer */
+bool serial_write_char(char ch);
+
 /* Blocking write of entire string to TX ringbuffer */
 bool serial_write_string(const char *s);

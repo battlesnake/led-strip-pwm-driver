@@ -41,7 +41,7 @@ bool string_uint(struct string *self, unsigned value)
 		return string_ch(self, '0');
 	}
 	char buf[5];
-	char idx = 0;
+	int8_t idx = 0;
 	for (; value; value /= 10) {
 		buf[++idx] = '0' + (value % 10);
 	}

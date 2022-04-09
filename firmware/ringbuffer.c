@@ -1,5 +1,7 @@
 #include "ringbuffer.h"
 
+/* TODO: Head/Tail instead of Head/Length, to avoid R+W race condition */
+
 void ringbuffer_set_overrun(struct ringbuffer *self)
 {
 	self->overrun = TRUE;
