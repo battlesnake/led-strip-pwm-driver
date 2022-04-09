@@ -5,7 +5,6 @@
 #include "rotary.h"
 #include "pwm.h"
 #include "readline.h"
-#include "string_builder.h"
 #include "cli.h"
 
 void main()
@@ -14,19 +13,20 @@ void main()
 	rotary_setup();
 	led_setup();
 	serial_setup();
-	// pwm_setup();
+	pwm_setup();
 
 	enableInterrupts();
 
+	cli_init();
+
 	serial_write_string("Hello World!\r\n");
 
-	int iterations = 3000;
 	unsigned ticks = get_ticks();
 	while (1) {
 		wfi();
-		/* Readline */
+		/* Update CLI state */
 		cli_handle_input();
-		/* Flash LED every 1000ms */
+		/* Flash heartbeat LED every 1000ms */
 		unsigned now = get_ticks();
 		if (now - ticks > 1000) {
 			ticks = now;

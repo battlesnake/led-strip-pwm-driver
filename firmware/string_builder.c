@@ -43,7 +43,7 @@ bool string_uint(struct string *self, unsigned value)
 	char buf[5];
 	int8_t idx = 0;
 	for (; value; value /= 10) {
-		buf[++idx] = '0' + (value % 10);
+		buf[idx++] = '0' + (value % 10);
 	}
 	for (--idx; idx >= 0; --idx) {
 		if (!string_ch(self, buf[idx])) {

@@ -1,17 +1,19 @@
 #include "ringbuffer.h"
 
-/* TODO: Head/Tail instead of Head/Length, to avoid R+W race condition */
+#define SUCC(idx) (((idx) + 1) & self->size_mask)
 
 void ringbuffer_set_overrun(struct ringbuffer *self)
 {
 	self->overrun = TRUE;
-	self->length = 0;
 }
 
 bool ringbuffer_clear_overrun(struct ringbuffer *self)
 {
 	bool value = self->overrun;
 	self->overrun = FALSE;
+	if (value) {
+		ringbuffer_clear(self);
+	}
 	return value;
 }
 
@@ -19,45 +21,44 @@ bool ringbuffer_pop_front(struct ringbuffer *self, char *value)
 {
 	if (self->overrun) {
 		return FALSE;
-	} else if (self->length == 0) {
+	} else if (ringbuffer_is_empty(self)) {
 		return FALSE;
 	} else {
-		*value = self->buffer[self->head];
-		self->head = (self->head + 1) & self->size_mask;
-		self->length--;
+		*value = self->buffer[self->front];
+		self->front = SUCC(self->front);
 		return TRUE;
 	}
 }
 
 bool ringbuffer_push_back(struct ringbuffer *self, char value)
 {
-	if (self->length == self->size) {
-		self->overrun = TRUE;
+	if (ringbuffer_is_full(self)) {
+		ringbuffer_set_overrun(self);
 		return FALSE;
 	} else {
-		unsigned char pos = (self->head + self->length) & self->size_mask;
-		self->buffer[pos] = value;
-		self->length++;
+		self->buffer[self->back] = value;
+		self->back = SUCC(self->back);
 		return TRUE;
 	}
 }
 
 void ringbuffer_clear(struct ringbuffer *self)
 {
-	self->length = 0;
+	self->front = 0;
+	self->back = 0;
 }
 
 bool ringbuffer_is_empty(struct ringbuffer *self)
 {
-	return self->length == 0;
+	return self->front == self->back;
 }
 
 bool ringbuffer_is_full(struct ringbuffer *self)
 {
-	return self->length == self->size;
+	return self->front == SUCC(self->back);
 }
 
-unsigned char ringbuffer_length(struct ringbuffer *self)
+uint8_t ringbuffer_length(struct ringbuffer *self)
 {
-	return self->length;
+	return (self->back - self->front) & self->size_mask;
 }

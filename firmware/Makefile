@@ -6,12 +6,13 @@ objects_asm = $(sources_asm:%.s=build/%.o)
 libraries =
 program = build/program
 drivers = clk exti gpio i2c rst tim1 tim2 uart1 itc
-defines = STM8S003
+baud = 9600
+defines = STM8S003 serial_baud=$(baud) ANSI
 
 ASFLAGS =
 CPPFLAGS = $(headers:%=-I%) $(defines:%=-D%)
-CFLAGS = -mstm8 -pstm8s003 --std-c99 -c --out-fmt-elf --debug --asm=gas --function-sections --data-sections # --opt-code-size
-LDFLAGS = -T./elf32stm8s003f3.x --print-memory-usage -Map $(program).map --gc-sections -g
+CFLAGS = -mstm8 -pstm8s003 --std-c99 -c --out-fmt-elf --debug --asm=gas --function-sections --data-sections --opt-code-size $(EXTRA_CFLAGS)
+LDFLAGS = -T./elf32stm8s003f3.x --print-memory-usage -Map $(program).map --gc-sections $(EXTRA_LDFLAGS)
 ifeq ($(filter debug openocd serial,$(MAKECMDGOALS)),)
 MAKEFLAGS += -Otarget
 else
@@ -55,7 +56,8 @@ debug:
 	$(GDB) $(program) -q -ex 'target extended-remote localhost:3333' -ex 'monitor reset halt' -ex 'load'
 
 serial:
-	minicom -D /dev/ttyUSB0 -b 115200 -8
+#	minicom -D /dev/ttyUSB0 -b $(baud) -8
+	screen /dev/ttyUSB0 $(baud)
 
 $(program): $(objects) $(objects_asm)
 	@$(MKDIRP) $(@D)

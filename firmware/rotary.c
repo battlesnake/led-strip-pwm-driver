@@ -1,19 +1,15 @@
 #include <stm8s.h>
 #include "ringbuffer.h"
 #include "serial.h"
-#include "string_builder.h"
 
 #define ROTARY_EV_RISEN (0x80)
 #define ROTARY_EV_FALLEN (0x00)
 #define ROTARY_EV_PIN_MASK (0x07)
 DEFINE_RINGBUFFER(rotary_ev, 4);
 
-DEFINE_STRING(log_buf, 16);
-
 INTERRUPT_HANDLER(EXTI_PORTC_IRQHandler, 8)
 {
 	static uint8_t gpio_prev;
-	char log[20];
 	uint8_t gpio_current = GPIO_ReadInputData(GPIOC);
 #define has_risen() ((gpio_current & pin_bit) && !(gpio_prev & pin_bit))
 #define has_fallen() (!(gpio_current & pin_bit) && (gpio_prev & pin_bit))
@@ -23,17 +19,16 @@ INTERRUPT_HANDLER(EXTI_PORTC_IRQHandler, 8)
 		uint8_t index = pin - 3;
 		bool risen = has_risen();
 		bool fallen = has_fallen();
-		string_clear(log_buf);
-		string_str(log_buf, "Pin C");
-		string_uint(log_buf, pin);
+		const char *action = NULL;
 		if (risen) {
 			ringbuffer_push_back(rotary_ev, ROTARY_EV_RISEN | index);
-			string_str(log_buf, " risen");
-			serial_write_string(string_get(log_buf));
+			action = "risen";
 		} else if (fallen) {
 			ringbuffer_push_back(rotary_ev, ROTARY_EV_FALLEN | index);
-			string_str(log_buf, " fallen");
-			serial_write_string(string_get(log_buf));
+			action = "fallen";
+		}
+		if (action) {
+			serial_write_format("rotary: Pin C%u %s", (int) pin, action);
 		}
 	}
 #undef risen

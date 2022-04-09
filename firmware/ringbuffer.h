@@ -3,13 +3,15 @@
 
 struct ringbuffer
 {
-	unsigned char size;
-	unsigned char size_mask;
-	unsigned char head;
-	unsigned char length;
+	uint8_t size;
+	uint8_t size_mask;
+	uint8_t front;
+	uint8_t back;
 	bool overrun;
 	char buffer[];
 };
+
+/* One byte in the buffer is wasted, so size_bits==3 gives capacity of 7 */
 
 /* Define a statically-allocated ringbuffer with 1<<size_bits byte capacity */
 #define DEFINE_RINGBUFFER(name, size_bits) \
@@ -54,4 +56,4 @@ bool ringbuffer_is_empty(struct ringbuffer *self);
 bool ringbuffer_is_full(struct ringbuffer *self);
 
 /* Get length of data in ringbuffer */
-unsigned char ringbuffer_length(struct ringbuffer *self);
+uint8_t ringbuffer_length(struct ringbuffer *self);

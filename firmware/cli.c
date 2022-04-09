@@ -1,9 +1,10 @@
 #include <stm8s.h>
 #include "serial.h"
 #include "readline.h"
-#include "string_builder.h"
 #include "clock.h"
 #include "cli.h"
+#include "str.h"
+#include "pwm.h"
 
 enum cli_mode
 {
@@ -14,12 +15,25 @@ enum cli_mode
 static enum cli_mode mode;
 static bool caret_shown;
 
-DEFINE_STRING(echo, READLINE_BUF_SIZE + 4);
+void cli_init()
+{
+#ifdef ANSI
+	serial_write_string("\033c\033[2J");
+#else
+	nop();
+#endif
+}
 
 void cli_update()
 {
-	const char *line = readline_get();
+#ifdef ANSI
+	struct range line;
+	readline_get_range(&line);
+	serial_write_format("\033[K\r> %S\033[%uD\033[%uC", &line, READLINE_BUF_SIZE, readline_get_cursor() + 2);
+#else
+	DEFINE_STRING(echo, READLINE_BUF_SIZE + 4);
 	string_clear(echo);
+	const char *line = readline_get_string();
 	string_str(echo, "\r> ");
 	for (uint8_t col = 0; col <= READLINE_BUF_SIZE; ++col) {
 		bool is_caret = caret_shown && col == readline_get_cursor();
@@ -39,15 +53,16 @@ void cli_update()
 	}
 	string_ch(echo, '\r');
 	serial_write_string(string_get(echo));
+#endif
 }
 
 static void cli_handle_insert(char ch)
 {
-	if (ch == '\x1b') {
+	if (ch == 27) {
 		mode = mode_normal;
 	} else if (ch >= 0x20 && ch < 0x7f) {
 		readline_insert(ch);
-	} else if (ch == 0x7f) {
+	} else if (ch == 0x7f || ch == 0x08) {
 		readline_delete_left();
 	}
 }
@@ -69,7 +84,7 @@ static void cli_handle_normal(char ch)
 		readline_delete_left();
 	} else if (ch == 'x') {
 		readline_delete_right();
-	} else if (ch == 'h') {
+	} else if (ch == 'h' || ch == 0x7f || ch == 0x08) {
 		readline_move_left();
 	} else if (ch == 'l') {
 		readline_move_right();
@@ -90,17 +105,23 @@ static void cli_handle_normal(char ch)
 
 static void cli_handle_char(char ch)
 {
-	if (ch == '\r') {
+	if (ch == '\r' && readline_get_length() > 0) {
 		cli_update();
-		serial_write('\r');
-		serial_write('\n');
-		cli_execute(readline_get());
+		serial_write_string("\r\n");
+		struct range line;
+		readline_get_range(&line);
+		if (cli_execute(&line)) {
+			serial_write_string("Success!\r\n");
+		} else {
+			serial_write_string("Failed!\r\n");
+		}
+		serial_write_string("\r\n");
 		readline_clear();
 		mode = mode_insert;
 	} else if (mode == mode_insert) {
-		cli_handle_insert(h);
+		cli_handle_insert(ch);
 	} else if (mode == mode_normal) {
-		cli_handle_normal(h);
+		cli_handle_normal(ch);
 	}
 }
 
@@ -126,9 +147,113 @@ void cli_handle_input()
 	}
 }
 
-void cli_execute(const char *command)
+static void invalid_arg(const struct range *arg)
 {
-	serial_write_string("\r\nexecute: \r\n> ");
-	serial_write_string(command);
-	serial_write_string("\r\n");
+	serial_write_format("Invalid argument: <%S>%n", arg);
+}
+
+static bool cli_execute_pwm_set(struct range *line, enum pwm_channel channel)
+{
+	struct range arg;
+	if (!range_tokenise(line, &arg)) {
+		return FALSE;
+	}
+	int value;
+	if (!range_to_int(&arg, &value) || value < 0 || value > 100) {
+		invalid_arg(&arg);
+		return FALSE;
+	}
+	pwm_set_duty(channel, value * 10);
+	return TRUE;
+}
+
+static bool cli_execute_pwm_get(struct range *line, enum pwm_channel channel)
+{
+	(void) line;
+	unsigned value = pwm_get_duty(channel);
+	value /= 10;
+	serial_write_format("pwm %c value: %u%%%n", 'a' + (channel - pwm_1), value);
+	return TRUE;
+}
+
+static bool cli_execute_pwm_delta(struct range *line, enum pwm_channel channel, bool invert)
+{
+	struct range arg;
+	if (!range_tokenise(line, &arg)) {
+		return FALSE;
+	}
+	int delta;
+	if (!range_to_int(&arg, &delta) || delta < -100 || delta > 100) {
+		invalid_arg(&arg);
+		return FALSE;
+	}
+	delta *= 10;
+	if (invert) {
+		delta = -delta;
+	}
+	int value = pwm_get_duty(channel);
+	value += delta;
+	value = value < 0 ? 0 : value > 1000 ? 1000 : value;
+	pwm_set_duty(channel, value);
+	return TRUE;
+}
+
+static bool cli_execute_pwm_ch(struct range *line, const struct range *command, enum pwm_channel channel)
+{
+	if (str_equal_range("set", command)) {
+		return cli_execute_pwm_set(line, channel);
+	} else if (str_equal_range("get", command)) {
+		return cli_execute_pwm_get(line, channel);
+	} else if (str_equal_range("inc", command)) {
+		return cli_execute_pwm_delta(line, channel, FALSE);
+	} else if (str_equal_range("dec", command)) {
+		return cli_execute_pwm_delta(line, channel, TRUE);
+	} else {
+		invalid_arg(command);
+		return FALSE;
+	}
+}
+
+static bool cli_execute_pwm(struct range *line)
+{
+	struct range command;
+	struct range arg;
+	if (!range_tokenise(line, &command)) {
+		return FALSE;
+	}
+	if (!range_tokenise(line, &arg)) {
+		return FALSE;
+	}
+	if (str_equal_range("a", &arg)) {
+		return cli_execute_pwm_ch(line, &command, pwm_1);
+	} else if (str_equal_range("b", &arg)) {
+		return cli_execute_pwm_ch(line, &command, pwm_2);
+	} else if (str_equal_range("*", &arg)) {
+		return cli_execute_pwm_ch(line, &command, pwm_1) && cli_execute_pwm_ch(line, &command, pwm_2);
+	} else {
+		invalid_arg(&arg);
+		return FALSE;
+	}
+}
+
+bool cli_execute(struct range *line)
+{
+	struct range command;
+	if (!range_tokenise(line, &command)) {
+		return FALSE;
+	}
+	if (str_equal_range("echo", &command)) {
+		struct range text;
+		if (!range_tokenise(line, &text)) {
+			return FALSE;
+		}
+		text.end = line->end;
+		serial_write_format("echo: %S%n", &text);
+		return TRUE;
+	} else if (str_equal_range("pwm", &command)) {
+		return cli_execute_pwm(line);
+	} else {
+		invalid_arg(&command);
+		return FALSE;
+	}
 }

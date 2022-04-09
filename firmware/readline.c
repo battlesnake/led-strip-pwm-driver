@@ -114,10 +114,16 @@ void readline_move_end()
 	cursor = length;
 }
 
-const char *readline_get()
+const char *readline_get_string()
 {
 	buffer[length] = 0;
 	return buffer;
+}
+
+void readline_get_range(struct range *line)
+{
+	line->begin = buffer;
+	line->end = buffer + length;
 }
 
 uint8_t readline_get_length()

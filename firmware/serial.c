@@ -52,6 +52,18 @@ bool serial_write_string(const char *s)
 	return TRUE;
 }
 
+bool serial_write_range(const struct range *s)
+{
+	const char *it = s->begin;
+	const char *end = s->end;
+	while (it != end) {
+		if (!serial_write_char(*it++)) {
+			return FALSE;
+		}
+	}
+	return TRUE;
+}
+
 bool serial_write_overrun()
 {
 	return ringbuffer_clear_overrun(tx_buf);
@@ -90,7 +102,7 @@ void serial_setup()
 	UART1_DeInit();
 
 	/* 9600/8n1 */
-	UART1_Init(115200, UART1_WORDLENGTH_8D, UART1_STOPBITS_1, UART1_PARITY_NO, UART1_SYNCMODE_CLOCK_DISABLE, UART1_MODE_TXRX_ENABLE);
+	UART1_Init(serial_baud, UART1_WORDLENGTH_8D, UART1_STOPBITS_1, UART1_PARITY_NO, UART1_SYNCMODE_CLOCK_DISABLE, UART1_MODE_TXRX_ENABLE);
 
 	/* RX interrupt */
 	UART1_ITConfig(UART1_IT_RXNE_OR, ENABLE);
