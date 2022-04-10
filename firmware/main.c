@@ -4,7 +4,6 @@
 #include "serial.h"
 #include "rotary.h"
 #include "pwm.h"
-#include "readline.h"
 #include "cli.h"
 
 void main()
@@ -30,7 +29,9 @@ void main()
 		unsigned now = get_ticks();
 		if (now - ticks > 1000) {
 			ticks = now;
-			led_toggle(led_green);
+			led_flash(led_green, 50);
 		}
+		/* Update pending LED flashes */
+		led_update();
 	}
 }

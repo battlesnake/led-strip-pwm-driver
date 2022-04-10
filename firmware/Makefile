@@ -7,7 +7,7 @@ libraries =
 program = build/program
 drivers = clk exti gpio i2c rst tim1 tim2 uart1 itc
 baud = 9600
-defines = STM8S003 serial_baud=$(baud) ANSI
+defines = STM8S003 serial_baud=$(baud) ANSI # PWM_FAST USE_FULL_ASSERT=1
 
 ASFLAGS =
 CPPFLAGS = $(headers:%=-I%) $(defines:%=-D%)

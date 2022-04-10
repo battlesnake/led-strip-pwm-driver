@@ -1,5 +1,18 @@
 #include <stm8s.h>
+#include "clock.h"
 #include "led.h"
+
+#define LED_COUNT (2)
+
+struct led_flash
+{
+	bool flashing;
+	unsigned expires;
+};
+
+static struct led_flash flash[LED_COUNT];
+
+static const unsigned char led_pin[LED_COUNT] = { GPIO_PIN_1, GPIO_PIN_2 };
 
 void led_setup()
 {
@@ -10,28 +23,36 @@ void led_setup()
 	GPIO_Init(GPIOA, GPIO_PIN_2, GPIO_MODE_OUT_PP_HIGH_SLOW);
 }
 
-void led_set(uint8_t led, bool state)
+void led_set(enum led_name led, bool state)
 {
-	if (led == led_blue) {
-		if (state) {
-			GPIO_WriteHigh(GPIOA, GPIO_PIN_1);
-		} else {
-			GPIO_WriteLow(GPIOA, GPIO_PIN_1);
-		}
-	} else if (led == led_green) {
-		if (state) {
-			GPIO_WriteHigh(GPIOA, GPIO_PIN_2);
-		} else {
-			GPIO_WriteLow(GPIOA, GPIO_PIN_2);
-		}
+	int pin = led_pin[led];
+	if (state) {
+		GPIO_WriteHigh(GPIOA, pin);
+	} else {
+		GPIO_WriteLow(GPIOA, pin);
 	}
 }
 
-void led_toggle(uint8_t led)
+void led_toggle(enum led_name led)
 {
-	if (led == led_blue) {
-		GPIO_WriteReverse(GPIOA, GPIO_PIN_1);
-	} else if (led == led_green) {
-		GPIO_WriteReverse(GPIOA, GPIO_PIN_2);
+	int pin = led_pin[led];
+	GPIO_WriteReverse(GPIOA, pin);
+}
+
+void led_flash(enum led_name led, unsigned msecs)
+{
+	led_set(led, TRUE);
+	flash[led].flashing = TRUE;
+	flash[led].expires = get_ticks() + msecs;
+}
+
+void led_update()
+{
+	unsigned now = get_ticks();
+	for (int led = 0; led < LED_COUNT; ++led) {
+		if (flash[led].flashing && flash[led].expires < now) {
+			flash[led].flashing = FALSE;
+			led_set(led, FALSE);
+		}
 	}
 }

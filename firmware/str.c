@@ -24,10 +24,7 @@ bool str_equal_range(const char *a, const struct range *b)
 	const char *b_it = b->begin;
 	const char *b_end = b->end;
 	while (b_it != b_end) {
-		if (*a_it == 0) {
-			return FALSE;
-		}
-		if (*a_it++ != *b_it++) {
+		if (*a_it == 0 || *a_it++ != *b_it++) {
 			return FALSE;
 		}
 	}
@@ -99,7 +96,7 @@ bool format_string(bool (*emit)(char), const char *format, ...)
 					return FALSE;
 				}
 			} else if (ch == 'c') {
-				char c = va_arg(ap, char);
+				char c = va_arg(ap, int);
 				if (!emit(c)) {
 					return FALSE;
 				}
@@ -146,6 +143,11 @@ bool format_string(bool (*emit)(char), const char *format, ...)
 				if (!emit(b ? 'Y' : 'N')) {
 					return FALSE;
 				}
+			} else {
+				if (!emit('?')) {
+					return FALSE;
+				}
+				return FALSE;
 			}
 		} else if (ch == '%') {
 			esc = TRUE;

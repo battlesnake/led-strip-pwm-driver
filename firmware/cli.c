@@ -152,6 +152,19 @@ static void invalid_arg(const struct range *arg)
 	serial_write_format("Invalid argument: <%S>%n", arg);
 }
 
+static void echo_pwm_value(enum pwm_channel channel)
+{
+	int value = pwm_get_duty(channel);
+	serial_write_format("pwm %c value: %d%%%n", 'a' + (channel - pwm_1), value);
+}
+
+static bool cli_execute_pwm_stop(enum pwm_channel channel)
+{
+	pwm_stop(channel);
+	echo_pwm_value(channel);
+	return TRUE;
+}
+
 static bool cli_execute_pwm_set(struct range *line, enum pwm_channel channel)
 {
 	struct range arg;
@@ -159,20 +172,18 @@ static bool cli_execute_pwm_set(struct range *line, enum pwm_channel channel)
 		return FALSE;
 	}
 	int value;
-	if (!range_to_int(&arg, &value) || value < 0 || value > 100) {
+	if (!range_to_int(&arg, &value)) {
 		invalid_arg(&arg);
 		return FALSE;
 	}
-	pwm_set_duty(channel, value * 10);
+	pwm_set_duty(channel, value);
+	echo_pwm_value(channel);
 	return TRUE;
 }
 
-static bool cli_execute_pwm_get(struct range *line, enum pwm_channel channel)
+static bool cli_execute_pwm_get(enum pwm_channel channel)
 {
-	(void) line;
-	unsigned value = pwm_get_duty(channel);
-	value /= 10;
-	serial_write_format("pwm %c value: %u%%%n", 'a' + (channel - pwm_1), value);
+	echo_pwm_value(channel);
 	return TRUE;
 }
 
@@ -187,14 +198,13 @@ static bool cli_execute_pwm_delta(struct range *line, enum pwm_channel channel, 
 		invalid_arg(&arg);
 		return FALSE;
 	}
-	delta *= 10;
 	if (invert) {
 		delta = -delta;
 	}
 	int value = pwm_get_duty(channel);
 	value += delta;
-	value = value < 0 ? 0 : value > 1000 ? 1000 : value;
 	pwm_set_duty(channel, value);
+	echo_pwm_value(channel);
 	return TRUE;
 }
 
@@ -203,14 +213,25 @@ static bool cli_execute_pwm_ch(struct range *line, const struct range *command, 
 	if (str_equal_range("set", command)) {
 		return cli_execute_pwm_set(line, channel);
 	} else if (str_equal_range("get", command)) {
-		return cli_execute_pwm_get(line, channel);
+		return cli_execute_pwm_get(channel);
 	} else if (str_equal_range("inc", command)) {
 		return cli_execute_pwm_delta(line, channel, FALSE);
 	} else if (str_equal_range("dec", command)) {
 		return cli_execute_pwm_delta(line, channel, TRUE);
+	} else if (str_equal_range("stop", command)) {
+		return cli_execute_pwm_stop(channel);
 	} else {
 		invalid_arg(command);
 		return FALSE;
+	}
+}
+
+static inline void memcpy(void *dest, const void *src, unsigned length)
+{
+	char *d = dest;
+	const char *s = src;
+	while (length--) {
+		*d++ = *s++;
 	}
 }
 
@@ -229,7 +250,10 @@ static bool cli_execute_pwm(struct range *line)
 	} else if (str_equal_range("b", &arg)) {
 		return cli_execute_pwm_ch(line, &command, pwm_2);
 	} else if (str_equal_range("*", &arg)) {
-		return cli_execute_pwm_ch(line, &command, pwm_1) && cli_execute_pwm_ch(line, &command, pwm_2);
+		/* "line" gets mutated down the chain, so copy it for re-use */
+		struct range line2;
+		memcpy(&line2, line, sizeof(*line));
+		return cli_execute_pwm_ch(line, &command, pwm_1) && cli_execute_pwm_ch(&line2, &command, pwm_2);
 	} else {
 		invalid_arg(&arg);
 		return FALSE;

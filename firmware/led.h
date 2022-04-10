@@ -14,3 +14,9 @@ void led_set(enum led_name led, bool state);
 
 /* Toggle a LED */
 void led_toggle(enum led_name led);
+
+/* Flash a LED */
+void led_flash(enum led_name led, unsigned msecs);
+
+/* Turn off any flashing LEDs past their deadline */
+void led_update();

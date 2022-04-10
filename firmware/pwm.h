@@ -7,7 +7,7 @@ enum pwm_channel {
 };
 
 void pwm_setup();
-void pwm_set_duty(enum pwm_channel channel, uint16_t value);
-uint16_t pwm_get_duty(enum pwm_channel channel);
+void pwm_set_duty(enum pwm_channel channel, int value);
+int pwm_get_duty(enum pwm_channel channel);
 void pwm_stop(enum pwm_channel channel);
 void pwm_stop_all();

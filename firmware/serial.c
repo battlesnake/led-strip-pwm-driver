@@ -83,7 +83,8 @@ INTERRUPT_HANDLER(UART1_RX_IRQHandler, 18)
 	UART1_ClearFlag(UART1_FLAG_RXNE);
 	/* Write byte to buffer */
 	ringbuffer_push_back(rx_buf, value);
-	led_toggle(led_blue);
+	/* Flash LED */
+	led_flash(led_blue, 50);
 }
 
 INTERRUPT_HANDLER(UART1_TX_IRQHandler, 17)
