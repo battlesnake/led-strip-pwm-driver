@@ -2,8 +2,8 @@
 #include <stm8s.h>
 
 enum pwm_channel {
-	pwm_1 = 0,
-	pwm_2 = 1,
+	pwm_a = 0,
+	pwm_b = 1,
 };
 
 void pwm_setup();

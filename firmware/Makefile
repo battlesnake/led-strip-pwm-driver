@@ -6,8 +6,23 @@ objects_asm = $(sources_asm:%.s=build/%.o)
 libraries =
 program = build/program
 drivers = clk exti gpio i2c rst tim1 tim2 uart1 itc
+defines = STM8S003
+
+### Baud rate of serial (lower is better to a point, reduce chance of overruns)
 baud = 9600
-defines = STM8S003 serial_baud=$(baud) ANSI # PWM_FAST USE_FULL_ASSERT=1
+defines += serial_baud=$(baud)
+
+### ANSI VT100-like terminal on serial line, instead of dumb terminal
+defines += ANSI
+
+### 1.25kHz PWM instead of 312.5Hz
+# defines += PWM_FAST
+
+### Serial CLI
+defines += CLI
+
+### Sanity checks in SPL
+# defines += USE_FULL_ASSERT=1
 
 ASFLAGS =
 CPPFLAGS = $(headers:%=-I%) $(defines:%=-D%)
@@ -19,6 +34,9 @@ else
 MAKEFLAGS += -Onone
 endif
 FLASHFLAGS = -c stlinkv2 -p stm8s003?3
+
+CFLAGS += --callee-saves
+CFLAGS += --stack-auto
 
 CC := sdcc
 AS := stm8-as

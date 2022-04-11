@@ -155,7 +155,7 @@ static void invalid_arg(const struct range *arg)
 static void echo_pwm_value(enum pwm_channel channel)
 {
 	int value = pwm_get_duty(channel);
-	serial_write_format("pwm %c value: %d%%%n", 'a' + (channel - pwm_1), value);
+	serial_write_format("pwm %c value: %d%%%n", 'a' + channel, value);
 }
 
 static bool cli_execute_pwm_stop(enum pwm_channel channel)
@@ -246,14 +246,14 @@ static bool cli_execute_pwm(struct range *line)
 		return FALSE;
 	}
 	if (str_equal_range("a", &arg)) {
-		return cli_execute_pwm_ch(line, &command, pwm_1);
+		return cli_execute_pwm_ch(line, &command, pwm_a);
 	} else if (str_equal_range("b", &arg)) {
-		return cli_execute_pwm_ch(line, &command, pwm_2);
+		return cli_execute_pwm_ch(line, &command, pwm_b);
 	} else if (str_equal_range("*", &arg)) {
 		/* "line" gets mutated down the chain, so copy it for re-use */
 		struct range line2;
 		memcpy(&line2, line, sizeof(*line));
-		return cli_execute_pwm_ch(line, &command, pwm_1) && cli_execute_pwm_ch(&line2, &command, pwm_2);
+		return cli_execute_pwm_ch(line, &command, pwm_a) && cli_execute_pwm_ch(&line2, &command, pwm_b);
 	} else {
 		invalid_arg(&arg);
 		return FALSE;

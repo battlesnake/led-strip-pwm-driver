@@ -23,8 +23,6 @@ static void timer_setup()
 
 void clock_setup()
 {
-	CLK_DeInit();
-
 	/* HSE = undefined */
 	CLK_HSECmd(DISABLE);
 	/* LSI = 128 kHz */

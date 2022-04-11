@@ -16,11 +16,9 @@ static const unsigned char led_pin[LED_COUNT] = { GPIO_PIN_1, GPIO_PIN_2 };
 
 void led_setup()
 {
-	GPIO_DeInit(GPIOA);
-
 	/* A1, A2 = LEDs 1/2 */
 	GPIO_Init(GPIOA, GPIO_PIN_1, GPIO_MODE_OUT_PP_LOW_SLOW);
-	GPIO_Init(GPIOA, GPIO_PIN_2, GPIO_MODE_OUT_PP_HIGH_SLOW);
+	GPIO_Init(GPIOA, GPIO_PIN_2, GPIO_MODE_OUT_PP_LOW_SLOW);
 }
 
 void led_set(enum led_name led, bool state)
