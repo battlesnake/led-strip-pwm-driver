@@ -52,15 +52,3 @@ int pwm_get_duty(enum pwm_channel channel)
 	uint16_t value = duty[channel];
 	return value;
 }
-
-void pwm_stop(enum pwm_channel channel)
-{
-	pwm_set_duty(channel, 0);
-}
-
-void pwm_stop_all()
-{
-	for (unsigned char channel = 0; channel < PWM_COUNT; channel++) {
-		pwm_stop(channel);
-	}
-}

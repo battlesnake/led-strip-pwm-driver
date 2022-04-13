@@ -21,13 +21,9 @@ void main()
 
 #ifdef CLI
 	cli_init();
-#else
-	pwm_set_duty(pwm_a, 50);
-	pwm_set_duty(pwm_b, 50);
 #endif
 
 	serial_write_string("Hello World!\r\n");
-
 
 	unsigned ticks = get_ticks();
 	while (1) {

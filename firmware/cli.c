@@ -160,7 +160,7 @@ static void echo_pwm_value(enum pwm_channel channel)
 
 static bool cli_execute_pwm_stop(enum pwm_channel channel)
 {
-	pwm_stop(channel);
+	pwm_set_duty(channel, 0);
 	echo_pwm_value(channel);
 	return TRUE;
 }
