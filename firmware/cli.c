@@ -14,6 +14,7 @@ enum cli_mode
 
 static enum cli_mode mode;
 static bool caret_shown;
+static bool no_refresh_pending;
 
 void cli_init()
 {
@@ -22,6 +23,11 @@ void cli_init()
 #else
 	nop();
 #endif
+}
+
+void cli_invalidate()
+{
+	no_refresh_pending = FALSE;
 }
 
 void cli_update()
@@ -131,20 +137,27 @@ void cli_handle_input()
 		serial_write_string("error: RX buffer overrun\r\n");
 		readline_clear();
 	}
-	bool changed = FALSE;
+	bool changed = !no_refresh_pending;
 	char ch = 0;
 	while (serial_read(&ch)) {
 		cli_handle_char(ch);
 		changed = TRUE;
 	}
-	bool caret_shown_now = changed || (get_ticks() & 1024) != 0;
+#ifdef ANSI
+	/* Terminal caret/cursor control */
+#else
+	/* Manual flash caret */
+	bool caret_shown_now = changed;
+	caret_shown_now = caret_shown_now || (get_ticks() & 1024) != 0;
 	if (caret_shown_now != caret_shown) {
 		caret_shown = caret_shown_now;
 		changed = TRUE;
 	}
+#endif
 	if (changed) {
 		cli_update();
 	}
+	no_refresh_pending = TRUE;
 }
 
 static void invalid_arg(const struct range *arg)
@@ -244,6 +257,22 @@ static bool cli_execute_pwm(struct range *line)
 	}
 	if (!range_tokenise(line, &arg)) {
 		return FALSE;
+	}
+	if (str_equal_range("cycle", &command)) {
+		extern bool pwm_cycle;
+		if (str_equal_range("off", &arg)) {
+			pwm_cycle = 0;
+		} else if (str_equal_range("fast", &arg)) {
+			pwm_cycle = 4;
+		} else if (str_equal_range("medium", &arg)) {
+			pwm_cycle = 6;
+		} else if (str_equal_range("slow", &arg)) {
+			pwm_cycle = 8;
+		} else {
+			invalid_arg(&arg);
+			return FALSE;
+		}
+		return TRUE;
 	}
 	if (str_equal_range("a", &arg)) {
 		return cli_execute_pwm_ch(line, &command, pwm_a);

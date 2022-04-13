@@ -15,8 +15,11 @@ defines += serial_baud=$(baud)
 ### ANSI VT100-like terminal on serial line, instead of dumb terminal
 defines += ANSI
 
-### 1.25kHz PWM instead of 312.5Hz
+### 1250 Hz PWM
 # defines += PWM_FAST
+### 312.5 Hz PWM
+# defines += PWM_SLOW
+### 625 Hz default otherwise
 
 ### Serial CLI
 defines += CLI

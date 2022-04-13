@@ -13,8 +13,13 @@
 /* 1250 Hz */
 #define PRESCALE TIM2_PRESCALER_16
 #else
+#ifdef PWM_SLOW
 /* 312.5 Hz */
 #define PRESCALE TIM2_PRESCALER_64
+#else
+/* 625 Hz */
+#define PRESCALE TIM2_PRESCALER_32
+#endif
 #endif
 
 static uint16_t duty[PWM_COUNT];
