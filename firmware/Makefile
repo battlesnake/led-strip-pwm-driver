@@ -7,6 +7,7 @@ libraries =
 program = build/program
 drivers = clk exti gpio i2c rst tim1 tim2 uart1 itc
 defines = STM8S003
+packages = STM8S_StdPeriph_Lib stm8s-sdcc-lib serial-cli
 
 ### Baud rate of serial (lower is better to a point, reduce chance of overruns)
 baud = 9600
@@ -29,7 +30,7 @@ defines += CLI
 
 ASFLAGS =
 CPPFLAGS = $(headers:%=-I%) $(defines:%=-D%)
-CFLAGS = -mstm8 -pstm8s003 --std-c99 -c --out-fmt-elf --debug --asm=gas --function-sections --data-sections --opt-code-size $(EXTRA_CFLAGS)
+CFLAGS = -mstm8 -pstm8s003 --std-c99 -c --out-fmt-elf --debug --asm=gas --function-sections --data-sections --opt-code-size $(EXTRA_CFLAGS) --vc
 LDFLAGS = -T./elf32stm8s003f3.x --print-memory-usage -Map $(program).map --gc-sections $(EXTRA_LDFLAGS)
 ifeq ($(filter debug openocd serial,$(MAKECMDGOALS)),)
 MAKEFLAGS += -Otarget
@@ -57,9 +58,7 @@ OPENOCD := openocd
 
 build: $(program)
 
-prepare: \
-		pkg-ext/STM8S_StdPeriph_Lib/.prepared \
-		pkg-ext/stm8s-sdcc-lib/.prepared
+prepare: $(packages:%=pkg-ext/%/.prepared)
 
 clean:
 	$(RMRF) build/
@@ -110,6 +109,7 @@ define link_drivers
 $(foreach driver,$(drivers),$(call link_driver,$(driver)))
 endef
 
+# STM8S Peripheral Library
 pkg-ext/STM8S_StdPeriph_Lib/.prepared: \
 		pkg/stm8s/en.stsw-stm8069_v2.3.1.zip \
 		pkg/stm8s/STM8S_StdPeriph_Lib_V2.3.1_sdcc.patch
@@ -133,6 +133,7 @@ pkg-ext/STM8S_StdPeriph_Lib/.prepared: \
 	# Mark as done
 	touch $@
 
+# STM8S SDCC Library
 pkg-ext/stm8s-sdcc-lib/.prepared: \
 		$(wildcard pkg/stm8s-sdcc-lib/*.c)
 	$(RMRF) $(@D)
@@ -143,6 +144,24 @@ pkg-ext/stm8s-sdcc-lib/.prepared: \
 	$(RMRF) lib/stm8s-sdcc
 	$(MKDIRP) lib/stm8s-sdcc/
 	ln -srft lib/stm8s-sdcc/ pkg-ext/stm8s-sdcc-lib/*.c
+	# Mark as done
+	touch $@
+
+# Serial CLI library
+pkg-ext/serial-cli/.prepared: \
+		$(wildcard pkg/serial-cli/cli.*)
+	$(RMRF) $(@D)
+	$(MKDIRP) $(@D)
+	# Extract source
+	cp -t $(@D) $^
+	# Import sources
+	$(RMRF) lib/serial-cli/
+	$(MKDIRP) lib/serial-cli/
+	ln -srft lib/serial-cli/ pkg-ext/serial-cli/*.c
+	# Import headers
+	$(RMRF) include/serial-cli
+	$(MKDIRP) include/serial-cli
+	ln -srft include/serial-cli/ pkg-ext/serial-cli/*.h
 	# Mark as done
 	touch $@
 
