@@ -13,6 +13,9 @@ packages = STM8S_StdPeriph_Lib stm8s-sdcc-lib serial-cli
 baud = 9600
 defines += serial_baud=$(baud)
 
+### For serial_cli, specify to use our printf's magic linebreak sequence
+defines += PRINTF_LINEBREAK=\\\"%n\\\"
+
 ### ANSI VT100-like terminal on serial line, instead of dumb terminal
 defines += ANSI
 
@@ -25,12 +28,18 @@ defines += ANSI
 ### Serial CLI
 defines += CLI
 
+### Old-style command-processor (not using serial_cli library)
+# defines += CMD_OLD
+
 ### Sanity checks in SPL
 # defines += USE_FULL_ASSERT=1
 
+### If we preprocess separately from compiling with sdcc, need to define these explicitly
+# defines += __SDCC __SDCC_VERSION_MAJOR=3 __SDCC_VERSION_MINOR=9 __SDCC_VERSION_PATCH=3
+
 ASFLAGS =
-CPPFLAGS = $(headers:%=-I%) $(defines:%=-D%)
-CFLAGS = -mstm8 -pstm8s003 --std-c99 -c --out-fmt-elf --debug --asm=gas --function-sections --data-sections --opt-code-size $(EXTRA_CFLAGS) --vc
+CPPFLAGS = -std=c99 $(headers:%=-I%) $(defines:%=-D%) -include stm8s.h
+CFLAGS = $(CPPFLAGS:%=-Wp,%) $(ASFLAGS:%=-Wa,%) -mstm8 -pstm8s003 --std-c99 --out-fmt-elf --debug --asm=gas --function-sections --data-sections --opt-code-size $(EXTRA_CFLAGS) --vc -c
 LDFLAGS = -T./elf32stm8s003f3.x --print-memory-usage -Map $(program).map --gc-sections $(EXTRA_LDFLAGS)
 ifeq ($(filter debug openocd serial,$(MAKECMDGOALS)),)
 MAKEFLAGS += -Otarget
@@ -42,6 +51,17 @@ FLASHFLAGS = -c stlinkv2 -p stm8s003?3
 CFLAGS += --callee-saves
 CFLAGS += --stack-auto
 
+### No effect on size (not supported for stm8 sdcc port?)
+# CFLAGS += -fomit-frame-pointer
+# CFLAGS += --peep-asm --peep-return
+
+### Slows compile considerably.  Tests on binary with 7628B size originally:
+### - 20k = ~90 bytes saved
+### - 100k = ~100 bytes saved
+### - 200k = ~110 bytes saved
+# CFLAGS += --max-allocs-per-node 200000
+
+CPP := cpp
 CC := sdcc
 AS := stm8-as
 LD := stm8-ld
@@ -49,6 +69,7 @@ OBJCOPY := stm8-objcopy
 GDB := stm8-gdb
 RM := rm -f --
 RMRF := rm -rf --
+RSYNC := rsync
 MKDIRP := mkdir -p
 FLASH := stm8flash
 OPENOCD := openocd
@@ -65,11 +86,12 @@ clean:
 
 flash: $(program) | build
 	$(FLASH) $(FLASHFLAGS) -w $<
+	sleep 1
 
 distclean: clean
 	$(RMRF) pkg-ext/ lib/ include/
 
-openocd:
+openocd: | flash
 	$(OPENOCD) -f interface/stlink-dap.cfg -f /usr/share/openocd/scripts/target/stm8s003.cfg -c "init" -c "reset halt"
 
 debug:
@@ -86,11 +108,11 @@ $(program): $(objects) $(objects_asm)
 
 build/%.c.d: %.c
 	@$(MKDIRP) $(@D)
-	$(CC) $(CPPFLAGS) $(CFLAGS) -MM > $@ $<
+	$(CC) $(CFLAGS) -MM > $@ $<
 
 $(objects): build/%.o: %.c build/%.c.d
 	@$(MKDIRP) $(@D)
-	$(CC) $(CPPFLAGS) $(CFLAGS) -o $@ $<
+	$(CC) $(CFLAGS) -o $@ $<
 
 build/%.s.d: %.s
 	@$(MKDIRP) $(@D)
@@ -135,7 +157,8 @@ pkg-ext/STM8S_StdPeriph_Lib/.prepared: \
 
 # STM8S SDCC Library
 pkg-ext/stm8s-sdcc-lib/.prepared: \
-		$(wildcard pkg/stm8s-sdcc-lib/*.c)
+		$(wildcard pkg/stm8s-sdcc-lib/*.c) \
+		pkg/stm8s-sdcc-lib/repo/device/include/sdcc-lib.h
 	$(RMRF) $(@D)
 	$(MKDIRP) $(@D)
 	# Extract source
@@ -144,12 +167,16 @@ pkg-ext/stm8s-sdcc-lib/.prepared: \
 	$(RMRF) lib/stm8s-sdcc
 	$(MKDIRP) lib/stm8s-sdcc/
 	ln -srft lib/stm8s-sdcc/ pkg-ext/stm8s-sdcc-lib/*.c
+	# Import headers
+	$(RMRF) include/stm8s-sdcc
+	$(MKDIRP) include/stm8s-sdcc/
+	ln -srft include/stm8s-sdcc/ pkg-ext/stm8s-sdcc-lib/*.h
 	# Mark as done
 	touch $@
 
 # Serial CLI library
 pkg-ext/serial-cli/.prepared: \
-		$(wildcard pkg/serial-cli/cli.*)
+		$(wildcard pkg/serial-cli/serial_cli.*)
 	$(RMRF) $(@D)
 	$(MKDIRP) $(@D)
 	# Extract source

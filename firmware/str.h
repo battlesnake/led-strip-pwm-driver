@@ -1,7 +1,9 @@
 #pragma once
-#include <stm8s.h>
+#include <stdarg.h>
 
+#ifndef NULL
 #define NULL ((void *) 0)
+#endif
 
 struct range
 {
@@ -15,3 +17,4 @@ bool range_to_int(const struct range *s, int *value);
 bool range_tokenise(struct range *str, struct range *token);
 
 bool format_string(bool (*emit)(char), const char *format, ...);
+bool format_string_args(bool (*emit)(char), const char *format, va_list ap);

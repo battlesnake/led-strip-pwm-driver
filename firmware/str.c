@@ -1,3 +1,4 @@
+#include <stm8s.h>
 #include <stdarg.h>
 #include "str.h"
 
@@ -79,6 +80,13 @@ bool format_string(bool (*emit)(char), const char *format, ...)
 {
 	va_list ap;
 	va_start(ap, format);
+	bool result = format_string_args(emit, format, ap);
+	va_end(ap);
+	return result;
+}
+
+bool format_string_args(bool (*emit)(char), const char *format, va_list ap)
+{
 	bool esc = FALSE;
 	for (; *format; ++format) {
 		char ch = *format;
@@ -157,6 +165,5 @@ bool format_string(bool (*emit)(char), const char *format, ...)
 			}
 		}
 	}
-	va_end(ap);
 	return TRUE;
 }

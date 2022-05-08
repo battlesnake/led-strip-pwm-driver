@@ -26,4 +26,4 @@ bool serial_write_string(const char *s);
 bool serial_write_range(const struct range *s);
 
 /* Blocking write of formatted string to TX ringbuffer */
-#define serial_write_format(format, ...) format_string(serial_write_char, format, __VA_ARGS__)
+#define serial_write_format(format, ...) format_string(serial_write_char, format, ##__VA_ARGS__)
