@@ -12,6 +12,10 @@ packages = STM8S_StdPeriph_Lib stm8s-sdcc-lib serial-cli
 makefile_dir := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 export PATH := $(makefile_dir)/tools/:$(PATH)
 
+### Base address for I2C (3 bits configured via GPIO are or'd with this)
+i2c_base_address = 0x30
+defines += I2C_BASE_ADDRESS=$(i2c_base_address)
+
 ### Baud rate of serial (lower is better to a point, reduce chance of overruns)
 baud = 9600
 defines += serial_baud=$(baud)
@@ -36,9 +40,6 @@ defines += CLI
 
 ### Sanity checks in SPL
 # defines += USE_FULL_ASSERT=1
-
-### If we preprocess separately from compiling with sdcc, need to define these explicitly
-# defines += __SDCC __SDCC_VERSION_MAJOR=3 __SDCC_VERSION_MINOR=9 __SDCC_VERSION_PATCH=3
 
 ASFLAGS =
 CPPFLAGS = -std=c99 $(headers:%=-I%) $(defines:%=-D%) -include stm8s.h
@@ -112,6 +113,7 @@ $(program): $(objects) $(objects_asm)
 build/%.c.d: %.c
 	@$(MKDIRP) $(@D)
 	$(CC) $(CFLAGS) -MM > $@ $<
+	sed -i -e 's/\.rel:/.o:/' $@  # Workaround SDCC bug
 
 $(objects): build/%.o: %.c build/%.c.d
 	@$(MKDIRP) $(@D)
