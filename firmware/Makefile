@@ -9,6 +9,9 @@ drivers = clk exti gpio i2c rst tim1 tim2 uart1 itc
 defines = STM8S003
 packages = STM8S_StdPeriph_Lib stm8s-sdcc-lib serial-cli
 
+makefile_dir := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
+export PATH := $(makefile_dir)/tools/:$(PATH)
+
 ### Baud rate of serial (lower is better to a point, reduce chance of overruns)
 baud = 9600
 defines += serial_baud=$(baud)
@@ -69,7 +72,6 @@ OBJCOPY := stm8-objcopy
 GDB := stm8-gdb
 RM := rm -f --
 RMRF := rm -rf --
-RSYNC := rsync
 MKDIRP := mkdir -p
 FLASH := stm8flash
 OPENOCD := openocd
@@ -91,8 +93,9 @@ flash: $(program) | build
 distclean: clean
 	$(RMRF) pkg-ext/ lib/ include/
 
-openocd: | flash
-	$(OPENOCD) -f interface/stlink-dap.cfg -f /usr/share/openocd/scripts/target/stm8s003.cfg -c "init" -c "reset halt"
+openocd:
+	# $(OPENOCD) -s /usr/share/openocd/scripts -f interface/stlink-dap.cfg -f target/stm8s003.cfg -c "init" -c "reset halt"
+	$(OPENOCD) -s $(makefile_dir)/tools/openocd-scripts -f interface/stlink-dap.cfg -f target/stm8s003.cfg -c "init" -c "reset halt"
 
 debug:
 	$(GDB) $(program) -q -ex 'target extended-remote localhost:3333' -ex 'monitor reset halt' -ex 'load'
