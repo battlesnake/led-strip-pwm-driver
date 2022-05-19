@@ -536,6 +536,10 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 18f1018d-5857-4c32-a072-f3de80352f74)
   )
+  (text "D.N.P." (at 106.045 57.15 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 295ea312-edf1-4434-b39d-90bbd1a604b0)
+  )
 
   (label "GATE" (at 124.46 49.53 180)
     (effects (font (size 1.27 1.27)) (justify right bottom))
