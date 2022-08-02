@@ -7,7 +7,7 @@ libraries =
 program = build/program
 drivers = clk exti gpio i2c rst tim1 tim2 uart1 itc
 defines = STM8S003
-packages = STM8S_StdPeriph_Lib stm8s-sdcc-lib serial-cli
+packages = STM8S_StdPeriph_Lib stm8s-sdcc-lib serial-cli u-lib
 
 makefile_dir := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
 export PATH := $(makefile_dir)/tools/:$(PATH)
@@ -194,6 +194,24 @@ pkg-ext/serial-cli/.prepared: \
 	$(RMRF) include/serial-cli
 	$(MKDIRP) include/serial-cli
 	ln -srft include/serial-cli/ pkg-ext/serial-cli/*.h
+	# Mark as done
+	touch $@
+
+# u-lib library
+pkg-ext/u-lib/.prepared: \
+		$(wildcard pkg/u-lib/str.*)
+	$(RMRF) $(@D)
+	$(MKDIRP) $(@D)
+	# Extract source
+	cp -t $(@D) $^
+	# Import sources
+	$(RMRF) lib/u-lib/
+	$(MKDIRP) lib/u-lib/
+	ln -srft lib/u-lib/ pkg-ext/u-lib/*.c
+	# Import headers
+	$(RMRF) include/u-lib
+	$(MKDIRP) include/u-lib
+	ln -srft include/u-lib/ pkg-ext/u-lib/*.h
 	# Mark as done
 	touch $@
 

@@ -1,3 +1,6 @@
 [submodule "firmware/pkg/serial-cli"]
 	path = firmware/pkg/serial-cli
 	url = git@github.com:battlesnake/serial-cli.git
+[submodule "firmware/pkg/u-printf"]
+	path = firmware/pkg/u-lib
+	url = https://github.com/battlesnake/u-printf
